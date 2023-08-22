@@ -20,8 +20,8 @@ sudo sed -i "/memory_limit/ c\memory_limit = 2048M" /etc/php/8.2/apache2/php.ini
 sudo service apache2 restart
 sudo apt install postgresql
 sudo apt install phppgadmin
-cd $DRUPAL_HOME
 sudo apt install composer
+cd $DRUPAL_HOME
 composer require drush/drush
 composer require drupal/core
 drush init
