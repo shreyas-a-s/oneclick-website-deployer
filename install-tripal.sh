@@ -23,6 +23,8 @@ sudo apt install phppgadmin
 sudo apt install composer
 cd $DRUPAL_HOME
 composer require drush/drush
+echo "PATH=$PATH:/var/www/html/vendor/bin" | tee -a "$HOME"/.bashrc > /dev/null
+export PATH=$PATH:/var/www/html/vendor/bin
 composer require drupal/core
 drush init
 sudo su - postgres
