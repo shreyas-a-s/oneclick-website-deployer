@@ -40,6 +40,7 @@ mv index.html index.html.orig
 cd $DRUPAL_HOME/sites/default/
 cp default.settings.php settings.php
 sudo chown www-data:www-data $DRUPAL_HOME/sites/default/settings.php
+sudo chown www-data:www-data $DRUPAL_HOME/sites/default/
 $databases['default']['default'] = array(
   'driver' => 'pgsql',
   'database' => 'drupal',
@@ -48,7 +49,6 @@ $databases['default']['default'] = array(
   'host' => 'localhost',
   'prefix' => '',
 );
-# sudo chown www-data:www-data $DRUPAL_HOME/sites/default/ # maybe not required?
 psql -U drupal -d drupal -h localhost
 CREATE EXTENSION pg_trgm;
 exit
