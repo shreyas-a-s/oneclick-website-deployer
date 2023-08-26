@@ -51,13 +51,13 @@ drush pm-enable entity views views_ui ctools ds field_group field_group_table fi
 composer require drupal/tripal
 drush pm-enable tripal tripal_chado
 ## Chado Installation
-echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Install Chado. Then follow the on-screen instructions to create a job to install chado."
+echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Install Chado. Then click on Install Chado 1.3 and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 read -s -n 1
 drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
 ## Chado Preparation
-echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Install Chado. Then follow the on-screen instructions to create a job to install chado."
+echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Prepare Chado. Then click on Prepare this site and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 read -s -n 1
