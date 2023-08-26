@@ -55,12 +55,12 @@ echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado 
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 read -s -n 1
-drush trp-run-jobs --username=admin_username # replace admin_username with Administrator username that you've set during initial setup of website
+drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
 ## Chado Preparation
 echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Install Chado. Then follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 read -s -n 1
-drush trp-run-jobs --username=admin_username # replace admin_username with Administrator username that you've set during initial setup of website
+drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
 echo "Installation completed. Press any key to exit."
 read -s -n 1
