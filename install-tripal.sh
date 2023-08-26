@@ -22,6 +22,7 @@ sudo apt install postgresql
 sudo apt install phppgadmin
 sudo apt install composer
 cd $DRUPAL_HOME
+sudo chown -R $USER $DRUPAL_HOME
 composer require drush/drush
 echo "PATH=$PATH:/var/www/html/vendor/bin" | tee -a "$HOME"/.bashrc > /dev/null
 export PATH=$PATH:/var/www/html/vendor/bin
@@ -31,7 +32,6 @@ sudo su - postgres
 createuser -P drupal
 createdb drupal -O drupal
 exit
-sudo chown -R $USER $DRUPAL_HOME
 wget https://www.drupal.org/download-latest/tar.gz -O drupal-latest.tar.gz
 tar -zxvf drupal-latest.tar.gz
 mv drupal-*/* ./
