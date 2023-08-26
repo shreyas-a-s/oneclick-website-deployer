@@ -6,13 +6,7 @@ export DRUPAL_HOME=/var/www/html
 sudo apt install apache2
 cd /etc/apache2/mods-enabled || exit
 sudo ln -s ../mods-available/rewrite.load
-sudo gedit /etc/apache2/sites-available/000-default.conf
-<Directory /var/www/html>
-   Options Indexes FollowSymLinks MultiViews
-   AllowOverride All
-   Order allow,deny
-   allow from all
-</Directory>
+sudo sed -i '$i<Directory /var/www/html>\n   Options Indexes FollowSymLinks MultiViews\n   AllowOverride All\n   Order allow,deny\n   allow from all\n</Directory>' /etc/apache2/sites-available/000-default.conf >> /dev/null
 sudo service apache2 restart
 sudo apt install php php-dev php-cli libapache2-mod-php php8.2-mbstring
 sudo apt install php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress
