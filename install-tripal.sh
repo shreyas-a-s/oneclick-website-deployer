@@ -1,5 +1,5 @@
 #!/bin/sh
-username=$(id -u -n 1000)
+# username=$(id -u -n 1000)
 sudo apt update && sudo apt upgrade
 echo "DRUPAL_HOME=/var/www/html" | tee -a "$HOME"/.bashrc > /dev/null
 export DRUPAL_HOME=/var/www/html
@@ -31,7 +31,7 @@ sudo su - postgres
 createuser -P drupal
 createdb drupal -O drupal
 exit
-sudo chown -R $username $DRUPAL_HOME
+sudo chown -R $USER $DRUPAL_HOME
 wget https://www.drupal.org/download-latest/tar.gz -O drupal-latest.tar.gz
 tar -zxvf drupal-latest.tar.gz
 mv drupal-*/* ./
