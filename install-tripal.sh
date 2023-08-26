@@ -1,8 +1,7 @@
 #!/bin/sh
 # username=$(id -u -n 1000)
 sudo apt update && sudo apt upgrade
-echo "DRUPAL_HOME=/var/www/html" | tee -a "$HOME"/.bashrc > /dev/null
-export DRUPAL_HOME=/var/www/html
+sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 sudo apt install apache2
 cd /etc/apache2/mods-enabled || exit
 sudo ln -s ../mods-available/rewrite.load
@@ -18,8 +17,7 @@ sudo apt install composer
 cd $DRUPAL_HOME
 sudo chown -R $USER $DRUPAL_HOME
 composer require drush/drush
-echo "PATH=$PATH:/var/www/html/vendor/bin" | tee -a "$HOME"/.bashrc > /dev/null
-export PATH=$PATH:/var/www/html/vendor/bin
+sed -i '$a\PATH=$PATH:/var/www/html/vendor/bin' "$HOME"/.bashrc && PATH=$PATH:/var/www/html/vendor/bin
 composer require drupal/core
 drush init
 sudo su - postgres
