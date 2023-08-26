@@ -22,7 +22,7 @@ sudo su - postgres
 # exit
 cd $DRUPAL_HOME
 sudo chown -R $USER $DRUPAL_HOME
-composer create-project drupal/recommended-project:10.1.10 website_name # replace website_name with the name for your website
+composer create-project drupal/recommended-project:10.0.10 website_name # replace website_name with the name for your website
 cd website_name
 composer require drush/drush
 composer require drupal/core
