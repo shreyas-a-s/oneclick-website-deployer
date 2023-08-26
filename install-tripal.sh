@@ -22,8 +22,8 @@ sudo su - postgres
 # exit
 cd $DRUPAL_HOME
 sudo chown -R $USER $DRUPAL_HOME
-composer create-project drupal/recommended-project:10.0.10 website_name # replace website_name with the name for your website
-cd website_name
+composer create-project drupal/recommended-project:10.0.10 drupalwebsite # replace drupalwebsite with the name for your website
+cd drupalwebsite
 composer require drush/drush
 composer require drupal/core
 sed -i '$a\PATH=$PATH:./vendor/bin' "$HOME"/.bashrc && PATH=$PATH:./vendor/bin
@@ -38,7 +38,7 @@ psql -U drupal -d drupal -h localhost
 # (not needed anymore) sudo chgrp www-data $DRUPAL_HOME/sites/default/files
 # (not needed anymore) sudo chmod g+rw $DRUPAL_HOME/sites/default/files
 echo ""
-echo "Go to http://localhost/website_name/web/install.php and complete initial setup of website by providing necessary database details and email address."
+echo "Go to http://localhost/drupalwebsite/web/install.php and complete initial setup of website by providing necessary database details and email address."
 echo "After completing initial setup, come back and press any key to continue."
 read -s -n 1
 composer require drupal/entity
@@ -51,13 +51,13 @@ drush pm-enable entity views views_ui ctools ds field_group field_group_table fi
 composer require drupal/tripal
 drush pm-enable tripal tripal_chado
 ## Chado Installation
-echo "Go to http://localhost/website_name/web/ > Tripal > Data Storage > Chado > Install Chado. Then follow the on-screen instructions to create a job to install chado."
+echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Install Chado. Then follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 read -s -n 1
 drush trp-run-jobs --username=admin_username # replace admin_username with Administrator username that you've set during initial setup of website
 ## Chado Preparation
-echo "Go to http://localhost/website_name/web/ > Tripal > Data Storage > Chado > Install Chado. Then follow the on-screen instructions to create a job to install chado."
+echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Install Chado. Then follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 read -s -n 1
