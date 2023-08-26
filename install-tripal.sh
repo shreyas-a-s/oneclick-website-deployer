@@ -15,7 +15,7 @@ sudo gedit /etc/apache2/sites-available/000-default.conf
 </Directory>
 sudo service apache2 restart
 sudo apt install php php-dev php-cli libapache2-mod-php php8.2-mbstring
-sudo apt install php-pgsql php-gd php-xml php-curl
+sudo apt install php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress
 sudo sed -i "/memory_limit/ c\memory_limit = 2048M" /etc/php/8.2/apache2/php.ini
 sudo service apache2 restart
 sudo apt install postgresql
