@@ -24,33 +24,32 @@ sudo su - postgres
 createuser -P drupal
 createdb drupal -O drupal
 exit
-wget https://www.drupal.org/download-latest/tar.gz -O drupal-latest.tar.gz
-tar -zxvf drupal-latest.tar.gz
-mv drupal-*/* ./
-mv drupal-*/.htaccess ./
-mv index.html index.html.orig
-cd $DRUPAL_HOME/sites/default/
-cp default.settings.php settings.php
+# wget https://www.drupal.org/download-latest/tar.gz -O drupal-latest.tar.gz
+# tar -zxvf drupal-latest.tar.gz
+# mv drupal-*/* ./
+# mv drupal-*/.htaccess ./
+# mv index.html index.html.orig
+# cd $DRUPAL_HOME/sites/default/
+# cp default.settings.php settings.php
 sudo chown www-data:www-data $DRUPAL_HOME/sites/default/settings.php
 sudo chown www-data:www-data $DRUPAL_HOME/sites/default/
-$databases['default']['default'] = array(
-  'driver' => 'pgsql',
-  'database' => 'drupal',
-  'username' => 'drupal',
-  'password' => '********',
-  'host' => 'localhost',
-  'prefix' => '',
-);
+# $databases['default']['default'] = array(
+#   'driver' => 'pgsql',
+#   'database' => 'drupal',
+#   'username' => 'drupal',
+#   'password' => '********',
+#   'host' => 'localhost',
+#   'prefix' => '',
+# );
 psql -U drupal -d drupal -h localhost
 CREATE EXTENSION pg_trgm;
 exit
 mkdir -p $DRUPAL_HOME/sites/default/files
-sudo chgrp www-data $DRUPAL_HOME/sites/default/files
-sudo chmod g+rw $DRUPAL_HOME/sites/default/files
-http://localhost/install.php
-composer require drupal/entity
-composer require drupal/tripal
-drush en entity
-drush en tripal
-drush en tripal_chado
-
+# sudo chgrp www-data $DRUPAL_HOME/sites/default/files
+# sudo chmod g+rw $DRUPAL_HOME/sites/default/files
+#http://localhost/install.php
+# composer require drupal/entity
+# composer require drupal/tripal
+# drush en entity
+# drush en tripal
+# drush en tripal_chado
