@@ -70,6 +70,7 @@ echo "After completing on-screen instructions, come back and press any key to co
 read -s -n 1
 echo "Moving on.."
 drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
-echo "Installation completed. Press any key to exit."
+echo "Installation completed. Press any key to update all modules using composer and exit from installation."
 read -s -n 1
-echo "Moving on.."
+composer update
+echo "Exiting.."
