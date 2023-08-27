@@ -25,7 +25,7 @@ sudo su - postgres -c "createuser -P drupal"
 sudo su - postgres -c "createdb drupal -O drupal"
 cd $DRUPAL_HOME || exit
 sudo chown -R "$USER" "$DRUPAL_HOME"
-composer create-project drupal/recommended-project:10.0.10 drupalwebsite # replace drupalwebsite with the name for your website
+composer create-project drupal/recommended-project drupalwebsite # replace drupalwebsite with the name for your website
 cd drupalwebsite || exit
 composer require drush/drush
 composer require drupal/core
