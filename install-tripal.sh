@@ -4,7 +4,7 @@
 ####################################################################
 # (not needed anymore) username=$(id -u -n 1000)
 phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade && sudo apt install git -y
 sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 sudo apt install apache2 -y
 cd /etc/apache2/mods-enabled && sudo ln -s ../mods-available/rewrite.load
