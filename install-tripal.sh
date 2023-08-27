@@ -10,9 +10,9 @@ sudo apt install apache2 -y
 cd /etc/apache2/mods-enabled && sudo ln -s ../mods-available/rewrite.load
 sudo sed -i '$i<Directory /var/www/html>\n   Options Indexes FollowSymLinks MultiViews\n   AllowOverride All\n   Order allow,deny\n   allow from all\n</Directory>' /etc/apache2/sites-available/000-default.conf
 sudo service apache2 restart
-sudo apt install php php-dev php-cli libapache2-mod-php php$phpversion-mbstring -y
+sudo apt install php php-dev php-cli libapache2-mod-php php"$phpversion"-mbstring -y
 sudo apt install php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress -y
-sudo sed -i "/memory_limit/ c\memory_limit = 2048M" /etc/php/$phpversion/apache2/php.ini
+sudo sed -i "/memory_limit/ c\memory_limit = 2048M" /etc/php/"$phpversion"/apache2/php.ini
 sudo service apache2 restart
 sudo apt install postgresql phppgadmin composer -y
 # (not needed anymore) sudo su - postgres
@@ -23,10 +23,10 @@ sudo apt install postgresql phppgadmin composer -y
 # (not needed anymore) exit
 sudo su - postgres -c "createuser -P drupal"
 sudo su - postgres -c "createdb drupal -O drupal"
-cd $DRUPAL_HOME
-sudo chown -R $USER $DRUPAL_HOME
+cd $DRUPAL_HOME || exit
+sudo chown -R "$USER" "$DRUPAL_HOME"
 composer create-project drupal/recommended-project:10.0.10 drupalwebsite # replace drupalwebsite with the name for your website
-cd drupalwebsite
+cd drupalwebsite || exit
 composer require drush/drush
 composer require drupal/core
 sed -i '$a\PATH=$PATH:./vendor/bin' "$HOME"/.bashrc && PATH=$PATH:./vendor/bin
