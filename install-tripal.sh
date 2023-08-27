@@ -3,23 +3,26 @@
 # This works only on the latest debian (currently it's version 12) #
 ####################################################################
 # (not needed anymore) username=$(id -u -n 1000)
+phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
 sudo apt update && sudo apt upgrade
 sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 sudo apt install apache2 -y
 cd /etc/apache2/mods-enabled && sudo ln -s ../mods-available/rewrite.load
 sudo sed -i '$i<Directory /var/www/html>\n   Options Indexes FollowSymLinks MultiViews\n   AllowOverride All\n   Order allow,deny\n   allow from all\n</Directory>' /etc/apache2/sites-available/000-default.conf
 sudo service apache2 restart
-sudo apt install php php-dev php-cli libapache2-mod-php php8.2-mbstring -y
+sudo apt install php php-dev php-cli libapache2-mod-php php$phpversion-mbstring -y
 sudo apt install php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress -y
-sudo sed -i "/memory_limit/ c\memory_limit = 2048M" /etc/php/8.2/apache2/php.ini
+sudo sed -i "/memory_limit/ c\memory_limit = 2048M" /etc/php/$phpversion/apache2/php.ini
 sudo service apache2 restart
 sudo apt install postgresql phppgadmin composer -y
-sudo su - postgres
-# The below commands create a database user and a database for our website.
-# These needs to be manually entered.
-# createuser -P drupal
-# createdb drupal -O drupal
-# exit
+# (not needed anymore) sudo su - postgres
+# (not needed anymore) The below commands create a database user and a database for our website.
+# (not needed anymore) These needs to be manually entered.
+# (not needed anymore) createuser -P drupal # replace drupal with a name for the new user
+# (not needed anymore) createdb drupal -O drupal # replace first drupal with a name for the new database and second one with that of the new user
+# (not needed anymore) exit
+sudo su - postgres -c "createuser -P drupal"
+sudo su - postgres -c "createdb drupal -O drupal"
 cd $DRUPAL_HOME
 sudo chown -R $USER $DRUPAL_HOME
 composer create-project drupal/recommended-project:10.0.10 drupalwebsite # replace drupalwebsite with the name for your website
@@ -30,11 +33,12 @@ sed -i '$a\PATH=$PATH:./vendor/bin' "$HOME"/.bashrc && PATH=$PATH:./vendor/bin
 cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
 sudo chown www-data:www-data ./web/sites/default/settings.php
 sudo chown www-data:www-data ./web/sites/default/
-psql -U drupal -d drupal -h localhost
-# The below commands create a database user and a database for our website.
-# These needs to be manually entered.
-# CREATE EXTENSION pg_trgm;
-# exit
+# (not needed anymore) psql -U drupal -d drupal -h localhost
+# (not needed anymore) The below commands create a database user and a database for our website.
+# (not needed anymore) These needs to be manually entered.
+# (not needed anymore) CREATE EXTENSION pg_trgm;
+# (not needed anymore) exit
+psql -U drupal -d drupal -h localhost -c "CREATE EXTENSION pg_trgm;"
 # (not needed anymore) sudo chgrp www-data $DRUPAL_HOME/sites/default/files
 # (not needed anymore) sudo chmod g+rw $DRUPAL_HOME/sites/default/files
 echo ""
