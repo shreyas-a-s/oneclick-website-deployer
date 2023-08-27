@@ -45,6 +45,7 @@ echo ""
 echo "Go to http://localhost/drupalwebsite/web/install.php and complete initial setup of website by providing necessary database details and email address."
 echo "After completing initial setup, come back and press any key to continue."
 read -s -n 1
+echo "Moving on.."
 composer require drupal/entity
 composer require drupal/ctools
 composer require drupal/ds
@@ -59,12 +60,15 @@ echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado 
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 read -s -n 1
+echo "Moving on.."
 drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
 ## Chado Preparation
 echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Prepare Chado. Then click on Prepare this site and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 read -s -n 1
+echo "Moving on.."
 drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
 echo "Installation completed. Press any key to exit."
 read -s -n 1
+echo "Moving on.."
