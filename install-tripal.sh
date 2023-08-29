@@ -44,8 +44,7 @@ psql -U drupal -d drupal -h localhost -c "CREATE EXTENSION pg_trgm;"
 echo ""
 echo "Go to http://localhost/drupalwebsite/web/install.php and complete initial setup of website by providing necessary database details and email address."
 echo "After completing initial setup, come back and press any key to continue."
-read -s -n 1
-echo "Moving on.."
+continueORnot
 composer require drupal/entity
 composer require drupal/ctools
 composer require drupal/ds
@@ -60,17 +59,26 @@ drush pm-enable tripal tripal_chado
 echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Install Chado. Then click on Install Chado 1.3 and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
-read -s -n 1
-echo "Moving on.."
+continueORnot
 drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
 ## Chado Preparation
 echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Prepare Chado. Then click on Prepare this site and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
-read -s -n 1
-echo "Moving on.."
+continueORnot
 drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
 echo "Installation completed. Press any key to update all modules using composer and exit from installation."
 read -s -n 1
+echo "Doing composer update.."
 composer update
 echo "Exiting.."
+
+# Functions
+function continueORnot {
+   3   │     read -r -p "Continue (yes/no)?: " choice
+   4   │     case "$choice" in 
+   5   │       "yes" ) echo "Moving on to next step..";;
+   6   │       "no" ) echo "Exiting.."; exit 1;;
+   7   │     * ) echo "Invalid Choice"; continueORnot;;
+   8   │ esac
+   9   │ }
