@@ -1,9 +1,21 @@
 #!/bin/bash
-####################################################################
-# This works only on the latest debian (currently it's version 12) #
-####################################################################
-# (not needed anymore) username=$(id -u -n 1000)
+echo "####################################################################"
+echo "# This works only on the latest debian (currently it's version 12) #"
+echo "####################################################################"
+
+# Variables
 phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
+
+# Functions
+function continueORnot {
+   read -r -p "Continue (yes/no)?: " choice
+   case "$choice" in 
+     "yes" ) echo "Moving on to next step..";;
+     "no" ) echo "Exiting.."; exit 1;;
+     * ) echo "Invalid Choice"; continueORnot;;
+   esac
+}
+
 sudo apt update && sudo apt upgrade && sudo apt install git -y
 sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 sudo apt install apache2 -y
@@ -15,15 +27,9 @@ sudo apt install php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress -
 sudo sed -i "/memory_limit/ c\memory_limit = 2048M" /etc/php/"$phpversion"/apache2/php.ini
 sudo service apache2 restart
 sudo apt install postgresql phppgadmin composer -y
-# (not needed anymore) sudo su - postgres
-# (not needed anymore) The below commands create a database user and a database for our website.
-# (not needed anymore) These needs to be manually entered.
-# (not needed anymore) createuser -P drupal # replace drupal with a name for the new user
-# (not needed anymore) createdb drupal -O drupal # replace first drupal with a name for the new database and second one with that of the new user
-# (not needed anymore) exit
 sudo su - postgres -c "createuser -P drupal"
 sudo su - postgres -c "createdb drupal -O drupal"
-cd $DRUPAL_HOME || exit
+cd "$DRUPAL_HOME" || exit
 sudo chown -R "$USER" "$DRUPAL_HOME"
 composer create-project drupal/recommended-project drupalwebsite # replace drupalwebsite with the name for your website
 cd drupalwebsite || exit
@@ -33,14 +39,7 @@ sed -i '$a\PATH=$PATH:./vendor/bin' "$HOME"/.bashrc && PATH=$PATH:./vendor/bin
 cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
 sudo chown www-data:www-data ./web/sites/default/settings.php
 sudo chown www-data:www-data ./web/sites/default/
-# (not needed anymore) psql -U drupal -d drupal -h localhost
-# (not needed anymore) The below commands create a database user and a database for our website.
-# (not needed anymore) These needs to be manually entered.
-# (not needed anymore) CREATE EXTENSION pg_trgm;
-# (not needed anymore) exit
 psql -U drupal -d drupal -h localhost -c "CREATE EXTENSION pg_trgm;"
-# (not needed anymore) sudo chgrp www-data $DRUPAL_HOME/sites/default/files
-# (not needed anymore) sudo chmod g+rw $DRUPAL_HOME/sites/default/files
 echo ""
 echo "Go to http://localhost/drupalwebsite/web/install.php and complete initial setup of website by providing necessary database details and email address."
 echo "After completing initial setup, come back and press any key to continue."
@@ -55,30 +54,20 @@ composer require drupal/jquery_ui_accordion
 drush pm-enable entity views views_ui ctools ds field_group field_group_table field_formatter_class jquery_ui jquery_ui_accordion
 git clone -b 4.x https://github.com/tripal/tripal.git ./web/modules/contrib/tripal
 drush pm-enable tripal tripal_chado
-## Chado Installation
+# Chado Installation
 echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Install Chado. Then click on Install Chado 1.3 and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 continueORnot
 drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
-## Chado Preparation
+# Chado Preparation
 echo "Go to http://localhost/drupalwebsite/web/ > Tripal > Data Storage > Chado > Prepare Chado. Then click on Prepare this site and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and press any key to continue."
 continueORnot
 drush trp-run-jobs --username=admin # replace admin with Administrator username that you've set during initial setup of website
 echo "Installation completed. Press any key to update all modules using composer and exit from installation."
-read -s -n 1
+read -r -s -n 1
 echo "Doing composer update.."
 composer update
 echo "Exiting.."
-
-# Functions
-function continueORnot {
-   3   │     read -r -p "Continue (yes/no)?: " choice
-   4   │     case "$choice" in 
-   5   │       "yes" ) echo "Moving on to next step..";;
-   6   │       "no" ) echo "Exiting.."; exit 1;;
-   7   │     * ) echo "Invalid Choice"; continueORnot;;
-   8   │ esac
-   9   │ }
