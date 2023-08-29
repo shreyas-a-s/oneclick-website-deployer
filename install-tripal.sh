@@ -1,5 +1,4 @@
 #!/bin/bash
-# Testing dev branch
 ####################################################################
 # This works only on the latest debian (currently it's version 12) #
 ####################################################################
