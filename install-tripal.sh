@@ -34,14 +34,14 @@ sudo service apache2 restart
 sudo apt install php php-dev php-cli libapache2-mod-php php"$phpversion"-mbstring -y
 sudo apt install php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress -y
 read -r -p "How much memory to allocate to the website (in MB)? " memorylimit
-sudo sed -i "/memory_limit/ c\memory_limit = $memorylimit" /etc/php/"$phpversion"/apache2/php.ini
+sudo sed -i "/memory_limit/ c\memory_limit = $memorylimit\M" /etc/php/"$phpversion"/apache2/php.ini
 sudo service apache2 restart
 sudo apt install postgresql phppgadmin composer -y
 
 # Basic database creation
 echo "___Postgres Database Creation___"
 read -r -p "Enter a new username: " psqluser
-echo "Enter a new password for the newly created user:"
+echo "Enter a new password for user $psqluser: "
 sudo su - postgres -c "createuser -P $psqluser"
 read -r -p "Enter the name for a new database for our website: " psqldb
 sudo su - postgres -c "createdb $psqldb -O $psqluser"
@@ -62,8 +62,7 @@ sudo chown www-data:www-data ./web/sites/default/
 echo "Go to http://localhost/""$drupalsitedir""/web/install.php and complete initial setup of website by providing newly created database details, new site maintenance account details, etc"
 echo "IMP NOTE: Make sure to note down site maintenance account username."
 echo "After completing initial setup, come back and type 'yes' to continue."
-continueORnot
-checkSMAUsername
+continueORNot
 
 # Installing and enabling dependencies of tripal
 composer require drupal/entity
@@ -80,6 +79,7 @@ git clone -b 4.x https://github.com/tripal/tripal.git ./web/modules/contrib/trip
 drush pm-enable tripal tripal_chado
 
 # Chado Installation
+checkSMAUsername
 echo "Go to http://localhost/""$drupalsitedir""/web/ > Tripal > Data Storage > Chado > Install Chado. Then click on Install Chado 1.3 and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and type 'yes' to continue."
