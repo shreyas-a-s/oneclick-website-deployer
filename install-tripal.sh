@@ -8,11 +8,11 @@ phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | aw
 
 # Functions
 function continueORNot {
-   read -r -p "Continue (yes/no)?: " choice
+   read -r -p "Continue? (yes/no): " choice
    case "$choice" in 
      "yes" ) echo "Moving on to next step..";sleep 2;;
      "no" ) echo "Exiting.."; exit 1;;
-     * ) echo "Invalid Choice!"; continueORNot;;
+     * ) echo "Invalid Choice! Keep in mind this is case-sensitive."; continueORNot;;
    esac
 }
 
