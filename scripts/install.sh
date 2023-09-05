@@ -25,7 +25,7 @@ function checkSMAUsername {
 }
 
 # Installing dependencies and setting up base system
-sudo apt update && sudo apt upgrade && sudo apt install git -y
+sudo apt update && sudo apt upgrade -y && sudo apt install git -y
 sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 sudo apt install apache2 -y
 cd /etc/apache2/mods-enabled && sudo ln -s ../mods-available/rewrite.load
