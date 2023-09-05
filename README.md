@@ -18,5 +18,5 @@ cd website-tripal/
 ```
 OR
 ```
-Just right click the one-click.sh file and click "Run as a Program"
+Just right click the one-click.sh file and click "Run as a Program and follow the prompts."
 ```
