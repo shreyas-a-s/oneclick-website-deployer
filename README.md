@@ -22,4 +22,8 @@ OR use this single line command from a terminal:
 ```bash
 sudo apt update && sudo apt install git -y && git clone -b dev https://github.com/shreyas-a-s/website-tripal.git && cd website-tripal/scripts/ && ./install.sh
 ```
-OR just right click the one-click.sh file and click "Run as a Program and follow the prompts."
+OR if you want the simplest way:
+```
+just right click the one-click.sh file and click "Run as a Program" and follow the prompts.
+```
+>  NOTE: In some systems, right click menu might not have this option. In that case, just double click the file and select "Run in Terminal".
