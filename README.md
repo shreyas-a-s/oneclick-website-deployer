@@ -14,12 +14,12 @@ Bash script to install and setup a basic working tripal website.
 Execute the following commands one by one from a terminal:
 ```bash
 sudo apt update && sudo apt install git -y
-git clone https://github.com/shreyas-a-s/website-tripal.git
+git clone -b dev https://github.com/shreyas-a-s/website-tripal.git
 cd website-tripal/scripts/
 ./install.sh
 ```
 OR use this single line command from a terminal:
 ```bash
-sudo apt update && sudo apt install git -y && git clone https://github.com/shreyas-a-s/website-tripal.git && cd website-tripal/scripts/ && ./install.sh
+sudo apt update && sudo apt install git -y && git clone -b dev https://github.com/shreyas-a-s/website-tripal.git && cd website-tripal/scripts/ && ./install.sh
 ```
 OR just right click the one-click.sh file and click "Run as a Program and follow the prompts."
