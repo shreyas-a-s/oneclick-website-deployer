@@ -14,6 +14,9 @@ Bash script to install and setup a basic working tripal website.
 ```bash
 git clone https://github.com/shreyas-a-s/website-tripal.git
 cd website-tripal/
-chmod +x install-tripal.sh
-./install-tripal.sh
+./one-click.sh
+```
+OR
+```
+Just right click the one-click.sh file and click "Run as a Program"
 ```
