@@ -8,14 +8,14 @@ sudo apt install git -y
 temp_dir=$(mktemp -d)
 
 # Clone the GitHub repository into the temporary directory
-git clone -b dev https://github.com/shreyas-a-s/website-tripal.git "$temp_dir"
+git clone -b dev-3 https://github.com/shreyas-a-s/website-tripal.git "$temp_dir"
 
 # Change directory to the temporary folder
-cd "$temp_dir"
+cd "$temp_dir" || exit
 
 # Run the install.sh script
 ./scripts/install.sh
 
 # Clean up: Remove the temporary directory and its contents
-cd ..
+cd .. || exit
 rm -rf "$temp_dir"

@@ -36,7 +36,7 @@ sudo apt install php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress -
 read -r -p "How much memory to allocate to the website (in MB)? " memorylimit
 sudo sed -i "/memory_limit/ c\memory_limit = $memorylimit\M" /etc/php/"$phpversion"/apache2/php.ini
 sudo service apache2 restart
-sudo apt install postgresql phppgadmin composer -y
+sudo apt install postgresql phppgadmin wget -y
 
 # Basic database creation
 echo "___Postgres Database Creation___"
@@ -47,36 +47,46 @@ read -r -p "Enter the name for a new database for our website: " psqldb
 sudo su - postgres -c "createdb $psqldb -O $psqluser"
 psql -U "$psqluser" -d "$psqldb" -h localhost -c "CREATE EXTENSION pg_trgm;"
 
-# Drupal + Drush Installation
+# Drush installation
 cd "$DRUPAL_HOME" || exit
 sudo chown -R "$USER" "$DRUPAL_HOME"
+wget https://github.com/drush-ops/drush/releases/download/8.4.12/drush.phar
+chmod +x drush.phar
+sudo mv drush.phar /usr/local/bin/drush
+
+# Drupal Installation
+mv index.html index.html.orig
+read -r -p "Enter the version of drupal to be installed: " drupalversion
 read -r -p "Enter the name of new directory to which drupal website needs to be installed: " drupalsitedir
-composer create-project drupal/recommended-project "$drupalsitedir"
-cd "$drupalsitedir" || exit
-composer require drush/drush
-composer require drupal/core
-sed -i '$a\PATH=$PATH:./vendor/bin' "$HOME"/.bashrc && PATH=$PATH:./vendor/bin
-cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
-sudo chown www-data:www-data ./web/sites/default/settings.php
-sudo chown www-data:www-data ./web/sites/default/
-echo "Go to http://localhost/""$drupalsitedir""/web/install.php and complete initial setup of website by providing newly created database details, new site maintenance account details, etc"
+wget http://ftp.drupal.org/files/projects/drupal-"$drupalversion".tar.gz
+tar -zxvf drupal-"$drupalversion".tar.gz
+mv drupal-"$drupalversion"/ "$drupalsitedir"/
+cd "$drupalsitedir"/ || exit
+cp sites/default/default.settings.php sites/default/settings.php
+cd sites/default/ || exit
+mkdir files/
+sudo chgrp www-data files/
+sudo chmod 777 settings.php
+sudo chmod g+rw files/
+echo "Go to http://localhost/""$drupalsitedir""/install.php and complete initial setup of website by providing newly created database details, new site maintenance account details, etc"
 echo "IMP NOTE: Make sure to note down site maintenance account username."
 echo "After completing initial setup, come back and type 'yes' to continue."
 continueORNot
+sudo chmod 755 settings.php
 
 # Installing and enabling dependencies of tripal
-composer require drupal/entity
-composer require drupal/ctools
-composer require drupal/ds
-composer require drupal/field_group
-composer require drupal/field_group_table
-composer require drupal/field_formatter_class
-composer require drupal/jquery_ui_accordion
-drush pm-enable entity views views_ui ctools ds field_group field_group_table field_formatter_class jquery_ui jquery_ui_accordion
+cd "$DRUPAL_HOME"/"$drupalsitedir/sites/all/modules/" || exit
+drush pm-download entity views ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
+drush pm-enable entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 
 # Installing and enabling tripal and tripal chado
-git clone -b 4.x https://github.com/tripal/tripal.git ./web/modules/contrib/tripal
-drush pm-enable tripal tripal_chado
+drush pm-download tripal
+cd "$DRUPAL_HOME"/"$drupalsitedir/" || exit
+wget --no-check-certificate https://drupal.org/files/drupal.pgsql-bytea.27.patch
+patch -p1 < drupal.pgsql-bytea.27.patch
+cd sites/all/modules/views/ || exit
+patch -p1 < ../tripal/tripal_chado_views/views-sql-compliant-three-tier-naming-1971160-30.patch
+drush pm-enable tripal tripal_chado tripal_ds tripal_ws
 
 # Chado Installation
 checkSMAUsername
@@ -93,9 +103,5 @@ echo "After completing on-screen instructions, come back and type 'yes' to conti
 continueORNot
 drush trp-run-jobs --username="$smausername"
 
-# Closing
-echo "Installation completed. Press any key to update all modules using composer and exit from installation."
-read -r -s -n 1
-echo "Doing composer update.."
-composer update
-echo "Exiting.."
+# The End
+echo "Installation completed. Exiting.."
