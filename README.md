@@ -3,7 +3,7 @@ Bash script to install and setup a basic working tripal website.
 
 # Features of the script
 - Installs in sub directory in /var/www/html directory. This makes it easier to develop and manage different versions of the website.
-- Installs stable version of drupal.
+- Installs stable version 3 of drupal.
 - Installs fully developed version (currently [7.x-3.x](https://github.com/tripal/tripal/tree/7.x-3.x)) of tripal.
 
 # Prerequisites
