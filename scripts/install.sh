@@ -90,14 +90,14 @@ drush pm-enable tripal tripal_chado tripal_ds tripal_ws
 
 # Chado Installation
 checkSMAUsername
-echo "Go to http://localhost/""$drupalsitedir""/web/ > Tripal > Data Storage > Chado > Install Chado. Then click on Install Chado 1.3 and follow the on-screen instructions to create a job to install chado."
+echo "Go to http://localhost/""$drupalsitedir""/ > Tripal > Data Storage > Chado > Install Chado. Then click on Install Chado 1.3 and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and type 'yes' to continue."
 continueORNot
 drush trp-run-jobs --username="$smausername"
 
 # Chado Preparation
-echo "Go to http://localhost/""$drupalsitedir""/web/ > Tripal > Data Storage > Chado > Prepare Chado. Then click on Prepare this site and follow the on-screen instructions to create a job to install chado."
+echo "Go to http://localhost/""$drupalsitedir""/ > Tripal > Data Storage > Chado > Prepare Chado. Then click on Prepare this site and follow the on-screen instructions to create a job to install chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and type 'yes' to continue."
 continueORNot
