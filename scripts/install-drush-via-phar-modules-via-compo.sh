@@ -42,6 +42,7 @@ sudo mv drush.phar /usr/local/bin/drush
 
 # Drupal Installation
 mv index.html index.html.orig
+read -r -p "Enter the name of new directory to which drupal website needs to be installed: " drupalsitedir
 wget http://ftp.drupal.org/files/projects/drupal-7.98.tar.gz
 tar -zxvf drupal-7.98.tar.gz
 mv drupal-7.98/ "$drupalsitedir"/

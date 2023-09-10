@@ -55,6 +55,7 @@ sudo mv drush.phar /usr/local/bin/drush
 
 # Drupal Installation
 mv index.html index.html.orig
+read -r -p "Enter the name of new directory to which drupal website needs to be installed: " drupalsitedir
 git clone -b 7.x https://github.com/drupal/drupal.git ./"$drupalsitedir"/
 cd "$drupalsitedir"/ || exit
 cp sites/default/default.settings.php sites/default/settings.php
