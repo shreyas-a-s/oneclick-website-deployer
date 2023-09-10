@@ -4,7 +4,7 @@ echo "# This works only on the latest debian (currently it's version 12) #"
 echo "####################################################################"
 
 # Variables
-phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
+sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 
 # Functions
 function continueORNot {
@@ -23,20 +23,6 @@ function checkSMAUsername {
     exitstatus=$?
     [ $exitstatus -eq 1 ] && echo "Wrong Username! " && checkSMAUsername
 }
-
-# Installing dependencies and setting up base system
-sudo apt update && sudo apt upgrade -y && sudo apt install git -y
-sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
-sudo apt install apache2 -y
-cd /etc/apache2/mods-enabled && sudo ln -s ../mods-available/rewrite.load
-sudo sed -i '$i<Directory /var/www/html>\n   Options Indexes FollowSymLinks MultiViews\n   AllowOverride All\n   Order allow,deny\n   allow from all\n</Directory>' /etc/apache2/sites-available/000-default.conf
-sudo service apache2 restart
-sudo apt install php php-dev php-cli libapache2-mod-php php"$phpversion"-mbstring -y
-sudo apt install php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress -y
-read -r -p "How much memory to allocate to the website (in MB)? " memorylimit
-sudo sed -i "/memory_limit/ c\memory_limit = $memorylimit\M" /etc/php/"$phpversion"/apache2/php.ini
-sudo service apache2 restart
-sudo apt install postgresql phppgadmin wget -y
 
 # Basic database creation
 echo "___Postgres Database Creation___"
@@ -57,10 +43,9 @@ sudo mv drush.phar /usr/local/bin/drush
 # Drupal Installation
 mv index.html index.html.orig
 read -r -p "Enter the version of drupal to be installed: " drupalversion
-read -r -p "Enter the name of new directory to which drupal website needs to be installed: " drupalsitedir
-wget http://ftp.drupal.org/files/projects/drupal-"$drupalversion".tar.gz
-tar -zxvf drupal-"$drupalversion".tar.gz
-mv drupal-"$drupalversion"/ "$drupalsitedir"/
+wget http://ftp.drupal.org/files/projects/drupal-7.98.tar.gz
+tar -zxvf drupal-7.98.tar.gz
+mv drupal-7.98/ "$drupalsitedir"/
 cd "$drupalsitedir"/ || exit
 cp sites/default/default.settings.php sites/default/settings.php
 cd sites/default/ || exit
@@ -75,12 +60,21 @@ continueORNot
 sudo chmod 755 settings.php
 
 # Installing and enabling dependencies of tripal
-cd "$DRUPAL_HOME"/"$drupalsitedir/sites/all/modules/" || exit
-drush pm-download entity views ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
+cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
+composer require drupal/entity
+composer require drupal/views
+composer require drupal/ctools
+composer require drupal/ds
+composer require drupal/field_group
+composer require drupal/field_group_table
+composer require drupal/field_formatter_class
+composer require drupal/field_formatter_settings
+composer require drupal/ckeditor
+composer require drupal/jquery_update
 drush pm-enable entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 
 # Installing and enabling tripal and tripal chado
-drush pm-download tripal
+composer require drupal/tripal
 cd "$DRUPAL_HOME"/"$drupalsitedir/" || exit
 wget --no-check-certificate https://drupal.org/files/drupal.pgsql-bytea.27.patch
 patch -p1 < drupal.pgsql-bytea.27.patch
