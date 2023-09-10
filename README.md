@@ -14,6 +14,9 @@ Bash script to install and setup a basic working tripal website.
 ```bash
 git clone https://github.com/shreyas-a-s/website-tripal.git
 cd website-tripal/
-chmod +x install-tripal.sh
 ./install-tripal.sh
+```
+For a single line command, use:
+```bash
+git clone https://github.com/shreyas-a-s/website-tripal.git && cd website-tripal/ && ./install-tripal.sh
 ```
