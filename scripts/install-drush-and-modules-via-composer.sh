@@ -50,7 +50,6 @@ psql -U "$psqluser" -d "$psqldb" -h localhost -c "CREATE EXTENSION pg_trgm;"
 cd "$DRUPAL_HOME" || exit
 sudo chown -R "$USER" "$DRUPAL_HOME"
 mv index.html index.html.orig
-read -r -p "Enter the version of drupal to be installed: " drupalversion
 wget http://ftp.drupal.org/files/projects/drupal-7.98.tar.gz
 tar -zxvf drupal-7.98.tar.gz
 mv drupal-7.98/ "$drupalsitedir"/

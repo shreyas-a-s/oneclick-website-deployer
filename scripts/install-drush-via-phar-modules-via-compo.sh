@@ -42,7 +42,6 @@ sudo mv drush.phar /usr/local/bin/drush
 
 # Drupal Installation
 mv index.html index.html.orig
-read -r -p "Enter the version of drupal to be installed: " drupalversion
 wget http://ftp.drupal.org/files/projects/drupal-7.98.tar.gz
 tar -zxvf drupal-7.98.tar.gz
 mv drupal-7.98/ "$drupalsitedir"/
@@ -76,10 +75,6 @@ drush pm-enable entity views views_ui ctools ds field_group field_group_table fi
 # Installing and enabling tripal and tripal chado
 composer require 'drupal/tripal:^3.10'
 cd "$DRUPAL_HOME"/"$drupalsitedir/" || exit
-wget --no-check-certificate https://drupal.org/files/drupal.pgsql-bytea.27.patch
-patch -p1 < drupal.pgsql-bytea.27.patch
-cd sites/all/modules/views/ || exit
-patch -p1 < ../tripal/tripal_chado_views/views-sql-compliant-three-tier-naming-1971160-30.patch
 drush pm-enable tripal tripal_chado tripal_ds tripal_ws
 
 # Chado Installation
