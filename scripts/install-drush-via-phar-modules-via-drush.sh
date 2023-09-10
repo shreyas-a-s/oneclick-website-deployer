@@ -80,10 +80,6 @@ drush pm-enable entity views views_ui ctools ds field_group field_group_table fi
 # Installing and enabling tripal and tripal chado
 drush pm-download tripal
 cd "$DRUPAL_HOME"/"$drupalsitedir/" || exit
-wget --no-check-certificate https://drupal.org/files/drupal.pgsql-bytea.27.patch
-patch -p1 < drupal.pgsql-bytea.27.patch
-cd sites/all/modules/views/ || exit
-patch -p1 < ../tripal/tripal_chado_views/views-sql-compliant-three-tier-naming-1971160-30.patch
 drush pm-enable tripal tripal_chado tripal_ds tripal_ws
 
 # Chado Installation
