@@ -74,7 +74,7 @@ composer require drupal/jquery_update
 drush pm-enable entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 
 # Installing and enabling tripal and tripal chado
-composer require drupal/tripal
+composer require 'drupal/tripal:^3.10'
 cd "$DRUPAL_HOME"/"$drupalsitedir/" || exit
 wget --no-check-certificate https://drupal.org/files/drupal.pgsql-bytea.27.patch
 patch -p1 < drupal.pgsql-bytea.27.patch
