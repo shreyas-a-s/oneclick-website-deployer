@@ -87,7 +87,7 @@ continueORNot
 drush trp-run-jobs --username="$smausername"
 
 # Chado Preparation
-echo "Go to http://localhost/""$drupalsitedir""/web/ > Tripal > Data Storage > Chado > Prepare Chado. Then click on Prepare this site and follow the on-screen instructions to create a job to install chado."
+echo "Go to http://localhost/""$drupalsitedir""/web/ > Tripal > Data Storage > Chado > Prepare Chado. Then click on Prepare this site and follow the on-screen instructions to create a job to prepare chado."
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and type 'yes' to continue."
 continueORNot
