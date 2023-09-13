@@ -14,6 +14,7 @@ git clone -b dev-3 https://github.com/shreyas-a-s/website-tripal.git "$temp_dir"
 cd "$temp_dir" || exit
 
 # Run the install.sh script
+./scripts/first.sh
 ./scripts/install.sh
 
 # Clean up: Remove the temporary directory and its contents
