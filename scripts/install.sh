@@ -84,6 +84,7 @@ echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "After completing on-screen instructions, come back and type 'yes' to continue."
 continueORNot
 drush trp-run-jobs --username="$smausername"
+drush cache-clear all
 
 # The End
 echo "Installation completed. Exiting.."
