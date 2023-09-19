@@ -5,6 +5,8 @@ echo "####################################################################"
 
 # Variables
 phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
+sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
+sed -i '$a\PATH=./vendor/bin:$PATH' "$HOME"/.bashrc && PATH=./vendor/bin:$PATH
 
 # Functions
 function continueORNot {
@@ -26,7 +28,6 @@ function checkSMAUsername {
 
 # Installing dependencies and setting up base system
 sudo apt update && sudo apt upgrade -y && sudo apt install git -y
-sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 sudo apt install apache2 -y
 cd /etc/apache2/mods-enabled && sudo ln -s ../mods-available/rewrite.load
 sudo sed -i '$i<Directory /var/www/html>\n   Options Indexes FollowSymLinks MultiViews\n   AllowOverride All\n   Order allow,deny\n   allow from all\n</Directory>' /etc/apache2/sites-available/000-default.conf
@@ -55,7 +56,6 @@ composer create-project drupal/recommended-project "$drupalsitedir"
 cd "$drupalsitedir" || exit
 composer require drush/drush
 composer require drupal/core
-sed -i '$a\PATH=$PATH:./vendor/bin' "$HOME"/.bashrc && PATH=$PATH:./vendor/bin
 cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
 sudo chown www-data:www-data ./web/sites/default/settings.php
 sudo chown www-data:www-data ./web/sites/default/
