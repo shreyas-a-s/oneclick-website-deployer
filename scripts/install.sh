@@ -98,4 +98,5 @@ echo "Installation completed. Press any key to update all modules using composer
 read -r -s -n 1
 echo "Doing composer update.."
 composer update
+drush cache-clear all
 echo "Exiting.."
