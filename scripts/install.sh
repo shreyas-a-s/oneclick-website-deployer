@@ -8,7 +8,6 @@ phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | aw
 sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 sed -i '$a\PATH=./vendor/bin:$PATH' "$HOME"/.bashrc && PATH=./vendor/bin:$PATH
 
-# Functions
 function continueORNot {
    read -r -p "Continue? (yes/no): " choice
    case "$choice" in 
