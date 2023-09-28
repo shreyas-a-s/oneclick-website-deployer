@@ -24,4 +24,4 @@ cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse || exit
 ./setup.sh
 
 # Test out the install
-echo "To check if the installation succeeded, go to http://localhost/""$drupalsitedir""/jbrowse/"
+echo "To check if the installation succeeded, go to http://localhost/""$drupalsitedir""/tools/jbrowse/"
