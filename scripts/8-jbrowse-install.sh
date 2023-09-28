@@ -20,7 +20,7 @@ unzip JBrowse-1.16.11.zip
 rm JBrowse-1.16.11.zip
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/
 sudo mv JBrowse-1.16.11 "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse
-cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse
+cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse || exit
 ./setup.sh
 
 # Test out the install
