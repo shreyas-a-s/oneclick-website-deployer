@@ -22,7 +22,7 @@ sudo apt update && sudo apt install wget -y
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast
 wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.*.*+-x64-linux.tar.gz
 tar zxvpf ncbi-blast-2.*.*+-x64-linux.tar.gz
-cp ncbi-blast-2.*.*+/bin/* "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/
+cp ncbi-blast-2.*.*+/bin/* "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/
 rm -rf ncbi-blast-2.*.*+/ ncbi-blast-2.*.*+-x64-linux.tar.gz
 
 # Install tripal_blast
