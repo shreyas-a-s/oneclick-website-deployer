@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Display task name
-echo '------------------------'
-echo '   Tripal Installation   '
-echo '------------------------'
-
 # Variables
 sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 
@@ -27,8 +22,15 @@ function checkSMAUsername {
     [ $exitstatus -eq 1 ] && echo "Wrong Username! " && checkSMAUsername
 }
 
-# Install dependencies
+# Display task name
+echo '------------------------'
+echo '   Tripal Installation   '
+echo '------------------------'
+
+# Get user input
 read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+
+# Install dependencies
 cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/ || exit
 drush pm-download entity views ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update -y
 drush pm-enable entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update -y

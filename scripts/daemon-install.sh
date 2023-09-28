@@ -8,8 +8,10 @@ echo '-------------------------------'
 echo '   Tripal_Daemon Installation   '
 echo '-------------------------------'
 
-# Installation
+# Get user input
 read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+
+# Installation
 drush pm-download libraries -y
 drush pm-enable libraries -y
 wget -O "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/PHP-Daemon.tar.gz https://github.com/shaneharter/PHP_Daemon/archive/v2.0.tar.gz

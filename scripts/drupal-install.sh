@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Display task name
-echo '------------------------'
-echo '   Drupal Installation   '
-echo '------------------------'
+# Variables
+sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
 
 # Take user choice before continuing
 function continueORNot {
@@ -15,11 +13,15 @@ function continueORNot {
    esac
 }
 
-# Variables
-sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
+# Display task name
+echo '------------------------'
+echo '   Drupal Installation   '
+echo '------------------------'
+
+# Get user input
+read -r -p "Enter the name of new directory to which drupal website needs to be installed: " drupalsitedir
 
 # Installation
-read -r -p "Enter the name of new directory to which drupal website needs to be installed: " drupalsitedir
 sudo chown -R "$USER" "$DRUPAL_HOME"
 cd "$DRUPAL_HOME" || exit
 mv index.html index.html.orig
