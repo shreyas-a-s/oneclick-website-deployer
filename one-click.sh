@@ -21,6 +21,7 @@ cd "$temp_dir" || exit
 ./scripts/tripal-install.sh
 ./scripts/blast-install.sh
 ./scripts/daemon-install.sh
+./scripts/jbrowse-install.sh
 
 # Clean up: Remove the temporary directory and its contents
 cd .. || exit
