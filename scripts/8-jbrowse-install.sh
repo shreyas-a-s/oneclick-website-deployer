@@ -22,12 +22,12 @@ mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/
 mv JBrowse-1.16.11 "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse || exit
 ./setup.sh
+mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse/data/
+sudo chown -R www-data:www-data "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse/data/
 
 # Install tripal_jbrowse
 wget https://github.com/tripal/tripal_jbrowse/archive/refs/tags/7.x-3.0.zip
-unzip tripal_jbrowse-7.x-3.0.zip
-rm tripal_jbrowse-7.x-3.0.zip
-mv tripal_jbrowse-7.x-3.0 "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/
-mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse/data/
-sudo chown -R www-data:www-data "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse/data/
+unzip 7.x-3.0.zip
+rm 7.x-3.0.zip
+mv tripal_jbrowse-7.x-3.0 "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/tripal_jbrowse
 drush en tripal_jbrowse_mgmt -y
