@@ -19,7 +19,7 @@ curl -L -O https://github.com/GMOD/jbrowse/releases/download/1.16.11-release/JBr
 unzip JBrowse-1.16.11.zip
 rm JBrowse-1.16.11.zip
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/
-sudo mv JBrowse-1.16.11 "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse
+mv JBrowse-1.16.11 "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse || exit
 ./setup.sh
 
