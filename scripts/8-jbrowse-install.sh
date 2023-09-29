@@ -31,3 +31,4 @@ unzip 7.x-3.0.zip
 rm 7.x-3.0.zip
 mv tripal_jbrowse-7.x-3.0 "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/tripal_jbrowse
 drush en tripal_jbrowse_mgmt -y
+drush en tripal_jbrowse_page -y
