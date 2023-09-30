@@ -42,6 +42,9 @@ drush pm-enable tripal tripal_chado tripal_ds tripal_ws -y
 
 # Chado installation
 checkSMAUsername
+echo '------------------'
+echo '   Install Chado   '
+echo '------------------'
 echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install"
 echo "Click the drop-down menu under Installation/Upgrade."
 echo "Select 'New Install of Chado v1.3'."
@@ -53,6 +56,9 @@ drush trp-run-jobs --username="$smausername"
 drush updatedb
 
 # Chado preparation
+echo '------------------'
+echo '   Prepare Chado   '
+echo '------------------'
 echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/prepare"
 echo "Click on 'Prepare this site'"
 echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
