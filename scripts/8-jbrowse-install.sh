@@ -12,7 +12,7 @@ echo '--------------------------------'
 read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 
 # Install pre-requisites
-sudo apt-get -qq update && sudo apt-get -qq install build-essential zlib1g-dev unzip wget curl -y
+sudo apt-get -qq update && sudo apt-get -qq install build-essential zlib1g-dev unzip wget curl
 
 # Install jbrowse
 curl -L -O https://github.com/GMOD/jbrowse/releases/download/1.16.11-release/JBrowse-1.16.11.zip

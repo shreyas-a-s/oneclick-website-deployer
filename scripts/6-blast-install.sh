@@ -18,7 +18,7 @@ sudo systemctl daemon-reload
 sudo service apache2 restart
 
 # Install BLAST+
-sudo apt-get -qq update && sudo apt-get -qq install wget -y
+sudo apt-get -qq update && sudo apt-get -qq install wget
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast
 wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.*.*+-x64-linux.tar.gz
 tar zxvpf ncbi-blast-2.*.*+-x64-linux.tar.gz
