@@ -6,7 +6,7 @@ echo '   Postgres Database Creation   '
 echo '-------------------------------'
 
 #Installation
-sudo apt install postgresql -y
+sudo apt-get -qq install postgresql -y
 
 # Database creation
 read -r -p "Enter a new username (role): " psqluser
