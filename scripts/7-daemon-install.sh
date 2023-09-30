@@ -24,4 +24,5 @@ drush pm-enable drushd tripal_daemon -y
 
 # Start the Daemon
 drush trpjob-daemon start
+sleep 2
 drush trpjob-daemon status
