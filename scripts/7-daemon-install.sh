@@ -12,10 +12,11 @@ echo '-------------------------------'
 read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 
 # Installation
+cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 drush pm-download libraries -y
 drush pm-enable libraries -y
-wget -O "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/PHP-Daemon.tar.gz https://github.com/shaneharter/PHP_Daemon/archive/v2.0.tar.gz
-tar -zxvf "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/PHP-Daemon.tar.gz
+wget -O sites/all/libraries/PHP-Daemon.tar.gz https://github.com/shaneharter/PHP_Daemon/archive/v2.0.tar.gz
+tar -zxvf sites/all/libraries/PHP-Daemon.tar.gz
 drush pm-download drushd -y
 drush pm-enable drushd tripal_daemon -y
 
