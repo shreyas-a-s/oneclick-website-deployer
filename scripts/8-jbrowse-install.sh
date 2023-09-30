@@ -30,4 +30,13 @@ wget https://github.com/tripal/tripal_jbrowse/archive/refs/tags/7.x-3.0.zip
 unzip 7.x-3.0.zip
 rm 7.x-3.0.zip
 mv tripal_jbrowse-7.x-3.0 "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/tripal_jbrowse
-drush pm-enable tripal_jbrowse_mgmt tripal_jbrowse_page -y
+drush pm-enable -y tripal_jbrowse_mgmt tripal_jbrowse_page
+echo '-------------------------'
+echo '   Tripal_JBrowse Setup   '
+echo '-------------------------'
+echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_jbrowse/management/configure"
+echo "Fill out the form like this:"
+echo "Data Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/jbrowse/data"
+echo "Data Path: ""$drupalsitedir""/jbrowse/data"
+echo "Path to JBrowse's Index File: tools/jbrowse"
+echo "Path to JBrowse's bin Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/jbrowse/bin"

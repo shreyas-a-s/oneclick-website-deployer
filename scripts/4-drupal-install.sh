@@ -40,4 +40,4 @@ echo "Go to http://localhost/""$drupalsitedir""/install.php and complete initial
 echo "IMP NOTE: Make sure to note down site maintenance account username."
 echo "After completing initial setup, come back and type 'yes' to continue."
 continueORNot
-sudo chmod 755 "$drupalsitedir"/sites/default/default.settings.php
+sudo chmod 755 "$drupalsitedir"/sites/default/settings.php
