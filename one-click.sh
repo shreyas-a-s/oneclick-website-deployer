@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Install git if not present
-sudo apt-get -qq update
-sudo apt-get -qq install git
+sudo apt-get update
+sudo apt-get -y install git
 
 # Create a temporary directory
 temp_dir=$(mktemp -d)
