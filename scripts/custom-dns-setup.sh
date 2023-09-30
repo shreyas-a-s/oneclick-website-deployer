@@ -13,7 +13,7 @@ sudo sed -i '1,$d' /etc/resolv.conf && echo -e '# Custom DNS added by user\nname
 sudo sed -i "/resolvconf=/ c\resolvconf=NO" /etc/resolvconf.conf || sudo sed -i "$ a/ \n# Added by user\nresolvconf=NO" /etc/resolvconf.conf
 
 # Check DNS Server
-if [ $(nslookup example.com | awk 'NR==1{print $2}') = '1.1.1.1' ]; then
+if [ "$(nslookup example.com | awk 'NR==1{print $2}')" = '1.1.1.1' ]; then
   echo "Custom DNS setup Successful."
 else
   echo "Custom DNS setup Unsuccessful. Reboot the system and check."

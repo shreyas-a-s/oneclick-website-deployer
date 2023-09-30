@@ -20,8 +20,8 @@ sudo service apache2 restart
 # Install BLAST+
 sudo apt-get update && sudo apt-get -y install wget curl
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast
-wget -r -A '*-x64-linux.tar.gz' ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/
-cd ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/
+wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.14.1+-x64-linux.tar.gz
+cd ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ || exit
 tar -xzvf ncbi-blast-*+-x64-linux.tar.gz
 cp -r ncbi-blast-*+/bin "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/
 rm -rf ncbi-blast-*+/ ncbi-blast-*+-x64-linux.tar.gz
@@ -31,7 +31,7 @@ cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 drush pm-download tripal_blast libraries -y
 drush pm-enable blast_ui -y
 mkdir -p "$drupalsitedir"/sites/default/files/tripal/
-sudo chgrp -R www-data "$drupalsitedir"/sites/default/files/tripal/
+sudo chown www-data:www-data -R "$drupalsitedir"/sites/default/files/
 echo '-----------------------'
 echo '   Tripal_Blast Setup   '
 echo '-----------------------'
