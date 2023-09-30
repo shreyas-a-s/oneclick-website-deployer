@@ -2,7 +2,7 @@
 
 # Display task name
 echo '---------------------'
-echo '   Custom_DNS Setup   '
+echo '   Custom DNS Setup   '
 echo '---------------------'
 
 # Install dependencies
