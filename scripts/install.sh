@@ -58,6 +58,9 @@ composer require drupal/core
 cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
 sudo chown www-data:www-data ./web/sites/default/settings.php
 sudo chown www-data:www-data ./web/sites/default/
+echo '---------------'
+echo '   Site Setup   '
+echo '---------------'
 echo "Go to http://localhost/""$drupalsitedir""/web/install.php and complete initial setup of website by providing newly created database details, new site maintenance account details, etc"
 echo "IMP NOTE: Make sure to note down site maintenance account username."
 echo "After completing initial setup, come back and type 'yes' to continue."
