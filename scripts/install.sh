@@ -71,11 +71,11 @@ composer require drupal/field_group
 composer require drupal/field_group_table
 composer require drupal/field_formatter_class
 composer require drupal/jquery_ui_accordion
-drush pm-enable entity views views_ui ctools ds field_group field_group_table field_formatter_class jquery_ui jquery_ui_accordion
+drush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class jquery_ui jquery_ui_accordion
 
 # Installing and enabling tripal and tripal chado
 git clone -b 4.x https://github.com/tripal/tripal.git ./web/modules/contrib/tripal
-drush pm-enable tripal tripal_chado
+drush pm-enable -y tripal tripal_chado
 
 # Chado Installation
 checkSMAUsername
