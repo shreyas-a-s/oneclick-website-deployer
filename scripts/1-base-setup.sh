@@ -6,7 +6,7 @@ echo '   Base Setup   '
 echo '---------------'
 
 # Variables
-phpversion=$(apt-get -qq show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
+phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
 
 # Get user input
 read -r -p "How much memory to allocate to the website (in MB)? " memorylimit
