@@ -22,8 +22,9 @@ mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/
 mv JBrowse-1.16.11 "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse || exit
 ./setup.sh
-mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse/data/
-sudo chgrp -R www-data "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse/data/
+mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/jbrowse/data/
+sudo chgrp -R www-data "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/jbrowse/
+sudo chmod -R g+w "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/jbrowse
 
 # Install tripal_jbrowse
 wget https://github.com/tripal/tripal_jbrowse/archive/refs/tags/7.x-3.0.zip
@@ -36,7 +37,7 @@ echo '   Tripal_JBrowse Setup   '
 echo '-------------------------'
 echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_jbrowse/management/configure"
 echo "Fill out the form like this:"
-echo "Data Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/jbrowse/data"
-echo "Data Path: ""$drupalsitedir""/jbrowse/data"
+echo "Data Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/sites/default/files/jbrowse/data"
+echo "Data Path: ""$drupalsitedir""/sites/default/files/jbrowse/data"
 echo "Path to JBrowse's Index File: tools/jbrowse"
 echo "Path to JBrowse's bin Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/jbrowse/bin"
