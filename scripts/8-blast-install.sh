@@ -20,11 +20,12 @@ sudo service apache2 restart
 # Install BLAST+
 sudo apt-get update && sudo apt-get -y install wget curl
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast
-wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.14.1+-x64-linux.tar.gz
-cd ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ || exit
-tar -xzvf ncbi-blast-*+-x64-linux.tar.gz
+wget --no-remove-listing ftp.ncbi.nlm.nih.gov/blast/executables/LATEST
+wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/"$(grep x64-linux.tar.gz LATEST | awk 'NR==1{print $2}' | awk -F '>' '{print $2}' | awk -F '<' '{print $1}')"
+tar zxvpf ncbi-blast-*+-x64-linux.tar.gz
 cp -r ncbi-blast-*+/bin "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/
 rm -rf ncbi-blast-*+/ ncbi-blast-*+-x64-linux.tar.gz
+rm LATEST
 
 # Install tripal_blast
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
