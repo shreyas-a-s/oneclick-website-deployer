@@ -29,7 +29,10 @@ rm LATEST
 
 # Install tripal_blast
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
-drush pm-download tripal_blast libraries -y
+mkdir -p sites/all/modules/tripal_blast
+sudo apt update && sudo apt install -y git
+git clone https://github.com/tripal/tripal_blast.git sites/all/modules/tripal_blast
+drush pm-download libraries -y
 drush pm-enable blast_ui -y
 mkdir -p sites/default/files/tripal/
 sudo chown www-data:www-data -R sites/default/files/
