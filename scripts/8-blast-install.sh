@@ -4,9 +4,9 @@
 sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
 
 # Display task name
-echo '------------------------------'
-echo '   Tripal_Blast Installation   '
-echo '------------------------------'
+echo '-----------------------'
+echo '   Blast Installation   '
+echo '------------------------'
 
 # Get user input
 read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
