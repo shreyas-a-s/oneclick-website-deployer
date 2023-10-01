@@ -46,7 +46,9 @@ echo "Click 'Save Configuration' at the bottom of the page."
 # Gathering test database
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA || exit
-echo "Downloading example data. Wait a little bit."
+echo '-----------------------------------------------'
+echo '   Downloading sample data. Wait a little bit   '
+echo '-----------------------------------------------'
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
 
