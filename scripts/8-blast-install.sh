@@ -45,6 +45,19 @@ echo "Click 'Save Configuration' at the bottom of the page."
 
 # Gathering test database
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA
-cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA
+cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA || exit
+echo "Downloading example data. Wait a little bit."
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
+
+# Sample Blast Database Setup
+echo '--------------------------'
+echo '   Sample Blast DB Setup   '
+echo '--------------------------'
+echo "Go to http://localhost/""$drupalsitedir""/node/add/blastdb"
+echo "Fill out the form like this:"
+echo "Human-readable Name: 16S_ribosomal_RNA"
+echo "File Prefix including Full Path: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/blast/blastdb/16S_ribosomal_RNA/16S_ribosomal_RNA"
+echo "Set 'Type of the blast database' to Nucleotide."
+echo "Got to bottom of page and click 'Save'"
+echo "Go to http://localhost/""$drupalsitedir""/blast/nucleotide/nucleotide and test out the blast install by Entering a FASTA sequence (or uploading one) & Selecting the newly added Database from dropdown under Nucleotide BLAST Databases & Clicking 'BLAST'"
