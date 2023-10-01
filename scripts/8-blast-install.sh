@@ -35,7 +35,7 @@ git clone https://github.com/tripal/tripal_blast.git sites/all/modules/tripal_bl
 drush pm-download libraries -y
 drush pm-enable blast_ui -y
 mkdir -p sites/default/files/tripal/
-sudo chgrp www-data sites/default/files/tripal/
+sudo chgrp www-data sites/default/files/tripal/tripal_blast/
 echo '-----------------------'
 echo '   Tripal_Blast Setup   '
 echo '-----------------------'
