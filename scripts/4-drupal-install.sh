@@ -31,7 +31,7 @@ rm drupal-7.98.tar.gz
 mv drupal-7.98/ "$drupalsitedir"/
 cp "$drupalsitedir"/sites/default/default.settings.php "$drupalsitedir"/sites/default/settings.php
 mkdir "$drupalsitedir"/sites/default/files/
-sudo chgrp www-data "$drupalsitedir"/sites/default/files/
+sudo chgrp -R www-data "$drupalsitedir"/sites/default/files/
 sudo chmod 777 "$drupalsitedir"/sites/default/settings.php
 sudo chmod g+rw "$drupalsitedir"/sites/default/files/
 echo '---------------'
