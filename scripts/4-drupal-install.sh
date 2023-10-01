@@ -27,6 +27,7 @@ cd "$DRUPAL_HOME" || exit
 mv index.html index.html.orig
 wget http://ftp.drupal.org/files/projects/drupal-7.98.tar.gz
 tar -zxvf drupal-7.98.tar.gz
+rm drupal-7.98.tar.gz
 mv drupal-7.98/ "$drupalsitedir"/
 cp "$drupalsitedir"/sites/default/default.settings.php "$drupalsitedir"/sites/default/settings.php
 mkdir "$drupalsitedir"/sites/default/files/

@@ -31,8 +31,8 @@ rm LATEST
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 drush pm-download tripal_blast libraries -y
 drush pm-enable blast_ui -y
-mkdir -p "$drupalsitedir"/sites/default/files/tripal/
-sudo chown www-data:www-data -R "$drupalsitedir"/sites/default/files/
+mkdir -p sites/default/files/tripal/
+sudo chown www-data:www-data -R sites/default/files/
 echo '-----------------------'
 echo '   Tripal_Blast Setup   '
 echo '-----------------------'
