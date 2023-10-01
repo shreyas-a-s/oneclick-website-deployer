@@ -1,0 +1,10 @@
+[Unit]
+Description=Tripal Daemon Autostart
+
+[Service]
+ExecStart=drush trpjob-daemon start --root=drupalsitedir
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
