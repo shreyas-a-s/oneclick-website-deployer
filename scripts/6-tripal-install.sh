@@ -45,12 +45,12 @@ checkSMAUsername
 echo -e '\n+-------------------+'
 echo '|   Install Chado   |'
 echo '+-------------------+'
-echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install"
-echo "Click the drop-down menu under Installation/Upgrade."
-echo "Select 'New Install of Chado v1.3'."
-echo "Click 'Install/Upgrade Chado'."
-echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
-echo "After completing these steps, come back and type 'yes' to continue."
+echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install"
+echo "2. Click the drop-down menu under Installation/Upgrade."
+echo "3. Select 'New Install of Chado v1.3'."
+echo "4. Click 'Install/Upgrade Chado'."
+echo "- NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
+echo "5. After completing these steps, come back and type 'yes' to continue."
 continueORNot
 drush trp-run-jobs --username="$smausername"
 drush updatedb
@@ -59,10 +59,10 @@ drush updatedb
 echo -e '\n+-------------------+'
 echo '|   Prepare Chado   |'
 echo '+-------------------+'
-echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/prepare"
-echo "Click on 'Prepare this site'"
-echo "NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
-echo "After completing these steps, come back and type 'yes' to continue."
+echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/prepare"
+echo "2. Click on 'Prepare this site'"
+echo "- NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
+echo "3. After completing these steps, come back and type 'yes' to continue."
 continueORNot
 drush trp-run-jobs --username="$smausername"
 drush cache-clear all

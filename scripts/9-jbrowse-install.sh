@@ -35,9 +35,9 @@ drush pm-enable -y tripal_jbrowse_mgmt tripal_jbrowse_page
 echo -e '\n+--------------------------+'
 echo '|   Tripal_JBrowse Setup   |'
 echo '+--------------------------+'
-echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_jbrowse/management/configure"
-echo "Fill out the form like this:"
-echo "Data Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/sites/default/files/jbrowse/data"
-echo "Data Path: ""$drupalsitedir""/sites/default/files/jbrowse/data"
-echo "Path to JBrowse's Index File: tools/jbrowse"
-echo "Path to JBrowse's bin Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/jbrowse/bin"
+echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_jbrowse/management/configure"
+echo "2. Fill out the form like this:"
+echo "- Data Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/sites/default/files/jbrowse/data"
+echo "- Data Path: ""$drupalsitedir""/sites/default/files/jbrowse/data"
+echo "- Path to JBrowse's Index File: tools/jbrowse"
+echo "- Path to JBrowse's bin Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/jbrowse/bin"

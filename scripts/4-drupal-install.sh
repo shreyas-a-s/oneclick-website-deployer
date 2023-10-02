@@ -37,8 +37,8 @@ sudo chmod g+rw "$drupalsitedir"/sites/default/files/
 echo -e '\n+----------------+'
 echo '|   Site Setup   |'
 echo '+----------------+'
-echo "Go to http://localhost/""$drupalsitedir""/install.php and complete initial setup of website by providing newly created database details, new site maintenance account details, etc"
-echo "IMP NOTE: Make sure to note down site maintenance account username."
-echo "After completing initial setup, come back and type 'yes' to continue."
+echo "1. Go to http://localhost/""$drupalsitedir""/install.php and complete initial setup of website by providing newly created database details, new site maintenance account details, etc"
+echo "- IMP NOTE: Make sure to note down site maintenance account username."
+echo "2. After completing initial setup, come back and type 'yes' to continue."
 continueORNot
 sudo chmod 755 "$drupalsitedir"/sites/default/settings.php
