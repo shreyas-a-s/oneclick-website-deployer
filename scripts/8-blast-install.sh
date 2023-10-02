@@ -36,12 +36,6 @@ drush pm-download libraries -y
 drush pm-enable blast_ui -y
 mkdir -p sites/default/files/tripal/
 sudo chgrp -R www-data sites/default/files/
-echo '-----------------------'
-echo '   Tripal_Blast Setup   '
-echo '-----------------------'
-echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_blast"
-echo "Copy & paste this path in the 'Enter the path of the BLAST program' form: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/blast/bin/"
-echo "Click 'Save Configuration' at the bottom of the page."
 
 # Gathering test database
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA
@@ -51,6 +45,14 @@ echo '   Downloading sample data. Wait a little bit   '
 echo '-----------------------------------------------'
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
+
+# User configuration
+echo '-----------------------'
+echo '   Tripal_Blast Setup   '
+echo '-----------------------'
+echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_blast"
+echo "Copy & paste this path in the 'Enter the path of the BLAST program' form: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/blast/bin/"
+echo "Click 'Save Configuration' at the bottom of the page."
 
 # Sample Blast Database Setup
 echo '--------------------------'
