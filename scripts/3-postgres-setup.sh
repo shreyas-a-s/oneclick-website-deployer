@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Display task name
-echo '-------------------------------'
-echo '   Postgres Database Creation   '
-echo '-------------------------------'
+echo -e '\n+--------------------------------+'
+echo '|   Postgres Database Creation   |'
+echo '+--------------------------------+'
 
 #Installation
 sudo apt-get -y install postgresql

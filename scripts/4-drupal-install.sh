@@ -14,9 +14,9 @@ function continueORNot {
 }
 
 # Display task name
-echo '------------------------'
-echo '   Drupal Installation   '
-echo '------------------------'
+echo -e '\n+-------------------------+'
+echo '|   Drupal Installation   |'
+echo '+-------------------------+'
 
 # Get user input
 read -r -p "Enter the name of new directory to which drupal website needs to be installed: " drupalsitedir
@@ -34,9 +34,9 @@ mkdir "$drupalsitedir"/sites/default/files/
 sudo chgrp -R www-data "$drupalsitedir"/sites/default/files/
 sudo chmod 777 "$drupalsitedir"/sites/default/settings.php
 sudo chmod g+rw "$drupalsitedir"/sites/default/files/
-echo '---------------'
-echo '   Site Setup   '
-echo '---------------'
+echo -e '\n+----------------+'
+echo '|   Site Setup   |'
+echo '+----------------+'
 echo "Go to http://localhost/""$drupalsitedir""/install.php and complete initial setup of website by providing newly created database details, new site maintenance account details, etc"
 echo "IMP NOTE: Make sure to note down site maintenance account username."
 echo "After completing initial setup, come back and type 'yes' to continue."

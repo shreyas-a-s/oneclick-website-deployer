@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Display task name
-echo '--------------------------'
-echo '   Cron Automation Setup   '
-echo '--------------------------'
+echo -e '\n+---------------------------+'
+echo '|   Cron Automation Setup   |'
+echo '+---------------------------+'
 
 # Get user input
 read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir

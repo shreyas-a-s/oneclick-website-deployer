@@ -4,9 +4,9 @@
 sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
 
 # Display task name
-echo '-----------------------'
-echo '   Blast Installation   '
-echo '------------------------'
+echo -e '\n+------------------------+'
+echo '|   Blast Installation   |'
+echo '+------------------------+'
 
 # Get user input
 read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
@@ -40,24 +40,24 @@ sudo chgrp -R www-data sites/default/files/
 # Gathering test database
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA || exit
-echo '-----------------------------------------------'
-echo '   Downloading sample data. Wait a little bit   '
-echo '-----------------------------------------------'
+echo -e '\n+------------------------------------------------+'
+echo '|   Downloading sample data. Wait a little bit   |'
+echo '+------------------------------------------------+'
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
 
 # User configuration
-echo -e '\n-----------------------'
-echo '   Tripal_Blast Setup   '
-echo '-----------------------'
+echo -e '\n+------------------------+'
+echo '|   Tripal_Blast Setup   |'
+echo '+------------------------+'
 echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_blast"
 echo "Copy & paste this path in the 'Enter the path of the BLAST program' form: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/blast/bin/"
 echo "Click 'Save Configuration' at the bottom of the page."
 
 # Sample Blast Database Setup
-echo -e '\n--------------------------'
-echo '   Sample Blast DB Setup   '
-echo '--------------------------'
+echo -e '\n+---------------------------+'
+echo '|   Sample Blast DB Setup   |'
+echo '+---------------------------+'
 echo "Go to http://localhost/""$drupalsitedir""/node/add/blastdb"
 echo "Fill out the form like this:"
 echo "Human-readable Name: 16S_ribosomal_RNA"

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Display task name
-echo '---------------------'
-echo '   Custom DNS Setup   '
-echo '---------------------'
+echo -e '\n+----------------------+'
+echo '|   Custom DNS Setup   |'
+echo '+----------------------+'
 
 # Install dependencies
 sudo apt-get update && sudo apt-get -y install openresolv

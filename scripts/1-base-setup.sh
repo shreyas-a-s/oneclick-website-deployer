@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Display task name
-echo '---------------'
-echo '   Base Setup   '
-echo '---------------'
+echo -e '\n+----------------+'
+echo '|   Base Setup   |'
+echo '+----------------+'
 
 # Variables
 phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
