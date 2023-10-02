@@ -26,6 +26,4 @@ drush pm-enable drushd tripal_daemon -y
 drush trpjob-daemon start
 
 # Set daemon to autostart during boot
-echo -e "[Unit]\nDescription=Tripal Daemon Autostart\n\n[Service]\nExecStart=drush trpjob-daemon start --root=""$DRUPAL_HOME""/""$drupalsitedir""\nType=oneshot\nRemainAfterExit=yes\n\n[Install]\nWantedBy=multi-user.target" | sudo tee /etc/systemd/system/tripal-daemon-autostart.service > /dev/null
-sudo systemctl daemon-reload
-sudo systemctl enable tripal-daemon-autostart
+sudo /bin/bash -c 'echo "@reboot /usr/local/bin/drush trpjob-daemon start --root=""$DRUPAL_HOME""/""$drupalsitedir" >> /etc/crontab'
