@@ -47,7 +47,7 @@ echo '-----------------------------------------------'
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
 
 # User configuration
-echo '-----------------------'
+echo -e '\n-----------------------'
 echo '   Tripal_Blast Setup   '
 echo '-----------------------'
 echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_blast"
@@ -55,7 +55,7 @@ echo "Copy & paste this path in the 'Enter the path of the BLAST program' form: 
 echo "Click 'Save Configuration' at the bottom of the page."
 
 # Sample Blast Database Setup
-echo '--------------------------'
+echo -e '\n--------------------------'
 echo '   Sample Blast DB Setup   '
 echo '--------------------------'
 echo "Go to http://localhost/""$drupalsitedir""/node/add/blastdb"
