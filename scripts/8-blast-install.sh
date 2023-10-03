@@ -9,7 +9,9 @@ echo '|   Blast Installation   |'
 echo '+------------------------+'
 
 # Get user input
-read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+if [[ -z ${drupalsitedir} ]]; then
+	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+fi
 
 # Set PrivateTmp to false
 sudo cp /etc/systemd/system/multi-user.target.wants/apache2.service /etc/systemd/system/

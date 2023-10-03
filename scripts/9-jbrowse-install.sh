@@ -9,7 +9,9 @@ echo '|   Tripal_JBrowse Installation   |'
 echo '+---------------------------------+'
 
 # Get user input
-read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+if [[ -z ${drupalsitedir} ]]; then
+	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+fi
 
 # Install pre-requisites
 sudo apt-get update && sudo apt-get -y install build-essential zlib1g-dev unzip wget curl

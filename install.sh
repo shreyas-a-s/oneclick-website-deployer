@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Display task name
+read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+
+# Executing scripts
 ./scripts/1-base-setup.sh
 ./scripts/2-drush-install.sh
 ./scripts/3-postgres-setup.sh

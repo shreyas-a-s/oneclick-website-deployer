@@ -28,7 +28,9 @@ echo '|   Tripal Installation   |'
 echo '+-------------------------+'
 
 # Get user input
-read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+if [[ -z ${drupalsitedir} ]]; then
+	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+fi
 
 # Install dependencies
 cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/ || exit

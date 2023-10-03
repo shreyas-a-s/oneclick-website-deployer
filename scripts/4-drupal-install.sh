@@ -19,7 +19,9 @@ echo '|   Drupal Installation   |'
 echo '+-------------------------+'
 
 # Get user input
-read -r -p "Enter the name of new directory to which drupal website needs to be installed: " drupalsitedir
+if [[ -z ${drupalsitedir} ]]; then
+	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+fi
 
 # Installation
 sudo chown -R "$USER" "$DRUPAL_HOME"

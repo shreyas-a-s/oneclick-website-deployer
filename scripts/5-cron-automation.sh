@@ -6,7 +6,9 @@ echo '|   Cron Automation Setup   |'
 echo '+---------------------------+'
 
 # Get user input
-read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+if [[ -z ${drupalsitedir} ]]; then
+	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+fi
 
 # Installation
 echo "0,30 * * * * $USER /usr/local/bin/drush core-cron --root=$DRUPAL_HOME/$drupalsitedir" | sudo tee /etc/cron.d/drupal-cron-tasks > /dev/null

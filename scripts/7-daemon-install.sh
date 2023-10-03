@@ -9,7 +9,9 @@ echo '|   Tripal_Daemon Installation   |'
 echo '+--------------------------------+'
 
 # Get user input
-read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+if [[ -z ${drupalsitedir} ]]; then
+	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+fi
 
 # Installation
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
