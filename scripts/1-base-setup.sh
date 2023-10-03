@@ -9,7 +9,9 @@ echo '+----------------+'
 phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
 
 # Get user input
-read -r -p "How much memory to allocate to the website (in MB)? " memorylimit
+if [[ -z ${memorylimit} ]]; then
+	read -r -p "How much memory to allocate to the website (in MB)? " memorylimit
+fi
 
 # Installation
 sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install apache2 php php-dev php-cli libapache2-mod-php php"$phpversion"-mbstring php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress phppgadmin wget

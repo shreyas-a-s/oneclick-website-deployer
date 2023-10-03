@@ -10,7 +10,9 @@ sudo apt-get -y install postgresql
 
 # Database creation
 read -r -p "Enter a new username (role): " psqluser
-read -r -p "Enter the name for a new database for our website: " psqldb
+if [[ -z ${psqldb} ]]; then
+	read -r -p "Enter the name for a new database for our website: " psqldb
+fi
 sudo su - postgres -c "createuser -P $psqluser"
 sudo su - postgres -c "createdb $psqldb -O $psqluser"
 
