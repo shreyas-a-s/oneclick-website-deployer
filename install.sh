@@ -3,6 +3,9 @@
 # Get user input
 read -r -p "How much memory to allocate to the website (in MB)? " memorylimit && export memorylimit
 read -r -p "Enter the name for a new database for our website: " psqldb && export psqldb
+read -r -p "Enter a new username (role): " psqluser && export psqluser
+sudo su - postgres -c "createuser -P $psqluser"
+sudo su - postgres -c "createdb $psqldb -O $psqluser"
 read -r -p "Enter the name of the directory to which drupal website needs to be installed: " drupalsitedir && export drupalsitedir
 
 # Executing scripts
