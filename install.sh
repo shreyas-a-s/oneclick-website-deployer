@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Display task name
-read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+read -r -p "Enter the name of the directory to which drupal website needs to be installed: " drupalsitedir
 
 # Executing scripts
 ./scripts/1-base-setup.sh
