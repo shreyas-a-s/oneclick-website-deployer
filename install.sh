@@ -2,6 +2,7 @@
 
 # Get user input
 read -r -p "How much memory to allocate to the website (in MB)? " memorylimit && export memorylimit
+sudo apt-get -qq update && sudo apt-get -qq install postgresql
 read -r -p "Enter the name for a new database for our website: " psqldb && export psqldb
 read -r -p "Enter a new username (role): " psqluser && export psqluser
 sudo su - postgres -c "createuser -P $psqluser"

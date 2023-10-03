@@ -5,11 +5,9 @@ echo -e '\n+--------------------------------+'
 echo '|   Postgres Database Creation   |'
 echo '+--------------------------------+'
 
-#Installation
-sudo apt-get -y install postgresql
-
-# Database creation
+#Installation & database creation
 if [[ -z ${psqldb} ]]; then
+	sudo apt-get -y install postgresql
 	read -r -p "Enter the name for a new database for our website: " psqldb
 	read -r -p "Enter a new username (role): " psqluser
 	sudo su - postgres -c "createuser -P $psqluser"
