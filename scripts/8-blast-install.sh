@@ -52,9 +52,7 @@ echo '+------------------------------------------------+'
 echo -e '\n+------------------------+'
 echo '|   Tripal_Blast Setup   |'
 echo '+------------------------+'
-echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_blast"
-echo "2. Copy & paste this path in the 'Enter the path of the BLAST program' form: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/blast/bin/"
-echo "3. Click 'Save Configuration' at the bottom of the page."
+drush variable-set blast_path "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Sample Blast Database Setup
 echo -e '\n+---------------------------+'
