@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# Variables
+debianversion=$(cat /etc/debian_version | awk -F '.' '{print $1}')
+
+# Take user choice before continuing
+function continueORNot {
+	read -r -p "Continue? (yes/no): " choice
+	case "$choice" in 
+     "yes" ) echo "Moving on to next step..";;
+     "no" ) echo "Exiting.."; exit 1;;
+     * ) echo "Invalid Choice! Keep in mind this is case-sensitive."; continueORNot;;
+   esac
+}
+# Give warning if debian version is not equal to 11
+if [ "$debianversion" -ne 11 ]; then
+	echo "Drupal 7 (and thereby Tripal 3) works best in Debian 11. This system is Debian $debianversion. Installation might not work properly in this system. But you can continue with the installation if you want."
+	continueORNot
+fi
+
 # Get user input
 read -r -p "How much memory to allocate to the website (in MB)? " memorylimit && export memorylimit
 sudo apt-get -qq update && sudo apt-get -qq install postgresql
