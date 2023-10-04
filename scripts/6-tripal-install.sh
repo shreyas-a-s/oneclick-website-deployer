@@ -42,7 +42,7 @@ drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 echo -e '\n+-------------------+'
 echo '|   Install Chado   |'
 echo '+-------------------+'
-psql -U "$psqluser" -d "$psqldb" -h localhost -c "CREATE SCHEMA chado;"
+psql -U "$psqluser" -d "$psqldb" -h localhost -c "CREATE SCHEMA chado AUTHORIZATION $psqluser;"
 psql -U "$psqluser" -d "$psqldb" -h localhost -f sites/all/modules/tripal/tripal_chado/chado_schema/default_schema-1.3.sql
 psql -U "$psqluser" -d "$psqldb" -h localhost -f sites/all/modules/tripal/tripal_chado/chado_schema/initialize-1.3.sql
 drush updatedb
