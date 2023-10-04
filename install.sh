@@ -9,6 +9,9 @@ sudo su - postgres -c "createuser -P $psqluser"
 sudo su - postgres -c "createdb $psqldb -O $psqluser"
 read -r -p "Enter the name of the directory to which drupal website needs to be installed: " drupalsitedir && export drupalsitedir
 
+# Change directory
+SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
+
 # Executing scripts
 ./scripts/1-base-setup.sh
 ./scripts/2-drush-install.sh
