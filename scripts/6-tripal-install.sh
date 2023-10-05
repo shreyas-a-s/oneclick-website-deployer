@@ -32,7 +32,6 @@ if [[ -z ${drupalsitedir} ]]; then
 	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
 #if [[ -z ${psqldb} ]]; then
-#	sudo apt-get -y install postgresql
 #	read -r -p "Enter the name of postgres database that you have previousily created: " psqldb
 #	read -r -p "Enter the postgres username: " psqluser
 #  read -r -p "Enter the password that you set for the postgres user: " PGPASSWORD && export PGPASSWORD
