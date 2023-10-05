@@ -13,12 +13,6 @@ if [[ -z ${drupalsitedir} ]]; then
 	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
 
-# Set PrivateTmp to false
-sudo cp /etc/systemd/system/multi-user.target.wants/apache2.service /etc/systemd/system/
-sudo sed -i "/PrivateTmp/ c\PrivateTmp=false" /etc/systemd/system/apache2.service
-sudo systemctl daemon-reload
-sudo service apache2 restart
-
 # Install BLAST+
 sudo apt-get update && sudo apt-get -y install wget curl
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast
