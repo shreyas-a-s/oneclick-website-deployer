@@ -3,6 +3,16 @@
 # Variables
 sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 
+# Take user choice before continuing
+function continueORNot {
+   read -r -p "Continue? (yes/no): " choice
+   case "$choice" in 
+     "yes" ) echo "Moving on to next step..";;
+     "no" ) echo "Exiting.."; exit 1;;
+     * ) echo "Invalid Choice! Keep in mind this is case-sensitive."; continueORNot;;
+   esac
+}
+
 # Test site maintenance username
 function checkSMAUsername {
     read -r -p "Enter the site maintenance account username that you've given to the website: " smausername
@@ -39,16 +49,23 @@ cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 
 # Chado installation
+checkSMAUsername
 echo -e '\n+-------------------+'
 echo '|   Install Chado   |'
 echo '+-------------------+'
-psql -U "$psqluser" -d "$psqldb" -h localhost -c "CREATE SCHEMA chado AUTHORIZATION $psqluser;"
-psql -U "$psqluser" -d "$psqldb" -h localhost -f sites/all/modules/tripal/tripal_chado/chado_schema/default_schema-1.3.sql
-psql -U "$psqluser" -d "$psqldb" -h localhost -f sites/all/modules/tripal/tripal_chado/chado_schema/initialize-1.3.sql
-drush updatedb
+#psql -U "$psqluser" -d "$psqldb" -h localhost -c "CREATE SCHEMA chado AUTHORIZATION $psqluser;"
+#psql -U "$psqluser" -d "$psqldb" -h localhost -f sites/all/modules/tripal/tripal_chado/chado_schema/default_schema-1.3.sql
+#psql -U "$psqluser" -d "$psqldb" -h localhost -f sites/all/modules/tripal/tripal_chado/chado_schema/initialize-1.3.sql
+echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install"
+echo "2. Click the drop-down menu under Installation/Upgrade."
+echo "3. Select 'New Install of Chado v1.3'."
+echo "4. Click 'Install/Upgrade Chado'."
+echo "- NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
+echo "5. After completing these steps, come back and type 'yes' to continue."
+continueORNot
+drush trp-run-jobs --username="$smausername"
 
 # Chado preparation
-checkSMAUsername
 echo -e '\n+-------------------+'
 echo '|   Prepare Chado   |'
 echo '+-------------------+'
