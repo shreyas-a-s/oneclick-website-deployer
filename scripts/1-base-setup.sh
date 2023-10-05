@@ -6,7 +6,7 @@ echo '|   Base Setup   |'
 echo '+----------------+'
 
 # Variables
-phpversion=$(apt show php | awk 'NR==2{print $2}' | awk -F ':' '{print $2}' | awk -F '+' '{print $1}')
+phpversion=$(apt-cache show php | grep version | awk '{print $4}' | awk -F ')' '{print $1}')
 
 # Get user input
 if [[ -z ${memorylimit} ]]; then
