@@ -52,5 +52,5 @@ checkSMAUsername
 echo -e '\n+-------------------+'
 echo '|   Prepare Chado   |'
 echo '+-------------------+'
-drush trp-prepare-chado --username="$smausername"
+drush trp-prepare-chado --user="$smausername"
 drush cache-clear all
