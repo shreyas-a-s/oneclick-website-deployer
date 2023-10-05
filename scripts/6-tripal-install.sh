@@ -52,5 +52,5 @@ checkSMAUsername
 echo -e '\n+-------------------+'
 echo '|   Prepare Chado   |'
 echo '+-------------------+'
-drush trp-prepare-chado --user="$smausername"
+drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
 drush cache-clear all
