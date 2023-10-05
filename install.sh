@@ -44,3 +44,6 @@ SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Unset PGPASSWORD
 unset PGPASSWORD
+
+# End
+echo "Reboot the system for site installation to fully take effect."
