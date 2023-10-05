@@ -22,6 +22,12 @@ echo '+-------------------------+'
 if [[ -z ${drupalsitedir} ]]; then
 	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
+if [[ -z ${psqldb} ]]; then
+	sudo apt-get -y install postgresql
+	read -r -p "Enter the name of postgres database that you have previousily created: " psqldb
+	read -r -p "Enter the postgres username: " psqluser
+  read -r -p "Enter the password that you set for the postgres user: " PGPASSWORD
+fi
 
 # Installation
 sudo chown -R "$USER" "$DRUPAL_HOME"
@@ -40,6 +46,7 @@ sudo chmod g+rw sites/default/files/
 echo -e '\n+----------------+'
 echo '|   Site Setup   |'
 echo '+----------------+'
+sed -i "s/\$databases\ =\ array();/\n\$databases['default']['default']\ =\ array(\n\t'driver'\ =>\ 'pgsql',\n\t'database'\ =>\ '$psqldb',\n\t'username'\ =>\ '$psqluser',\n\t'password'\ =>\ '$PGPASSWORD',\n\t'host'\ =>\ 'localhost',\n\t'prefix'\ =>\ '',\n);/" sites/default/settings.php
 echo "1. Go to http://localhost/""$drupalsitedir""/install.php"
 echo "2. Ensure that 'Standard' option is selected and click 'Save and continue'."
 echo "3. You will next be asked to select the language you want to choose. Choose 'English'."
