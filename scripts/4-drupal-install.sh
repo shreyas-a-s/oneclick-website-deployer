@@ -40,8 +40,13 @@ sudo chmod g+rw sites/default/files/
 echo -e '\n+----------------+'
 echo '|   Site Setup   |'
 echo '+----------------+'
-echo "1. Go to http://localhost/""$drupalsitedir""/install.php and complete initial setup of website by providing newly created database details, new site maintenance account details, etc"
-echo "- IMP NOTE: Make sure to note down site maintenance account username."
-echo "2. After completing initial setup, come back and type 'yes' to continue."
+echo "1. Go to http://localhost/""$drupalsitedir""/install.php"
+echo "2. Ensure that 'Standard' option is selected and click 'Save and continue'."
+echo "3. You will next be asked to select the language you want to choose. Choose 'English'."
+echo "4. You will see a progress bar as Drupal is installed."
+echo "5. Once it completes, a configuration page with some final settings will be visible."
+echo "6. Provide details appropriate to your site and note down the Site Maintenance Account details."
+echo "7. Click 'Save and continue.'"
+echo "8. After completing initial setup, come back and type 'yes' to continue."
 continueORNot
 sudo chmod 755 sites/default/settings.php
