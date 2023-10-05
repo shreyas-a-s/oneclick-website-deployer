@@ -17,7 +17,7 @@ function continueORNot {
 function checkSMAUsername {
     read -r -p "Enter the site maintenance account username that you've given to the website: " smausername
     echo "Testing username.."
-    drush trp-run-jobs --username="$smausername"
+    drush trp-run-jobs --username="$smausername" &> /dev/null
     exitstatus=$?
     [ $exitstatus -eq 1 ] && echo "Wrong Username! " && checkSMAUsername
 }
