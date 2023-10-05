@@ -14,3 +14,4 @@ fi
 echo "0,30 * * * * $USER /usr/local/bin/drush core-cron --root=$DRUPAL_HOME/$drupalsitedir" | sudo tee /etc/cron.d/drupal-cron-tasks > /dev/null
 echo "1. Go to http://localhost/""$drupalsitedir""/admin/config/system/cron"
 echo "2. Set the drop down value titled 'Run cron every' to 'Never' and save the configuration."
+sleep 6
