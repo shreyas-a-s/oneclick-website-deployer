@@ -31,11 +31,12 @@ wget http://ftp.drupal.org/files/projects/drupal-7.98.tar.gz
 tar -zxvf drupal-7.98.tar.gz
 rm drupal-7.98.tar.gz
 mv drupal-7.98/ "$drupalsitedir"/
-cp "$drupalsitedir"/sites/default/default.settings.php "$drupalsitedir"/sites/default/settings.php
-mkdir "$drupalsitedir"/sites/default/files/
-sudo chgrp -R www-data "$drupalsitedir"/sites/default/files/
-sudo chmod 777 "$drupalsitedir"/sites/default/settings.php
-sudo chmod g+rw "$drupalsitedir"/sites/default/files/
+cd "$drupalsitedir" || exit
+cp sites/default/default.settings.php sites/default/settings.php
+mkdir sites/default/files/
+sudo chgrp -R www-data sites/default/files/
+sudo chmod 777 sites/default/settings.php
+sudo chmod g+rw sites/default/files/
 echo -e '\n+----------------+'
 echo '|   Site Setup   |'
 echo '+----------------+'
@@ -43,4 +44,4 @@ echo "1. Go to http://localhost/""$drupalsitedir""/install.php and complete init
 echo "- IMP NOTE: Make sure to note down site maintenance account username."
 echo "2. After completing initial setup, come back and type 'yes' to continue."
 continueORNot
-sudo chmod 755 "$drupalsitedir"/sites/default/settings.php
+sudo chmod 755 sites/default/settings.php
