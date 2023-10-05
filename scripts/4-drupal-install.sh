@@ -20,7 +20,7 @@ echo '+-------------------------+'
 
 # Get user input
 if [[ -z ${drupalsitedir} ]]; then
-	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+	read -r -p "Enter the name of the directory in which drupal website need to be installed: " drupalsitedir
 fi
 if [[ -z ${psqldb} ]]; then
 	sudo apt-get -y install postgresql
