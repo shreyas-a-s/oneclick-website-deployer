@@ -23,6 +23,9 @@ cp -r ncbi-blast-*+/bin "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/
 rm -rf ncbi-blast-*+/ ncbi-blast-*+-x64-linux.tar.gz
 rm LATEST
 
+# Setting up PATH variable
+sed -i "$ a PATH=$DRUPAL_HOME/$drupalsitedir/tools/blast/bin:\$PATH" ~/.bashrc && PATH="$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin:$PATH
+
 # Install tripal_blast
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 mkdir -p sites/all/modules/tripal_blast
@@ -45,8 +48,8 @@ cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA || exit
 echo -e '\n+------------------------------------------------+'
 echo '|   Downloading sample data. Wait a little bit   |'
 echo '+------------------------------------------------+'
-"$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
-"$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
+update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
+blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
 
 # User configuration
 echo -e '\n+------------------------+'
