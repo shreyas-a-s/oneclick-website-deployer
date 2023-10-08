@@ -63,6 +63,7 @@ echo "- NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 echo "5. After completing these steps, come back and type 'yes' to continue."
 continueORNot
 drush trp-run-jobs --username="$smausername"
+drush updatedb
 
 # Chado preparation
 echo -e '\n+-------------------+'
