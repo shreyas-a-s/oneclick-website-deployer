@@ -32,12 +32,12 @@ read -r -p "How much memory to allocate to the website (in MB)? " memorylimit &&
 read -r -p "Enter the name for a new database for our website: " psqldb && export psqldb
 read -r -p "Enter a new username (role) for postgres: " psqluser && export psqluser
 read -r -p "Enter a password for the new user: " PGPASSWORD && export PGPASSWORD
+read -r -p "Enter the name of the directory to which drupal website needs to be installed: " drupalsitedir && export drupalsitedir
 sudo apt-get update && sudo apt-get -y install postgresql
 sudo -u postgres createuser "$psqluser"
 sudo -u postgres createdb "$psqldb"
 sudo -u postgres psql -c "alter user $psqluser with encrypted password '$PGPASSWORD';"
 sudo -u postgres psql -c "grant all privileges on database $psqldb to $psqluser ;"
-read -r -p "Enter the name of the directory to which drupal website needs to be installed: " drupalsitedir && export drupalsitedir
 
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
