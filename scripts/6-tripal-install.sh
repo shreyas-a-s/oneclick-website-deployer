@@ -57,7 +57,10 @@ checkSMAUsername
 echo -e '\n+----------------------+'
 echo '|   Installing Chado   |'
 echo '+----------------------+'
+sed -i "s/drupal-postgres-username/$psqluser/" install-chado.sql
+sed -i "s/drupaldir/$drupalsitedir/" install-chado.sql
 psql -h localhost -U "$psqluser" -d "$psqldb" -f install-chado.sql
+sed -i "s/$psqluser/drupal-postgres-username/" install-chado.sql
 drush updatedb
 echo -e "\nNow we are going to prepare chado."
 continueORNot
