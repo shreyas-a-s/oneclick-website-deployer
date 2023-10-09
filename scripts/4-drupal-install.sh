@@ -56,3 +56,7 @@ echo "7. Click 'Save and continue.'"
 echo "8. After completing initial setup, come back and type 'yes' to continue."
 continueORNot
 sudo chmod 755 sites/default/settings.php
+
+# Webform Module (for creating Google-form-like Forms)
+drush pm-download -y webform
+drush pm-enable -y webform
