@@ -34,6 +34,7 @@ git clone https://github.com/tripal/tripal_blast.git sites/all/modules/tripal_bl
 drush pm-download libraries -y
 drush pm-enable blast_ui -y
 mkdir -p sites/default/files/tripal/
+mkdir -p sites/default/files/tripal_blast
 sudo chgrp -R www-data sites/default/files/
 
 # Set new drupal file_temporary_path (Done as a replacement for setting PrivateTmp=false)
