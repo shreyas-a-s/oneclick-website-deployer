@@ -16,7 +16,6 @@ function continueORNot {
 # Test site maintenance username
 function checkSMAUsername {
     read -r -p "Enter the site maintenance account username that you've given to the website: " smausername
-    echo "Testing username.."
     drush trp-run-jobs --username="$smausername" &> /dev/null
     exitstatus=$?
     [ $exitstatus -eq 1 ] && echo "Wrong Username! " && checkSMAUsername
@@ -57,10 +56,10 @@ checkSMAUsername
 echo -e '\n+----------------------+'
 echo '|   Installing Chado   |'
 echo '+----------------------+'
-sed -i "s/drupal-postgres-username/$psqluser/" install-chado.sql
-sed -i "s/drupaldir/$drupalsitedir/" install-chado.sql
-psql -h localhost -U "$psqluser" -d "$psqldb" -f install-chado.sql
-sed -i "s/$psqluser/drupal-postgres-username/" install-chado.sql
+sudo -u postgres psql -c "CREATE SCHEMA chado;"
+sudo -u postgres psql -c "ALTER SCHEMA chado OWNER TO $psqluser;"
+sudo -u postgres psql -f sites/all/modules/tripal/tripal_chado/chado_schema/default_schema-1.3.sql
+sudo -u postgres psql -f sites/all/modules/tripal/tripal_chado/chado_schema/initialize-1.3.sql
 drush updatedb
 echo -e "\nNow we are going to prepare chado."
 continueORNot
