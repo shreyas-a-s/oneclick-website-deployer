@@ -28,6 +28,9 @@ if [[ -z ${psqldb} ]]; then
   read -r -p "Enter the password that you set for the postgres user: " PGPASSWORD
 fi
 
+# Escape special characters in PGPASSWORD using printf.
+PGPASSWORD_ESCAPED=$(printf "%q" "$PGPASSWORD")
+
 # Installation
 sudo chown -R "$USER" "$DRUPAL_HOME"
 cd "$DRUPAL_HOME" || exit
@@ -45,7 +48,7 @@ sudo chmod g+rw sites/default/files/
 echo -e '\n+----------------+'
 echo '|   Site Setup   |'
 echo '+----------------+'
-sed -i "s/\$databases\ =\ array();/\n\$databases['default']['default']\ =\ array(\n\t'driver'\ =>\ 'pgsql',\n\t'database'\ =>\ '$psqldb',\n\t'username'\ =>\ '$psqluser',\n\t'password'\ =>\ '$PGPASSWORD',\n\t'host'\ =>\ 'localhost',\n\t'prefix'\ =>\ '',\n);/" sites/default/settings.php
+sed -i "s/\$databases\ =\ array();/\n\$databases['default']['default']\ =\ array(\n\t'driver'\ =>\ 'pgsql',\n\t'database'\ =>\ '$psqldb',\n\t'username'\ =>\ '$psqluser',\n\t'password'\ =>\ '$PGPASSWORD_ESCAPED',\n\t'host'\ =>\ 'localhost',\n\t'prefix'\ =>\ '',\n);/" sites/default/settings.php
 echo "1. Go to http://localhost/""$drupalsitedir""/install.php"
 echo "2. Ensure that 'Standard' option is selected and click 'Save and continue'."
 echo "3. You will next be asked to select the language you want to choose. Choose 'English'."
