@@ -16,7 +16,7 @@ function continueORNot {
 # Test site maintenance username
 function checkSMAUsername {
     read -r -p "Enter the site maintenance account username that you've given to the website: " smausername
-    drush trp-run-jobs --username="$smausername" &> /dev/null
+    drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" &> /dev/null
     exitstatus=$?
     [ $exitstatus -eq 1 ] && echo "Wrong Username! " && checkSMAUsername
 }
@@ -37,7 +37,7 @@ fi
 # Install dependencies
 cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/ || exit
 drush pm-download -y entity views ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
-drush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
+rush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 
 # Tripal installation
 drush pm-download tripal -y
@@ -55,6 +55,7 @@ echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/in
 echo "2. Click the drop-down menu under Installation/Upgrade."
 echo "3. Select 'New Install of Chado v1.3'."
 echo "4. Click 'Install/Upgrade Chado'."
+echo "-  NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
 while $(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep chado_schema_exists | awk '{print $2}'); do
 drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" &> /dev/null;
 done
