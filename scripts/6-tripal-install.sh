@@ -51,7 +51,7 @@ checkSMAUsername
 echo -e '\n+----------------------+'
 echo '|   Installing Chado   |'
 echo '+----------------------+'
--echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install"
+echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install"
 echo "2. Click the drop-down menu under Installation/Upgrade."
 echo "3. Select 'New Install of Chado v1.3'."
 echo "4. Click 'Install/Upgrade Chado'."
