@@ -56,9 +56,9 @@ echo "2. Click the drop-down menu under Installation/Upgrade."
 echo "3. Select 'New Install of Chado v1.3'."
 echo "4. Click 'Install/Upgrade Chado'."
 echo "- NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
-echo "5. After completing these steps, come back and type 'yes' to continue."
-continueORNot
-drush trp-run-jobs --username="$smausername"
+while $(drush variable-get | grep chado_schema_exists | awk '{print $2}'); do
+drush trp-run-jobs --username="$smausername" &> /dev/null;
+done
 
 # Chado preparation
 echo -e '\n+---------------------+'
