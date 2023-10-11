@@ -33,11 +33,6 @@ echo '+-------------------------+'
 if [[ -z ${drupalsitedir} ]]; then
 	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
-if [[ -z ${psqldb} ]]; then
-  read -r -p "Enter the name of postgres database that you have previousily created: " psqldb
-  read -r -p "Enter the postgres username: " psqluser
-  read -r -p "Enter the password that you set for the postgres user: " PGPASSWORD && export PGPASSWORD
-fi
 
 # Install dependencies
 cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/ || exit
@@ -56,13 +51,14 @@ checkSMAUsername
 echo -e '\n+----------------------+'
 echo '|   Installing Chado   |'
 echo '+----------------------+'
-sudo -u postgres psql -c "CREATE SCHEMA chado;"
-sudo -u postgres psql -c "ALTER SCHEMA chado OWNER TO $psqluser;"
-sudo -u postgres psql -f sites/all/modules/tripal/tripal_chado/chado_schema/default_schema-1.3.sql
-sudo -u postgres psql -f sites/all/modules/tripal/tripal_chado/chado_schema/initialize-1.3.sql
-drush updatedb
-echo -e "\nNow we are going to prepare chado."
+-echo "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install"
+echo "2. Click the drop-down menu under Installation/Upgrade."
+echo "3. Select 'New Install of Chado v1.3'."
+echo "4. Click 'Install/Upgrade Chado'."
+echo "- NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
+echo "5. After completing these steps, come back and type 'yes' to continue."
 continueORNot
+drush trp-run-jobs --username="$smausername"
 
 # Chado preparation
 echo -e '\n+---------------------+'
