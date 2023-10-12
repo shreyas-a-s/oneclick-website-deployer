@@ -46,7 +46,7 @@ echo "4. You will see a progress bar as Drupal is installed."
 echo "5. Once it completes, a configuration page with some final settings will be visible."
 echo "6. Provide details appropriate to your site and note down the Site Maintenance Account details."
 echo "7. Click 'Save and continue.'"
-while ! drush variable-get | grep -q drupal; do
+while ! (sleep 2 && { drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q drupal; } &> /dev/null); do
   : # Do nothing, just continue the loop until drupal variable is added to drush's variable list
 done
 sudo chmod 755 sites/default/settings.php
