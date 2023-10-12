@@ -27,6 +27,13 @@ if [ "$debianversion" -ne 11 ]; then
 	continueORNot
 fi
 
+# Initialize variables
+memorylimit=""
+psqldb=""
+psqluser=""
+PGPASSWORD=""
+drupalsitedir=""
+
 # Get user input
 while true; do
     # Use whiptail to create a TUI for entering username and password
