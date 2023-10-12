@@ -66,3 +66,7 @@ echo '|   Preparing Chado   |'
 echo '+---------------------+'
 drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
+
+# Fix for "Trying to access array offset on value of type null" error that gets displayed
+# when we refresh home page after adding some menu links
+sed -i "s/return \$defaults/return \$defaults = NULL/" sites/all/modules/field_formatter_settings/field_formatter_settings.module
