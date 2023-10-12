@@ -24,6 +24,9 @@ rm sites/all/libraries/PHP-Daemon.tar.gz
 drush pm-download drushd -y
 drush pm-enable drushd tripal_daemon -y
 
+# Fix for "Trying to access array offset on value of type null in PHP-Daemon/Core/error_handlers.php on line 118"
+sed -i "/is_array/ c\    if\ (\!is_array(\$error)\ ||\ \!isset(\$error['type']))" sites/all/libraries/PHP-Daemon/Core/error_handlers.php
+
 # Start the Daemon
 drush trpjob-daemon start
 
