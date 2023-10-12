@@ -56,7 +56,7 @@ echo "2. Click the drop-down menu under Installation/Upgrade."
 echo "3. Select 'New Install of Chado v1.3'."
 echo "4. Click 'Install/Upgrade Chado'."
 echo "-  NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND."
-while $(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep chado_schema_exists | awk '{print $2}'); do
+while [ "$(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q chado_schema_exists && echo 1 || echo 0)" -eq 1 ]; do
 drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" &> /dev/null;
 done
 
