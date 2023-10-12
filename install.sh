@@ -28,11 +28,30 @@ if [ "$debianversion" -ne 11 ]; then
 fi
 
 # Get user input
-read -r -p "How much memory to allocate to the website (in MB)? " memorylimit && export memorylimit
-read -r -p "Enter the name for a new database for our website: " psqldb && export psqldb
-read -r -p "Enter a new username (role) for postgres: " psqluser && export psqluser
-read -r -p "Enter a password for the new user: " PGPASSWORD && export PGPASSWORD
-read -r -p "Enter the name of the directory to which drupal website needs to be installed: " drupalsitedir && export drupalsitedir
+while true; do
+    # Use whiptail to create a TUI for entering username and password
+    memorylimit=$(whiptail --inputbox "How much memory to allocate to the website (in MB)? " 10 50 3>&1 1>&2 2>&3) && export memorylimit
+    psqldb=$(whiptail --inputbox "Enter the name for a new database for our website: " 10 50 3>&1 1>&2 2>&3) && export psqldb
+    psqluser=$(whiptail --inputbox "Enter a new username (role) for postgres: " 10 50 3>&1 1>&2 2>&3) && export psqluser
+    PGPASSWORD=$(whiptail --passwordbox "Enter a password for the new user: " 10 50 3>&1 1>&2 2>&3) && export PGPASSWORD
+    drupalsitedir=$(whiptail --inputbox "Enter the name of the directory to which drupal website needs to be installed: " 10 50 3>&1 1>&2 2>&3) && export drupalsitedir
+
+    # Check the exit status
+    if [ $? -eq 0 ]; then
+        # Ask the user if they want to change the data
+        if (whiptail --defaultno --yesno "Do you want to change the data?\n\nMemory Limit: $memorylimit\nDatabase Name: $psqldb\nDatabase User: $psqluser\nDatabase Password: $PGPASSWORD\nDrupal Website Directory: $drupalsitedir" 15 50) then
+            # User chose to change the data
+            continue
+        else
+            # User accepted the data and wants to proceed
+            break
+        fi
+    else
+        # User canceled or closed the dialog
+        echo "User canceled."
+        exit 1
+    fi
+done
 
 # Postgres setup
 sudo apt-get update && sudo apt-get -y install postgresql
