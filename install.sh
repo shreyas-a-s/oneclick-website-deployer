@@ -85,4 +85,6 @@ SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 unset PGPASSWORD
 
 # End
-echo "Reboot the system for site installation to fully take effect."
+if whiptail --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 50; then
+  sudo reboot
+fi
