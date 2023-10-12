@@ -37,7 +37,7 @@ fi
 # Install dependencies
 cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/ || exit
 drush pm-download -y entity views ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
-rush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
+drush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 
 # Tripal installation
 drush pm-download tripal -y
