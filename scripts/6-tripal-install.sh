@@ -3,16 +3,6 @@
 # Variables
 sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
 
-# Take user choice before continuing
-function continueORNot {
-   read -r -p "Continue? (yes/no): " choice
-   case "$choice" in 
-     "yes" ) echo "Moving on to next step..";;
-     "no" ) echo "Exiting.."; exit 1;;
-     * ) echo "Invalid Choice! Keep in mind this is case-sensitive."; continueORNot;;
-   esac
-}
-
 # Test site maintenance username
 function checkSMAUsername {
     read -r -p "Enter the site maintenance account username that you've given to the website: " smausername
