@@ -3,16 +3,6 @@
 # Variables
 sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
 
-# Take user choice before continuing
-function continueORNot {
-   read -r -p "Continue? (yes/no): " choice
-   case "$choice" in 
-     "yes" ) echo "Moving on to next step..";;
-     "no" ) echo "Exiting.."; exit 1;;
-     * ) echo "Invalid Choice! Keep in mind this is case-sensitive."; continueORNot;;
-   esac
-}
-
 # Display task name
 echo -e '\n+------------------------+'
 echo '|   Blast Installation   |'
@@ -79,4 +69,3 @@ echo "- File Prefix including Full Path: ""$DRUPAL_HOME""/""$drupalsitedir""/too
 echo "- Set 'Type of the blast database' to Nucleotide."
 echo "- Got to bottom of page and click 'Save'"
 echo "3. Go to http://localhost/""$drupalsitedir""/blast/nucleotide/nucleotide and test out the blast install by Entering a FASTA sequence (or uploading one) & Selecting the newly added Database from dropdown under Nucleotide BLAST Databases & Clicking 'BLAST'"
-continueORNot
