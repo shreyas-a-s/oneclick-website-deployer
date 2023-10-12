@@ -33,6 +33,8 @@ read -r -p "Enter the name for a new database for our website: " psqldb && expor
 read -r -p "Enter a new username (role) for postgres: " psqluser && export psqluser
 read -r -p "Enter a password for the new user: " PGPASSWORD && export PGPASSWORD
 read -r -p "Enter the name of the directory to which drupal website needs to be installed: " drupalsitedir && export drupalsitedir
+
+# Postgres setup
 sudo apt-get update && sudo apt-get -y install postgresql
 sudo -u postgres createuser "$psqluser"
 sudo -u postgres createdb "$psqldb"
