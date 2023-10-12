@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Take user choice before continuing
-function continueORNot {
-   read -r -p "Continue? (yes/no): " choice
-   case "$choice" in 
-     "yes" ) echo "Moving on to next step..";;
-     "no" ) echo "Exiting.."; exit 1;;
-     * ) echo "Invalid Choice! Keep in mind this is case-sensitive."; continueORNot;;
-   esac
-}
-
 # Display task name
 echo -e '\n+---------------------------+'
 echo '|   Cron Automation Setup   |'
