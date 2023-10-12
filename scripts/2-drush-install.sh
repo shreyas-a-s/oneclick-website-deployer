@@ -15,5 +15,5 @@ sudo mv drush.phar /usr/local/bin/drush
 
 # Fix for "The PHP error_log at  is not writable!"
 sudo touch /var/log/php-errors.log
-sudo chown $USER /var/log/php-errors.log
+sudo chown "$USER" /var/log/php-errors.log
 sudo sed -i "/error_log\ =\ php/ c\error_log\ =\ /var/log/php-errors.log" /etc/php/"$phpversion"/cli/php.ini
