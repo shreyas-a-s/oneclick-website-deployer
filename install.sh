@@ -30,11 +30,11 @@ fi
 # Get user input
 while true; do
     # Use whiptail to create a TUI for entering username and password
-    memorylimit=$(whiptail --inputbox "How much memory to allocate to the website (in MB)? " 10 50 3>&1 1>&2 2>&3) && export memorylimit
-    psqldb=$(whiptail --inputbox "Enter the name for a new database for our website: " 10 50 3>&1 1>&2 2>&3) && export psqldb
-    psqluser=$(whiptail --inputbox "Enter a new username (role) for postgres: " 10 50 3>&1 1>&2 2>&3) && export psqluser
-    PGPASSWORD=$(whiptail --passwordbox "Enter a password for the new user: " 10 50 3>&1 1>&2 2>&3) && export PGPASSWORD
-    drupalsitedir=$(whiptail --inputbox "Enter the name of the directory to which drupal website needs to be installed: " 10 50 3>&1 1>&2 2>&3) && export drupalsitedir
+    memorylimit=$(whiptail --title "User Input" --inputbox "How much memory to allocate to the website (in MB)? " 10 50 3>&1 1>&2 2>&3) && export memorylimit
+    psqldb=$(whiptail --title "User Input" --inputbox "Enter the name for a new database for our website: " 10 50 3>&1 1>&2 2>&3) && export psqldb
+    psqluser=$(whiptail --title "User Input" --inputbox "Enter a new username (role) for postgres: " 10 50 3>&1 1>&2 2>&3) && export psqluser
+    PGPASSWORD=$(whiptail --title "User Input" --passwordbox "Enter a password for the new user: " 10 50 3>&1 1>&2 2>&3) && export PGPASSWORD
+    drupalsitedir=$(whiptail --title "User Input" --inputbox "Enter the name of the directory to which drupal website needs to be installed: " 10 50 3>&1 1>&2 2>&3) && export drupalsitedir
 
     # Check the exit status
     if [ $? -eq 0 ]; then
