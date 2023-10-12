@@ -39,6 +39,9 @@ echo -e '\n+----------------+'
 echo '|   Site Setup   |'
 echo '+----------------+'
 sed -i "s/\$databases\ =\ array();/\n\$databases['default']['default']\ =\ array(\n\t'driver'\ =>\ 'pgsql',\n\t'database'\ =>\ '$psqldb',\n\t'username'\ =>\ '$psqluser',\n\t'password'\ =>\ '$PGPASSWORD_ESCAPED',\n\t'host'\ =>\ 'localhost',\n\t'prefix'\ =>\ '',\n);/" sites/default/settings.php
+while ! ({ drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q drupal; } &> /dev/null && sleep 2); do
+  : # Do nothing, just continue the loop until drupal variable is added to drush's variable list
+done
 echo "1. Go to http://localhost/""$drupalsitedir""/install.php"
 echo "2. Ensure that 'Standard' option is selected and click 'Save and continue'."
 echo "3. You will next be asked to select the language you want to choose. Choose 'English'."
@@ -46,9 +49,6 @@ echo "4. You will see a progress bar as Drupal is installed."
 echo "5. Once it completes, a configuration page with some final settings will be visible."
 echo "6. Provide details appropriate to your site and note down the Site Maintenance Account details."
 echo "7. Click 'Save and continue.'"
-while ! (sleep 2 && { drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q drupal; } &> /dev/null); do
-  : # Do nothing, just continue the loop until drupal variable is added to drush's variable list
-done
 sudo chmod 755 sites/default/settings.php
 
 # Webform Module (for creating Google-form-like Forms)
