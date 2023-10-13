@@ -1,0 +1,9 @@
+
+        +---------------------------------+
+        | One-Click Tripal Install Script |
+        +---------------------------------+
+        |       Something something       |
+        |                                 |
+        |        Some other things        |
+        |                                 |
+        +---------------------------------+
