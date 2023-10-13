@@ -9,7 +9,7 @@ echo "╚███╔███╔╝███████╗██████�
 echo " ╚══╝╚══╝ ╚══════╝╚═════╝ ╚══════╝╚═╝   ╚═╝   ╚══════╝    ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝"
 echo -e "---------------------------------------------------------------------------------------------------"
 
-# whiptail colorscheme stolen from https://github.com/op/whiplash/blob/master/lamenting
+# Minimalistic whiptail colorscheme taken from https://github.com/op/whiplash/blob/master/lamenting
 export NEWT_COLORS='
 root=white,gray
 window=white,lightgray
