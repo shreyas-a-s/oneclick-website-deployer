@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
+DRUPAL_HOME=/var/www/html
 
 # Display task name
 echo -e '\n+---------------------------------+'

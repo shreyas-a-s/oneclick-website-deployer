@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/html
+DRUPAL_HOME=/var/www/html
 
 # Test site maintenance username
 function checkSMAUsername {
