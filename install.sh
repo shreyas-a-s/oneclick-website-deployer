@@ -7,6 +7,12 @@
 # ╚███╔███╔╝███████╗██████╔╝███████║██║   ██║   ███████╗    ██║   ██║  ██║██║██║     ██║  ██║███████╗
 #  ╚══╝╚══╝ ╚══════╝╚═════╝ ╚══════╝╚═╝   ╚═╝   ╚══════╝    ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝
 
+
+# One-click installer script for tripal that incorporated fixes for multiple issues the normal install has
+# Developed for BharatGenomeDataBase by @shreyas-a-s [https://github.com/shreyas-a-s/website-tripal]
+# Guided by @Sastha-Kumar-N [https://github.com/Sastha-Kumar-N]
+# Mentored by 
+
 # Minimalistic whiptail colorscheme taken from https://github.com/op/whiplash/blob/master/lamenting
 export NEWT_COLORS='
 root=white,gray
