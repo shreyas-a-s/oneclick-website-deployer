@@ -7,7 +7,7 @@ sed -i '$a\DRUPAL_HOME=/var/www/html' "$HOME"/.bashrc && DRUPAL_HOME=/var/www/ht
 function checkSMAUsername {
     titleSMA="Site Maintenance Account"
     while ! ({ drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"; } &> /dev/null); do
-        smausername=$(whiptail --title "$titleSMA" --inputbox "\nEnter the site maintenance account username that you've given to the website: " 10 50 3>&1 1>&2 2>&3)
+        smausername=$(whiptail --title "$titleSMA" --inputbox "\nEnter the site maintenance account username that you've given to the website: " 10 48 3>&1 1>&2 2>&3)
         titleSMA="Wrong Username"
     done
 }

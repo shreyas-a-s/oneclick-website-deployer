@@ -29,16 +29,16 @@ drupalsitedir=""
 # Get user input
 while true; do
     # Use whiptail to create a TUI for entering username and password
-    memorylimit=$(whiptail --title "User Input" --inputbox "How much memory to allocate to the website (in MB)? " 10 50 3>&1 1>&2 2>&3) && export memorylimit
-    psqldb=$(whiptail --title "User Input" --inputbox "Enter the name for a new database for our website: " 10 50 3>&1 1>&2 2>&3) && export psqldb
-    psqluser=$(whiptail --title "User Input" --inputbox "Enter a new username (role) for postgres: " 10 50 3>&1 1>&2 2>&3) && export psqluser
-    PGPASSWORD=$(whiptail --title "User Input" --passwordbox "Enter a password for the new user: " 10 50 3>&1 1>&2 2>&3) && export PGPASSWORD
-    drupalsitedir=$(whiptail --title "User Input" --inputbox "Enter the name of the directory to which drupal website needs to be installed: " 10 50 3>&1 1>&2 2>&3) && export drupalsitedir
+    memorylimit=$(whiptail --title "User Input" --inputbox "\nHow much memory to allocate to the website (in MB)? " 10 46 3>&1 1>&2 2>&3) && export memorylimit
+    psqldb=$(whiptail --title "User Input" --inputbox "\nEnter the name for a new database for our website: " 10 47 3>&1 1>&2 2>&3) && export psqldb
+    psqluser=$(whiptail --title "User Input" --inputbox "\nEnter a new username (role) for postgres: " 9 45 3>&1 1>&2 2>&3) && export psqluser
+    PGPASSWORD=$(whiptail --title "User Input" --passwordbox "\nEnter a password for the new user: " 9 38 3>&1 1>&2 2>&3) && export PGPASSWORD
+    drupalsitedir=$(whiptail --title "User Input" --inputbox "\nEnter the name of the directory to which drupal website needs to be installed: " 10 45 3>&1 1>&2 2>&3) && export drupalsitedir
 
     # Check the exit status
     if [ $? -eq 0 ]; then
         # Ask the user if they want to change the data
-        if (whiptail --defaultno --yesno "Do you want to change the data?\n\nMemory Limit: $memorylimit\nDatabase Name: $psqldb\nDatabase User: $psqluser\nDatabase Password: $PGPASSWORD\nDrupal Website Directory: $drupalsitedir" 15 50) then
+        if (whiptail --defaultno --yesno "Do you want to change the data?\n\nMemory Limit: $memorylimit\nDatabase Name: $psqldb\nDatabase User: $psqluser\nDatabase Password: $PGPASSWORD\nDrupal Website Directory: $drupalsitedir" 14 50) then
             # User chose to change the data
             continue
         else
@@ -77,6 +77,6 @@ SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 unset PGPASSWORD
 
 # End
-if whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 50; then
+if whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44; then
   sudo reboot
 fi
