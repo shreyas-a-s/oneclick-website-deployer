@@ -6,7 +6,7 @@ DRUPAL_HOME=/var/www/html
 # Test site maintenance username
 function checkSMAUsername {
     titleSMA="Site Maintenance Account"
-    while ! ({ drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"; } &> /dev/null); do
+    while ! ( { drush user-information "$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q administrator; } &> /dev/null ); do
         smausername=$(whiptail --title "$titleSMA" --inputbox "\nEnter the site maintenance account username that you've given to the website: " 10 48 3>&1 1>&2 2>&3)
         titleSMA="Wrong Username"
     done
