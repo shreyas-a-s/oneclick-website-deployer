@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Variables
+DRUPAL_HOME=/var/www/html
+
 # Test site maintenance username
 function checkSMAUsername {
     titleSMA="Site Maintenance Account"
