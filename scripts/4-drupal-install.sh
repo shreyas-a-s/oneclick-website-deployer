@@ -13,8 +13,8 @@ if [[ -z ${drupalsitedir} ]]; then
 	read -r -p "Enter the name of the directory in which drupal website need to be installed: " drupalsitedir
 fi
 if [[ -z ${psqldb} ]]; then
-	read -r -p "Enter the name of postgres database that you have previousily created: " psqldb
-	read -r -p "Enter the postgres username: " psqluser
+  read -r -p "Enter the name of postgres database that you have previousily created: " psqldb
+  read -r -p "Enter the postgres username: " psqluser
   read -r -p "Enter the password that you set for the postgres user: " PGPASSWORD
 fi
 
