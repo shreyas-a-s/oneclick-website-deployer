@@ -18,9 +18,6 @@ echo '+---------------------------+'
 if [[ -z ${drupalsitedir} ]]; then
 	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
-if [[ -z ${drupalsitedir} ]]; then
-	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
-fi
 
 # Installation
 checkSMAUsername && export smausername
