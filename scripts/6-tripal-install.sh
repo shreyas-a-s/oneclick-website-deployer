@@ -47,6 +47,20 @@ while [[ $(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep chad
   drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
 done
 
+# Prompt user if raw.githubusercontent.com is inaccessible
+while true; do
+  ping -c 1 -w 2 raw.githubusercontent.com &> /dev/null
+  if [ $? -eq 1 ]; then
+    # Ask the user if they want to try different network setup
+    if (whiptail --title "Unable to proceed" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57) then
+        continue
+    else
+        break
+    fi
+  else
+    exit 1
+  fi
+done
 # Chado preparation
 echo -e '\n+---------------------+'
 echo '|   Preparing Chado   |'
