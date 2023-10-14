@@ -1,9 +1,11 @@
 
-        +---------------------------------+
-        | One-Click Tripal Install Script |
-        +---------------------------------+
-        |       Something something       |
-        |                                 |
-        |        Some other things        |
-        |                                 |
-        +---------------------------------+
+  +----------------------------------------------------------------------------+
+  |                         One-Click Tripal Installer                         |
+  +----------------------------------------------------------------------------+
+  |                               Developed by:                                |
+  |                                                                            |
+  |               Shreyas A S (Sys Admin @ BharatGenomeDatabase)               |
+  |  Sastha Kumar N (Full stack dev & Science Analyst @ BharatGenomeDatabase)  |
+  |              Sabarinath Subramaniam ( @ BharatGenomeDatabase)              |
+  |                                                                            |
+  +----------------------------------------------------------------------------+
