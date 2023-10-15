@@ -44,7 +44,7 @@ debianversion=$(awk -F '.' '{print $1}' < /etc/debian_version)
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Display info
-whiptail --title "About The Script" --textbox --ok-button "Continue" about.txt 18 86
+whiptail --title "About The Script" --textbox --ok-button "Continue" about.txt 20 86
 
 # Give warning if debian version is not equal to 11
 if [ "$debianversion" -ne 11 ] && ! whiptail --title "Warning" --yesno --yes-button "Continue" --no-button "Cancel" "Drupal 7 (and thereby Tripal 3) works best in Debian 11. This system is Debian $debianversion. Installation might not work properly in this system. But you can continue with the installation if you want." 10 56; then
