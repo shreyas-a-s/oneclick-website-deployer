@@ -43,6 +43,9 @@ debianversion=$(awk -F '.' '{print $1}' < /etc/debian_version)
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
+# Install Whiptail
+sudo apt update && sudo apt install - y whiptail
+
 # Display info
 whiptail --title "About The Script" --textbox --ok-button "Continue" about.txt 20 86
 
