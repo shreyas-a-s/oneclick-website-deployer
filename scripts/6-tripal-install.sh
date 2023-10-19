@@ -58,7 +58,7 @@ while true; do
         break
     fi
   else
-    exit 1
+    break
   fi
 done
 
