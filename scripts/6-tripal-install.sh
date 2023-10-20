@@ -52,32 +52,12 @@ else
   echo "Chado Installation Failed."
 fi
 
-# Prompt user if raw.githubusercontent.com is inaccessible
-while true; do
-  ping -c 1 -w 2 raw.githubusercontent.com &> /dev/null
-  if [ $? -eq 1 ]; then
-    # Ask the user if they want to try different network setup
-    if (whiptail --title "Unable to proceed" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57) then
-        continue
-    else
-        break
-    fi
-  else
-    break
-  fi
-done
-
 # Chado preparation
 echo -e '\n+---------------------+'
 echo '|   Preparing Chado   |'
 echo '+---------------------+'
 drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
-
-# Ask user if they want to switch back to previous network setup
-whiptail --title "Just a Pause" --msgbox "\n- We've noticed that you've switched network before.\n- This would be agood time to change it back if you wish.\n- Do that and click 'Ok'." 11 61
-whiptail --title "Just checking" --msgbox --ok-button "Yes" "         Are you sure?" 8 35
-while ! ({ ping -c 1 -w 2 example.org; } &> /dev/null); do :; done
 
 # Fix for "Trying to access array offset on value of type null" error that gets displayed
 # when we refresh home page after adding some menu links
