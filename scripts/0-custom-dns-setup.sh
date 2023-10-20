@@ -7,29 +7,26 @@ echo '+----------------------+'
 
 function _activate() {
 
-    # Get the name of network interface that is UP
-    interfacename=$(ip link show | grep 'state UP' | awk '{print $2}' | awk -F ':' '{print $1}')
-
     # Install dependencies
     sudo apt-get update && sudo apt-get -y install resolvconf
 
     # Setup
+    sudo cp /etc/resolvconf/resolv.conf.d/head /etc/resolvconf/resolv.conf.d/head.bak
     sudo sed -i "$ a nameserver 1.1.1.1" /etc/resolvconf/resolv.conf.d/head
-
-    # Deactivate network interface
-    sudo ifdown "$interfacename"
-
-    # Reactivate network interface
-    sudo ifup "$interfacename"
 
 }
 
 function _deactivate() {
 
-    sudo apt-get -y purge resolvconf && sudo apt-get -y autoremove
-    
+    sudo rm /etc/resolvconf/resolv.conf.d/head
+    sudo mv /etc/resolvconf/resolv.conf.d/head.bak /etc/resolvconf/resolv.conf.d/head
+
 }
 
+# Get the name of network interface that is UP
+interfacename=$(ip link show | grep 'state UP' | awk '{print $2}' | awk -F ':' '{print $1}')
+
+# Actual invocation
 case "$1" in
     -activate)
         _activate
@@ -39,3 +36,9 @@ case "$1" in
         _deactivate
         ;;
 esac
+
+# Deactivate network interface
+sudo ifdown "$interfacename"
+
+# Reactivate network interface
+sudo ifup "$interfacename"
