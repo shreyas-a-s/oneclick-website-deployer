@@ -46,6 +46,11 @@ while [[ $(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep chad
   whiptail --title "Install Chado" --msgbox --ok-button "OK" --notags "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install\n2. Click the drop-down menu under Installation/Upgrade.\n3. Select 'New Install of Chado v1.3'.\n4. Click 'Install/Upgrade Chado'.\n-  NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND.\n5. Hit 'OK' after completing these steps." 13 65
   drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" &> /dev/null
 done
+if [ $? -eq 0 ]; then
+  echo "Chado Installation Successful."
+else
+  echo "Chado Installation Failed."
+fi
 
 # Prompt user if raw.githubusercontent.com is inaccessible
 while true; do
