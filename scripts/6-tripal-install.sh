@@ -52,6 +52,11 @@ else
   echo "Chado Installation Failed."
 fi
 
+# Change DNS to 1.1.1.1 if raw.githubusercontent.com is inaccessible
+if ! command ping -c 1 -w 3 raw.githubusercontent.com &> /dev/null; then
+  ./0-custom-dns-setup.sh
+fi
+
 # Chado preparation
 echo -e '\n+---------------------+'
 echo '|   Preparing Chado   |'
