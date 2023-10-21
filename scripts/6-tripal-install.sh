@@ -65,7 +65,7 @@ drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsite
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Change DNS back to original if it was changed earlier
-if [ $customdns = "true" ]; then
+if [ "$customdns" = "true" ]; then
   ./0-custom-dns-setup.sh -deactivate
 fi
 
