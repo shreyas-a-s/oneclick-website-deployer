@@ -11,15 +11,13 @@ function _activate() {
     sudo apt-get update && sudo apt-get -y install resolvconf
 
     # Setup
-    sudo cp /etc/resolvconf/resolv.conf.d/head /etc/resolvconf/resolv.conf.d/head.bak
     sudo sed -i "$ a nameserver 1.1.1.1" /etc/resolvconf/resolv.conf.d/head
 
 }
 
 function _deactivate() {
 
-    sudo rm /etc/resolvconf/resolv.conf.d/head
-    sudo mv /etc/resolvconf/resolv.conf.d/head.bak /etc/resolvconf/resolv.conf.d/head
+    yes | sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq purge resolvconf && sudo apt-get -y autoremove
 
 }
 
