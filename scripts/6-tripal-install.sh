@@ -57,6 +57,13 @@ if ! command ping -c 1 -w 3 raw.githubusercontent.com &> /dev/null; then
   ./0-custom-dns-setup.sh -activate && customdns=true
 fi
 
+# Fix for purl.obolibrary.org not reachable
+if ! command wget --spider http://purl.obolibrary.org/obo/so.obo &> /dev/null; then
+  wget --spider http://purl.obolibrary.org/obo/so.obo
+  wget --spider http://purl.obolibrary.org/obo/so.obo
+fi
+
+
 # Chado preparation
 echo -e '\n+---------------------+'
 echo '|   Preparing Chado   |'
