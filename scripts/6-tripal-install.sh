@@ -54,7 +54,7 @@ fi
 
 # Change DNS to 1.1.1.1 if raw.githubusercontent.com is inaccessible
 if ! command ping -c 1 -w 3 raw.githubusercontent.com &> /dev/null; then
-  ./0-custom-dns-setup.sh -activate && customdns=true
+  "$SCRIPT_DIR"/0-custom-dns-setup.sh -activate && customdns=true
 fi
 
 # Chado preparation
@@ -66,7 +66,7 @@ drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Change DNS back to original if it was changed earlier
 if [ "$customdns" = "true" ]; then
-  ./0-custom-dns-setup.sh -deactivate
+  "$SCRIPT_DIR"/0-custom-dns-setup.sh -deactivate
 fi
 
 # Fix for "Trying to access array offset on value of type null" error that gets displayed
