@@ -26,11 +26,11 @@ interfacename=$(ip link show | grep 'state UP' | awk '{print $2}' | awk -F ':' '
 
 # Actual invocation
 case "$1" in
-    -activate)
+    --activate)
         _activate
         ;;
 
-    -deactivate)
+    --deactivate)
         _deactivate
         ;;
 esac
