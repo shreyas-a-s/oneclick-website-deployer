@@ -12,6 +12,16 @@ function checkSMAUsername {
     done
 }
 
+# Test if raw.githubusercontent.com is accessible or not
+function testRawGit {
+	for _ in {1..4}
+	do
+	  if ! wget http://purl.obolibrary.org/obo/taxrank.obo &> /dev/null; then
+	  	export goodtogo=false
+	  fi
+	done
+}
+
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
@@ -56,8 +66,28 @@ fi
 echo -e '\n+---------------------+'
 echo '|   Preparing Chado   |'
 echo '+---------------------+'
+while true; do
+  testRawGit
+  if [ "$goodtogo" = "false" ]; then
+    # Ask the user if they want to try different network setup
+    if (whiptail --title "Unable to proceed" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57) then
+      continue
+    else
+      nwchange=true && break
+    fi
+  else
+    exit 1
+  fi
+done
 drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
+
+# Promt user if they want to change network back
+if [ "$nwchange" = "true" ]; then
+  whiptail --title "Just a Pause" --msgbox "\n- We've noticed that you've switched network before.\n- This would be agood time to change it back if you wish.\n- Do that and click 'Ok'." 11 61
+  whiptail --title "Just checking" --msgbox --ok-button "Yes" "         Are you sure?" 8 35
+  while ! ({ ping -c 1 -w 2 example.org; } &> /dev/null); do :; done
+fi
 
 # Fix for "Trying to access array offset on value of type null" error that gets displayed
 # when we refresh home page after adding some menu links
