@@ -14,12 +14,12 @@ function checkSMAUsername {
 
 # Test if raw.githubusercontent.com is accessible or not
 function testRawGit {
-	for _ in {1..4}
-	do
-	  if ! wget http://purl.obolibrary.org/obo/taxrank.obo &> /dev/null; then
-	  	export goodtogo=false
-	  fi
-	done
+  for _ in {1..4}
+    do
+      if ! wget --spider -q http://purl.obolibrary.org/obo/taxrank.obo; then
+	export goodtogo=false
+      fi
+  done
 }
 
 # Change directory
@@ -67,16 +67,18 @@ echo -e '\n+---------------------+'
 echo '|   Preparing Chado   |'
 echo '+---------------------+'
 while true; do
+  goodtogo=true
   testRawGit
-  if [ "$goodtogo" = "false" ]; then
+  if [ "$goodtogo" = false ]; then
     # Ask the user if they want to try different network setup
     if (whiptail --title "Unable to proceed" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57) then
       continue
     else
-      nwchange=true && break
+      break
     fi
   else
-    exit 1
+    nwchange=true
+    exit 0
   fi
 done
 drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
