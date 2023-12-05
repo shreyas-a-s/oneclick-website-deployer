@@ -66,6 +66,9 @@ fi
 echo -e '\n+---------------------+'
 echo '|   Preparing Chado   |'
 echo '+---------------------+'
+
+initial_network_config=$(ip -o address)
+
 while true; do
   goodtogo=true
   testRawGit
@@ -77,15 +80,16 @@ while true; do
       break
     fi
   else
-    nwchange=true
     exit 0
   fi
 done
 drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
 
+current_network_config=$(ip -o address)
+
 # Promt user if they want to change network back
-if [ "$nwchange" = "true" ]; then
+if [ "$current_network_config" != "$initial_network_config" ]; then
   whiptail --title "Just a Pause" --msgbox "\n- We've noticed that you've switched network before.\n- This would be agood time to change it back if you wish.\n- Do that and click 'Ok'." 11 61
   whiptail --title "Just checking" --msgbox --ok-button "Yes" "         Are you sure?" 8 35
   while ! ({ ping -c 1 -w 2 example.org; } &> /dev/null); do :; done
