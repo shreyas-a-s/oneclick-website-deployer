@@ -14,7 +14,7 @@ if [[ -z ${memorylimit} ]]; then
 fi
 
 # Installation
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install apache2 php php-dev php-cli libapache2-mod-php php"$phpversion"-mbstring php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress phppgadmin wget
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install apache2 php php-dev php-cli libapache2-mod-php php"$phpversion"-mbstring php-pgsql php-gd php-xml php-curl php-apcu php-uploadprogress php"$phpversion"-zip phppgadmin wget
 cd /etc/apache2/mods-enabled && sudo ln -s ../mods-available/rewrite.load
 sudo sed -i '$i<Directory /var/www/html>\n   Options Indexes FollowSymLinks MultiViews\n   AllowOverride All\n   Order allow,deny\n   allow from all\n</Directory>' /etc/apache2/sites-available/000-default.conf
 sudo sed -i "/memory_limit/ c\memory_limit = $memorylimit\M" /etc/php/"$phpversion"/apache2/php.ini
