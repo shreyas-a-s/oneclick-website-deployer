@@ -15,13 +15,14 @@ fi
 
 # Install BLAST+
 sudo apt-get update && sudo apt-get -y install wget curl
-mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast
-wget --no-remove-listing ftp.ncbi.nlm.nih.gov/blast/executables/LATEST
-wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/"$(grep x64-linux.tar.gz LATEST | awk 'NR==1{print $2}' | awk -F '>' '{print $2}' | awk -F '<' '{print $1}')"
-tar zxvpf ncbi-blast-*+-x64-linux.tar.gz
-cp -r ncbi-blast-*+/bin "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/
-rm -rf ncbi-blast-*+/ ncbi-blast-*+-x64-linux.tar.gz
-rm LATEST
+# mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast
+# wget --no-remove-listing ftp.ncbi.nlm.nih.gov/blast/executables/LATEST
+# wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/"$(grep x64-linux.tar.gz LATEST | awk 'NR==1{print $2}' | awk -F '>' '{print $2}' | awk -F '<' '{print $1}')"
+# tar zxvpf ncbi-blast-*+-x64-linux.tar.gz
+# cp -r ncbi-blast-*+/bin "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/
+# rm -rf ncbi-blast-*+/ ncbi-blast-*+-x64-linux.tar.gz
+# rm LATEST
+sudo apt-get install -y ncbi-blast+
 
 # Setting up PATH variable
 sed -i "$ a PATH=$DRUPAL_HOME/$drupalsitedir/tools/blast/bin:\$PATH" ~/.bashrc && PATH="$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin:$PATH
@@ -56,7 +57,7 @@ blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
 echo -e '\n+------------------------+'
 echo '|   Tripal_Blast Setup   |'
 echo '+------------------------+'
-drush variable-set blast_path "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush variable-set blast_path /usr/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Sample Blast Database Setup
 echo -e '\n+---------------------------+'
