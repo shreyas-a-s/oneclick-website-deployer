@@ -16,7 +16,7 @@ function checkSMAUsername {
 function testRawGit {
   for _ in {1..4}
     do
-      if ! wget --spider -q http://purl.obolibrary.org/obo/taxrank.obo; then
+      if ! wget --timeout=3 --tries=1 --spider -q http://purl.obolibrary.org/obo/taxrank.obo; then
 	export goodtogo=false
       fi
   done
@@ -80,7 +80,7 @@ while true; do
       break
     fi
   else
-    exit 0
+    break
   fi
 done
 drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
