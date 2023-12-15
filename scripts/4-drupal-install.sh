@@ -2,6 +2,7 @@
 
 # Variables
 sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
+latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
 # Display task name
 echo -e '\n+-------------------------+'
@@ -25,7 +26,7 @@ PGPASSWORD_ESCAPED=$(printf "%q" "$PGPASSWORD")
 sudo chown -R "$USER" "$DRUPAL_HOME"
 cd "$DRUPAL_HOME" || exit
 mv index.html index.html.orig
-wget http://ftp.drupal.org/files/projects/drupal-7.98.tar.gz
+wget http://ftp.drupal.org/files/projects/drupal-"$latest_drupal_seven_version".tar.gz
 tar -zxvf drupal-7.98.tar.gz
 rm drupal-7.98.tar.gz
 mv drupal-7.98/ "$drupalsitedir"/
