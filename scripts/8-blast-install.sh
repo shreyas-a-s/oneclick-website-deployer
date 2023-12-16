@@ -25,7 +25,7 @@ sudo apt-get update && sudo apt-get -y install wget curl
 sudo apt-get install -y ncbi-blast+
 
 # Setting up PATH variable
-sed -i "$ a PATH=$DRUPAL_HOME/$drupalsitedir/tools/blast/bin:\$PATH" ~/.bashrc && PATH="$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin:$PATH
+# sed -i "$ a PATH=$DRUPAL_HOME/$drupalsitedir/tools/blast/bin:\$PATH" ~/.bashrc && PATH="$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin:$PATH
 
 # Install tripal_blast
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
