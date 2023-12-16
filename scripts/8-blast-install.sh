@@ -50,7 +50,7 @@ cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA || exit
 echo -e '\n+------------------------------------------------+'
 echo '|   Downloading sample data. Wait a little bit   |'
 echo '+------------------------------------------------+'
-update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
+update_blastdb --passive --decompress 16S_ribosomal_RNA
 blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
 
 # User configuration
