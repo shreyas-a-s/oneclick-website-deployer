@@ -51,7 +51,7 @@ echo -e '\n+------------------------------------------------+'
 echo '|   Downloading sample data. Wait a little bit   |'
 echo '+------------------------------------------------+'
 update_blastdb --passive --decompress 16S_ribosomal_RNA
-blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
+# blastdbcmd -db 16S_ribosomal_RNA -entry nr_025000 -out 16S_query.fa
 
 # User configuration
 echo -e '\n+------------------------+'
