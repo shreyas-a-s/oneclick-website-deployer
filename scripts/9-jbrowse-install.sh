@@ -1,15 +1,17 @@
 #!/bin/bash
 
 # Variables
-sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
+DRUPAL_HOME=/var/www/html
 
 # Display task name
-echo '--------------------------------'
-echo '   Tripal_JBrowse Installation   '
-echo '--------------------------------'
+echo -e '\n+---------------------------------+'
+echo '|   Tripal_JBrowse Installation   |'
+echo '+---------------------------------+'
 
 # Get user input
-read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+if [[ -z ${drupalsitedir} ]]; then
+	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+fi
 
 # Install pre-requisites
 sudo apt-get update && sudo apt-get -y install build-essential zlib1g-dev unzip wget curl
@@ -32,12 +34,8 @@ unzip 7.x-3.0.zip
 rm 7.x-3.0.zip
 mv tripal_jbrowse-7.x-3.0 "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/tripal_jbrowse
 drush pm-enable -y tripal_jbrowse_mgmt tripal_jbrowse_page
-echo '-------------------------'
-echo '   Tripal_JBrowse Setup   '
-echo '-------------------------'
-echo "Go to http://localhost/""$drupalsitedir""/admin/tripal/extension/tripal_jbrowse/management/configure"
-echo "Fill out the form like this:"
-echo "Data Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/sites/default/files/jbrowse/data"
-echo "Data Path: ""$drupalsitedir""/sites/default/files/jbrowse/data"
-echo "Path to JBrowse's Index File: tools/jbrowse"
-echo "Path to JBrowse's bin Directory: ""$DRUPAL_HOME""/""$drupalsitedir""/tools/jbrowse/bin"
+echo -e '\n+--------------------------+'
+echo '|   Tripal_JBrowse Setup   |'
+echo '+--------------------------+'
+drush variable-set tripal_jbrowse_mgmt_settings "{\"data_dir\":\"$DRUPAL_HOME/$drupalsitedir/sites/default/files/jbrowse/data\",\"data_path\":\"$drupalsitedir/sites/default/files/jbrowse/data\",\"bin_path\":\"$DRUPAL_HOME\/$drupalsitedir/tools/jbrowse/bin\",\"link\":\"tools/jbrowse\",\"menu_template\":[]}" --root="$DRUPAL_HOME"/"$drupalsitedir"
+whiptail --title "JBrowse Example Data (Volvox)" --msgbox --ok-button "OK" --notags "\nTo see JBrowse example data, go to http://localhost/""$drupalsitedir""/tools/jbrowse/index.html?data=sample_data/json/volvox\n\nTo exit, hit 'OK'." 11 80

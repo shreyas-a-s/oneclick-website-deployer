@@ -1,15 +1,17 @@
 #!/bin/bash
 
 # Variables
-sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
+DRUPAL_HOME=/var/www/html
 
 # Display task name
-echo '-------------------------------'
-echo '   Tripal_Daemon Installation   '
-echo '-------------------------------'
+echo -e '\n+--------------------------------+'
+echo '|   Tripal_Daemon Installation   |'
+echo '+--------------------------------+'
 
 # Get user input
-read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+if [[ -z ${drupalsitedir} ]]; then
+	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+fi
 
 # Installation
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
@@ -22,11 +24,11 @@ rm sites/all/libraries/PHP-Daemon.tar.gz
 drush pm-download drushd -y
 drush pm-enable drushd tripal_daemon -y
 
+# Fix for "Trying to access array offset on value of type null in PHP-Daemon/Core/error_handlers.php on line 118"
+sed -i "/is_array/ c\    if\ (\!is_array(\$error)\ ||\ \!isset(\$error['type']))" sites/all/libraries/PHP-Daemon/Core/error_handlers.php
+
 # Start the Daemon
 drush trpjob-daemon start
 
 # Set daemon to autostart during boot
-#sudo /bin/bash -c 'echo "@reboot /usr/local/bin/drush trpjob-daemon start --root=""$DRUPAL_HOME""/""$drupalsitedir" >> /etc/crontab'
-#sudo touch /etc/cron.d/tripal-daemon-autostart
-#echo "@reboot /usr/local/bin/drush trpjob-daemon start --root=""$DRUPAL_HOME""/""$drupalsitedir" | sudo tee -a /etc/cron.d/tripal-daemon-autostart > /dev/null
-#sudo chmod 600 /etc/cron.d/tripal-daemon-autostart
+echo "@reboot $USER /usr/local/bin/drush trpjob-daemon start --root=$DRUPAL_HOME/$drupalsitedir" | sudo tee /etc/cron.d/tripal-daemon-autostart > /dev/null

@@ -4,18 +4,15 @@
 sudo apt-get update
 sudo apt-get -y install git
 
-# Create a temporary directory
-temp_dir=$(mktemp -d)
-
 # Clone the GitHub repository into the temporary directory
 git clone -b 3 https://github.com/shreyas-a-s/website-tripal.git "$temp_dir"
 
-# Change directory to the temporary folder
-cd "$temp_dir" || exit
+# Change directory to the repository folder
+cd website-tripal || exit
 
 # Run the install.sh script
 ./install.sh
 
-# Clean up: Remove the temporary directory and its contents
+# Clean up: Remove the repository directory and its contents
 cd .. || exit
-rm -rf "$temp_dir"
+rm -rf website-tripal
