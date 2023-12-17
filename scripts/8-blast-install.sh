@@ -44,6 +44,16 @@ sudo chgrp www-data sites/default/files/tmp/
 chmod g+w sites/default/files/tmp/
 drush variable-set file_temporary_path "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/tmp --root="$DRUPAL_HOME"/"$drupalsitedir"
 
+# Install cvitjs library which is a dependency of tripal_blast
+if ! [ -d "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/cvitjs ]; then
+  mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/cvitjs
+fi
+cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/cvitjs || exit
+wget https://github.com/awilkey/cvitjs/archive/master.zip
+unzip master.zip
+mv cvitjs-master/* ./
+rm -r cvitjs-master master.zip
+
 # Gathering test database
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/blastdb/16S_ribosomal_RNA || exit
