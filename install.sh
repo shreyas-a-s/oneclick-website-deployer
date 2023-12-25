@@ -35,6 +35,9 @@ SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 ./scripts/pre-deployment/install-whiptail.sh          # Install whiptail
 ./scripts/pre-deployment/show-about-page.sh           # Display info
 ./scripts/pre-deployment/check-if-os-is-supported.sh  # Check if the Operating System is supported
+if [ $? -eq 1 ]; then                                 # Stop execution if user chose to Cancel
+  exit 1
+fi
 ./scripts/pre-deployment/get-user-input.sh            # Get user input
 
 # Deployment scripts
