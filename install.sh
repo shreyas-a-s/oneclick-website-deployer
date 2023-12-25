@@ -17,7 +17,7 @@
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Pre-deployment scripts
-. ./whiptail-colors.sh                                # Apply custom colors to Whiptail windows
+. ./scripts/pre-deployment/whiptail-colors.sh         # Apply custom colors to Whiptail windows
 ./scripts/pre-deployment/install-whiptail.sh          # Install whiptail
 ./scripts/pre-deployment/show-about-page.sh           # Display info
 ./scripts/pre-deployment/check-if-os-is-supported.sh  # Check if the Operating System is supported
