@@ -7,23 +7,24 @@ Bash script to install and setup a basic working tripal website.
 - Installs fully developed version (currently [7.x-3.x](https://github.com/tripal/tripal/tree/7.x-3.x)) of tripal.
 
 # Prerequisites
-- A basic install of debian 12.
+- A basic install of debian 11.
 - It is better if the installation is new with no extra modification.
 
 # Usage
 Execute the following commands one by one from a terminal:
 ```bash
 sudo apt update && sudo apt install git -y
-git clone -b 3 https://github.com/shreyas-a-s/website-tripal.git
-cd website-tripal/scripts/
+git clone https://github.com/shreyas-a-s/website-tripal.git
+cd website-tripal/
 ./install.sh
 ```
 OR use this single line command from a terminal:
 ```bash
-sudo apt update && sudo apt install git -y && git clone -b 3 https://github.com/shreyas-a-s/website-tripal.git && cd website-tripal/scripts/ && ./install.sh
+sudo apt update && sudo apt install git -y && git clone https://github.com/shreyas-a-s/website-tripal.git && cd website-tripal/ && ./install.sh
 ```
 OR if you want the simplest way:
 ```
 Just right click the one-click.sh file and click "Run as a Program" and follow the prompts.
 ```
 >  NOTE: In some systems, right click menu might not have this option. In that case, just double click the file and select "Run in Terminal".
+
