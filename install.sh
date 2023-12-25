@@ -17,11 +17,11 @@
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Pre-deployment scripts
-. ./whiptail-colors.sh         # Apply custom colors to Whiptail windows
-./install-whiptail.sh          # Install whiptail
-./show-about-page.sh           # Display info
-./check-if-os-is-supported.sh  # Check if the Operating System is supported
-./get-user-input.sh            # Get user input
+. ./whiptail-colors.sh                                # Apply custom colors to Whiptail windows
+./scripts/pre-deployment/install-whiptail.sh          # Install whiptail
+./scripts/pre-deployment/show-about-page.sh           # Display info
+./scripts/pre-deployment/check-if-os-is-supported.sh  # Check if the Operating System is supported
+./scripts/pre-deployment/get-user-input.sh            # Get user input
 
 # Deployment scripts
 ./scripts/1-base-setup.sh
