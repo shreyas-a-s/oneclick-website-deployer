@@ -5,13 +5,13 @@ sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
 latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
 # Display task name
-echo -e '\n+-------------------------+'
-echo '|   Drupal Installation   |'
-echo '+-------------------------+'
+printf '+-------------------------+
+|   Drupal Installation   |
++-------------------------+\n'
 
 # Get user input
 if [[ -z ${drupalsitedir} ]]; then
-	read -r -p "Enter the name of the directory in which drupal website need to be installed: " drupalsitedir
+  read -r -p "Enter the name of the directory in which drupal website need to be installed: " drupalsitedir
 fi
 if [[ -z ${psqldb} ]]; then
   read -r -p "Enter the name of postgres database that you have previousily created: " psqldb
