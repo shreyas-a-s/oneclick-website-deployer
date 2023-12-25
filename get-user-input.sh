@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 while true; do
-    
+
     # Read memory to allocate
     memorylimit=$(whiptail --title "User Input" --inputbox "\nHow much memory to allocate to the website (in MB)? " 10 46 "$memorylimit" 3>&1 1>&2 2>&3)
     export memorylimit
