@@ -5,7 +5,7 @@ sudo apt-get update
 sudo apt-get -y install git
 
 # Clone the GitHub repository into the temporary directory
-git clone -b dev-3 https://github.com/shreyas-a-s/website-tripal.git
+git clone -b 3 https://github.com/shreyas-a-s/website-tripal.git "$temp_dir"
 
 # Change directory to the repository folder
 cd website-tripal || exit
