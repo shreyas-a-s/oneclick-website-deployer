@@ -23,7 +23,7 @@
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Display info
-whiptail --title "About The Script" --textbox --ok-button "Continue" about.txt 20 86
+./show-about-page.sh
 
 # Check if the Operating System is supported
 ./check-if-os-is-supported.sh
