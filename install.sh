@@ -13,29 +13,8 @@
 # Sastha Kumar N [https://github.com/Sastha-Kumar-N]
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
 
-# Minimalistic whiptail colorscheme taken from https://github.com/op/whiplash/blob/master/lamenting
-export NEWT_COLORS='
-root=white,gray
-window=white,lightgray
-border=black,lightgray
-shadow=white,black
-button=black,green
-actbutton=black,red
-compactbutton=black,
-title=black,
-roottext=black,magenta
-textbox=black,lightgray
-acttextbox=gray,white
-entry=lightgray,gray
-disentry=gray,lightgray
-checkbox=black,lightgray
-actcheckbox=black,green
-emptyscale=,black
-fullscale=,red
-listbox=black,lightgray
-actlistbox=lightgray,gray
-actsellistbox=black,green
-'
+# Apply custom colors to Whiptail windows
+. ./whiptail-colors.sh
 
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
