@@ -16,6 +16,9 @@
 # Apply custom colors to Whiptail windows
 . ./whiptail-colors.sh
 
+# Install whiptail
+./install-whiptail.sh
+
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
