@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
-if whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44; then
-  sudo reboot
+if command -v whiptail > /dev/null; then
+  if whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44; then
+    sudo reboot
+  fi
+else
+  printf "Installation Complete. Reboot the system for site installation to fully take effect. Reboot now? (yes/no): "
+  read -r choice_of_reboot
+  case $choice_of_reboot in
+    yes|y|YES)
+      sudo reboot ;;
+  esac
 fi
+
