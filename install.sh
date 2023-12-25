@@ -29,30 +29,7 @@ whiptail --title "About The Script" --textbox --ok-button "Continue" about.txt 2
 ./check-if-os-is-supported.sh
 
 # Get user input
-while true; do
-    # Use whiptail to create a TUI for entering username and password
-    memorylimit=$(whiptail --title "User Input" --inputbox "\nHow much memory to allocate to the website (in MB)? " 10 46 "$memorylimit" 3>&1 1>&2 2>&3) && export memorylimit
-    psqldb=$(whiptail --title "User Input" --inputbox "\nEnter the name for a new database for our website: " 10 47 "$psqldb" 3>&1 1>&2 2>&3) && export psqldb
-    psqluser=$(whiptail --title "User Input" --inputbox "\nEnter a new username (role) for postgres: " 9 45 "$psqluser" 3>&1 1>&2 2>&3) && export psqluser
-    PGPASSWORD=$(whiptail --title "User Input" --passwordbox "\nEnter a password for the new user: " 9 38 "$PGPASSWORD" 3>&1 1>&2 2>&3) && export PGPASSWORD
-    drupalsitedir=$(whiptail --title "User Input" --inputbox "\nEnter the name of the directory to which drupal website needs to be installed: " 10 45 "$drupalsitedir" 3>&1 1>&2 2>&3) && export drupalsitedir
-
-    # Check the exit status
-    if [ $? -eq 0 ]; then
-        # Ask the user if they want to change the data
-        if (whiptail --defaultno --yesno "Do you want to edit the data?\n\nMemory Limit: $memorylimit\nDatabase Name: $psqldb\nDatabase User: $psqluser\nDatabase Password: $PGPASSWORD\nDrupal Website Directory: $drupalsitedir" 14 50) then
-            # User chose to change the data
-            continue
-        else
-            # User accepted the data and wants to proceed
-            break
-        fi
-    else
-        # User canceled or closed the dialog
-        echo "User canceled."
-        exit 1
-    fi
-done
+./get-user-input.sh
 
 # Postgres setup
 sudo apt-get update && sudo apt-get -y install postgresql
