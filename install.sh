@@ -13,25 +13,17 @@
 # Sastha Kumar N [https://github.com/Sastha-Kumar-N]
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
 
-# Apply custom colors to Whiptail windows
-. ./whiptail-colors.sh
-
-# Install whiptail
-./install-whiptail.sh
-
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
-# Display info
-./show-about-page.sh
+# Pre-deployment scripts
+. ./whiptail-colors.sh         # Apply custom colors to Whiptail windows
+./install-whiptail.sh          # Install whiptail
+./show-about-page.sh           # Display info
+./check-if-os-is-supported.sh  # Check if the Operating System is supported
+./get-user-input.sh            # Get user input
 
-# Check if the Operating System is supported
-./check-if-os-is-supported.sh
-
-# Get user input
-./get-user-input.sh
-
-# Executing scripts
+# Deployment scripts
 ./scripts/1-base-setup.sh
 ./scripts/2-drush-install.sh
 ./scripts/3-postgres-setup.sh
@@ -45,6 +37,6 @@ SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 # Unset PGPASSWORD
 unset PGPASSWORD
 
-# End
-./choice-to-reboot.sh
+# Post-deployment scripts
+./choice-to-reboot.sh  # Give user a choice of whether to automatically reboot the system or not
 
