@@ -31,7 +31,7 @@ while true; do
 
   # Read database password
   PGPASSWORD=$(whiptail --title "User Input" --passwordbox "\nEnter a password for the new user: " 9 38 "$PGPASSWORD" 3>&1 1>&2 2>&3)
-  HIDDEN_PGPASSWORD=$(for i in $(seq $(echo $PGPASSWORD | wc -m)); do printf "*"; done) # Hide PGPASSWORD by replacing chars with *
+  HIDDEN_PGPASSWORD=$(for _ in $(seq $(printf "$PGPASSWORD" | wc -m)); do printf "*"; done) # Hide PGPASSWORD by replacing chars with *
   export PGPASSWORD
 
   # Read drupal directory name
