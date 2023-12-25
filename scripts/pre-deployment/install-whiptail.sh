@@ -10,7 +10,7 @@ if command -v apt-get > /dev/null; then # Install for debian-based linux distros
   sudo apt-get install -y whiptail
 fi
 
-if command -v yum > /dev/null; then # Install for RHEL-based linux distros
+if command -v yum > /dev/null; then # Install for older RHEL-based linux distros
   sudo yum install -y newt
 fi
 
