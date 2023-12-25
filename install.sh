@@ -31,13 +31,6 @@ whiptail --title "About The Script" --textbox --ok-button "Continue" about.txt 2
 # Get user input
 ./get-user-input.sh
 
-# Postgres setup
-sudo apt-get update && sudo apt-get -y install postgresql
-sudo -u postgres createuser "$psqluser"
-sudo -u postgres createdb "$psqldb"
-sudo -u postgres psql -c "alter user $psqluser with encrypted password '$PGPASSWORD';"
-sudo -u postgres psql -c "grant all privileges on database $psqldb to $psqluser ;"
-
 # Executing scripts
 ./scripts/1-base-setup.sh
 ./scripts/2-drush-install.sh
