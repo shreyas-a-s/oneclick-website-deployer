@@ -76,6 +76,5 @@ sudo -u postgres psql -c "grant all privileges on database $psqldb to $psqluser 
 unset PGPASSWORD
 
 # End
-if whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44; then
-  sudo reboot
-fi
+./choice-to-reboot.sh
+
