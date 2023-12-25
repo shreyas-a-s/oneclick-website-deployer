@@ -27,9 +27,9 @@ sudo chown -R "$USER" "$DRUPAL_HOME"
 cd "$DRUPAL_HOME" || exit
 mv index.html index.html.orig
 wget http://ftp.drupal.org/files/projects/drupal-"$latest_drupal_seven_version".tar.gz
-tar -zxvf drupal-7.98.tar.gz
-rm drupal-7.98.tar.gz
-mv drupal-7.98/ "$drupalsitedir"/
+tar -zxvf drupal-"$latest_drupal_seven_version".tar.gz
+rm drupal-"$latest_drupal_seven_version".tar.gz
+mv drupal-"$latest_drupal_seven_version"/ "$drupalsitedir"/
 cd "$drupalsitedir" || exit
 cp sites/default/default.settings.php sites/default/settings.php
 mkdir sites/default/files/
