@@ -6,7 +6,7 @@ printf '+-------------------------+
 +-------------------------+\n'
 
 # Variables
-sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
+DRUPAL_HOME=/var/www/html
 latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
 # Read name of directory to install drupal
