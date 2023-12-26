@@ -19,7 +19,7 @@ else
 fi
 
 # Hide PGPASSWORD by replacing characters with *
-HIDDEN_PGPASSWORD=$(for _ in $(seq $(printf "$PGPASSWORD" | wc -m)); do printf "*"; done)
+export HIDDEN_PGPASSWORD=$(for _ in $(seq $(printf "$PGPASSWORD" | wc -m)); do printf "*"; done)
 
 # Need to export postgresql password so that subsequent psql commands can be run password-less
 export PGPASSWORD
