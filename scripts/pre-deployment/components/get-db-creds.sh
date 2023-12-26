@@ -22,6 +22,9 @@ fi
 HIDDEN_PGPASSWORD=$(for _ in $(seq "$(printf "%s" "$PGPASSWORD" | wc -m)"); do printf "*"; done)
 export HIDDEN_PGPASSWORD
 
+# Escape special characters in PGPASSWORD using printf.
+ESCAPED_PGPASSWORD=$(printf "%q" "$PGPASSWORD")
+
 # Need to export postgresql password so that subsequent psql commands can be run password-less
 export PGPASSWORD
 

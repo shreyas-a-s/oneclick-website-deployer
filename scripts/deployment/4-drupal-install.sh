@@ -19,9 +19,6 @@ if [[ -z ${psqldb} ]]; then
   . ./components/get-db-creds.sh
 fi
 
-# Escape special characters in PGPASSWORD using printf.
-ESCAPED_PGPASSWORD=$(printf "%q" "$PGPASSWORD")
-
 # Installation
 sudo chown -R "$USER" "$DRUPAL_HOME"
 cd "$DRUPAL_HOME" || exit
