@@ -38,7 +38,7 @@ SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 if [ $? -eq 1 ]; then                                 # Stop execution if user chose to Cancel
   exit 1
 fi
-./scripts/pre-deployment/get-user-input.sh            # Get user input
+. ./scripts/pre-deployment/get-user-input.sh          # Get user input
 
 # Deployment scripts
 ./scripts/deployment/1-base-setup.sh
