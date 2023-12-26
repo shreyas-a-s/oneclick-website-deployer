@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Variables
-sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
-latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
-
 # Display task name
 printf '+-------------------------+
 |   Drupal Installation   |
 +-------------------------+\n'
+
+# Variables
+sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
+latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
 # Get user input
 if [[ -z ${drupalsitedir} ]]; then
