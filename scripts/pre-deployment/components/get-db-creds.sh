@@ -15,10 +15,10 @@ else
   # Read database name
   read -r -p "Enter the name for a new database for our website: " psqldb
   
-	# Read database username
+  # Read database username
   read -r -p "Enter a new username (role) for postgres: " psqluser
   
-	# Read database password
+  # Read database password
   read -r -p "Enter a password for the new user: " PGPASSWORD
 fi
 
