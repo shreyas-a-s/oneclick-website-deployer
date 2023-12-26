@@ -9,7 +9,7 @@ printf '+-------------------------+
 sed -i '$a\DRUPAL_HOME=/var/www/html' ~/.bashrc && DRUPAL_HOME=/var/www/html
 latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
-# Get user input
+# Read name of directory to install drupal
 if [[ -z ${drupalsitedir} ]]; then
   read -r -p "Enter the name of the directory in which drupal website need to be installed: " drupalsitedir
 fi
