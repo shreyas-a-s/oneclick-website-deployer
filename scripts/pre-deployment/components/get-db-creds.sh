@@ -3,10 +3,8 @@
 if command -v whiptail > /dev/null; then
   # Read database name
   psqldb=$(whiptail --title "User Input" --inputbox "\nEnter the name for a new database for our website: " 10 47 "$psqldb" 3>&1 1>&2 2>&3)
-  export psqldb
   # Read database username
   psqluser=$(whiptail --title "User Input" --inputbox "\nEnter a new username (role) for postgres: " 9 45 "$psqluser" 3>&1 1>&2 2>&3)
-  export psqluser
   # Read database password
   PGPASSWORD=$(whiptail --title "User Input" --passwordbox "\nEnter a password for the new user: " 9 38 "$PGPASSWORD" 3>&1 1>&2 2>&3)
 else
@@ -20,11 +18,14 @@ fi
 
 # Hide PGPASSWORD by replacing characters with *
 HIDDEN_PGPASSWORD=$(for _ in $(seq "$(printf "%s" "$PGPASSWORD" | wc -m)"); do printf "*"; done)
-export HIDDEN_PGPASSWORD
 
 # Escape special characters in PGPASSWORD using printf.
 ESCAPED_PGPASSWORD=$(printf "%q" "$PGPASSWORD")
 
-# Need to export postgresql password so that subsequent psql commands can be run password-less
+# Export all variables
+export psqldb
+export psqluser
 export PGPASSWORD
+export HIDDEN_PGPASSWORD
+export ESCAPED_PGPASSWORD
 
