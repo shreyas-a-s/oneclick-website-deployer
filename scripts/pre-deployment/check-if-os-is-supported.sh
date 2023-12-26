@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Store OS name in a variable
-os_name=$(cat /etc/os-release | grep -E '\bNAME\b' | awk -F '"' '{print $2}')
+os_name=$(grep -E '\bNAME\b' /etc/os-release | awk -F '"' '{print $2}')
 
 # Store debian version in a variable
 if command -v apt-get > /dev/null; then
