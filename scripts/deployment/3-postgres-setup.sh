@@ -1,21 +1,18 @@
 #!/bin/bash
 
 # Display task name
-echo -e '\n+--------------------------------+'
-echo '|   Postgres Database Creation   |'
-echo '+--------------------------------+'
+echo -e '\n+----------------------------------+'
+echo '|   PostgreSQL Database Creation   |'
+echo '+----------------------------------+'
 
-# Install postgreSQL
-if command -v apt-get > /dev/null; then # Install for debian-based linux distros
-	sudo apt-get -y install postgresql
+# Install postgresql if not already
+if command -v psql > /dev/null; then
+  ./components/install-psql.sh
 fi
 
-# Taking user-choice if not taken already
+# Read database credentials if not read already
 if [[ -z ${psqldb} ]]; then
-	read -r -p "Enter the name for a new database for our website: " psqldb
-	read -r -p "Enter a new username (role) for postgres: " psqluser
-	read -r -p "Enter a password for the new user: " PGPASSWORD
-	export PGPASSWORD
+  . ../pre-deployment/components/get-db-creds.sh
 fi
 
 # Create database
