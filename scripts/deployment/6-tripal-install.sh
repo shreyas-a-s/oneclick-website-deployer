@@ -35,7 +35,7 @@ drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 _test_sma_username
 
 # Chado installation
-.SCRIPT_DIR/components/install-chado.sh
+."$SCRIPT_DIR"/components/install-chado.sh
 
 # Chado preparation
 echo -e '\n+---------------------+'
