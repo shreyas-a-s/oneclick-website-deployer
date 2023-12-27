@@ -7,6 +7,7 @@ echo '+---------------------+'
 
 initial_network_config=$(ip -o address | grep --invert-match lo)
 
+# Actual execution
 while true; do
   goodtogo=true
   _test_raw_github
