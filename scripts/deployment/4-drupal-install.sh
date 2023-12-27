@@ -54,8 +54,8 @@ done
 sudo chmod 755 sites/default/settings.php
 
 # Set temp-path for drupal to prevent issues in future
-."$SCRIPT_DIR"/components/set-drupal-tmp-path.sh
+"$SCRIPT_DIR"/components/set-drupal-tmp-path.sh
 
 # Install Webform Module (for creating Google-form-like Forms)
-."$SCRIPT_DIR"/components/install-webform.sh
+"$SCRIPT_DIR"/components/install-webform.sh
 

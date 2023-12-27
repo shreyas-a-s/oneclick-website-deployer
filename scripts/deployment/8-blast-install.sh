@@ -17,7 +17,7 @@ if [[ -z ${drupalsitedir} ]]; then
 fi
 
 # Install dependencies
-."$SCRIPT_DIR"/components/install-tripal-blast-dependencies.sh
+"$SCRIPT_DIR"/components/install-tripal-blast-dependencies.sh
 
 # Change to drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
@@ -36,5 +36,5 @@ drush pm-enable blast_ui -y
 drush variable-set blast_path /usr/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Setup a sample blast database to educate users
-."$SCRIPT_DIR"/components/setup-sample-blast-db.sh
+"$SCRIPT_DIR"/components/setup-sample-blast-db.sh
 

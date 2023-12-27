@@ -12,8 +12,8 @@ DRUPAL_HOME=/var/www/html
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 # Source functions
-. ."$SCRIPT_DIR"/functions/_test_raw_github.sh    # Function to test if raw.githubusercontent.com is accessible
-. ."$SCRIPT_DIR"/functions/_test_sma_username.sh  # Function to test if site maintenamce username provided is valid
+. "$SCRIPT_DIR"/functions/_test_raw_github.sh    # Function to test if raw.githubusercontent.com is accessible
+. "$SCRIPT_DIR"/functions/_test_sma_username.sh  # Function to test if site maintenamce username provided is valid
 
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then
@@ -35,9 +35,9 @@ drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 _test_sma_username
 
 # Tripal Chado
-."$SCRIPT_DIR"/components/install-chado.sh  # Chado installation
-."$SCRIPT_DIR"/components/prepare-chado.sh  # Chado preparation
+"$SCRIPT_DIR"/components/install-chado.sh  # Chado installation
+"$SCRIPT_DIR"/components/prepare-chado.sh  # Chado preparation
 
 # Apply Patches
-."$SCRIPT_DIR"/components/patch-field_formatter_settings.sh
+"$SCRIPT_DIR"/components/patch-field_formatter_settings.sh
 

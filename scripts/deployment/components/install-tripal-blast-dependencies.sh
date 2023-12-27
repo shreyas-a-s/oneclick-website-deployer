@@ -21,5 +21,5 @@ drush pm-download -y libraries
 drush pm-enable -y libraries
 
 # Install cvitjs library which is a dependency of tripal_blast
-."$SCRIPT_DIR"/install-lbry-cvitjs.sh
+"$SCRIPT_DIR"/install-lbry-cvitjs.sh
 
