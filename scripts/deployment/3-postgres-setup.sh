@@ -9,7 +9,7 @@ echo '+----------------------------------+'
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Install postgresql if not already
-if command -v psql > /dev/null; then
+if ! command -v psql > /dev/null; then
   ./components/install-psql.sh
 fi
 
