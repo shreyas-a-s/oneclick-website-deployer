@@ -9,3 +9,6 @@ function _test_raw_github {
       fi
   done
 }
+
+export -f _test_raw_github
+

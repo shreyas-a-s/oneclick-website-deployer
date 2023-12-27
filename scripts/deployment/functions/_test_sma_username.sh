@@ -9,3 +9,5 @@ function _test_sma_username {
   done
 }
 
+export -f _test_sma_username
+
