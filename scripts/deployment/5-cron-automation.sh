@@ -10,7 +10,7 @@ DRUPAL_HOME=/var/www/html
 
 # Get user input
 if [[ -z ${drupalsitedir} ]]; then
-	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+  read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
 
 # Installation
