@@ -8,12 +8,12 @@ echo '+-------------------------+'
 # Variables
 DRUPAL_HOME=/var/www/html
 
-# Change directory to script's directory
-SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
+# Store script's directory path into a avriable
+SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 # Source functions
-. ./functions/_test_raw_github.sh # Function to test if raw.githubusercontent.com is accessible
-. ./functions/_test_sma_username.sh # Function to test if site maintenamce username provided is valid
+. ."$SCRIPT_DIR"/functions/_test_raw_github.sh    # Function to test if raw.githubusercontent.com is accessible
+. ."$SCRIPT_DIR"/functions/_test_sma_username.sh  # Function to test if site maintenamce username provided is valid
 
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then
@@ -34,15 +34,10 @@ drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 # Check site maintenance username before proceeding
 _test_sma_username
 
-# Chado installation
-."$SCRIPT_DIR"/components/install-chado.sh
+# Tripal Chado
+."$SCRIPT_DIR"/components/install-chado.sh  # Chado installation
+."$SCRIPT_DIR"/components/prepare-chado.sh  # Chado preparation
 
-# Chado preparation
-."$SCRIPT_DIR"/components/prepare-chado.sh
-
-# Fix for "Trying to access array offset on value of type null" error that gets displayed
-# when we refresh overlay menus (eg: localhost/drupal/bio_data/1#overlay-context=&overlay=admin/tripal)
-# source: https://www.drupal.org/project/field_formatter_settings/issues/3166628
-cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/field_formatter_settings || exit
-patch -p1 < $SCRIPT_DIR/field_formatter_settings.patch
+# Apply Patches
+."$SCRIPT_DIR"/components/patch-field_formatter_settings.sh
 
