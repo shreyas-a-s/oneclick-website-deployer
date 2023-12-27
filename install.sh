@@ -40,8 +40,6 @@ if [ $? -eq 1 ]; then                                 # Stop execution if user c
 fi
 . ./scripts/pre-deployment/get-user-input.sh          # Get user input
 
-echo "$psqldb"
-
 # Deployment scripts
 ./scripts/deployment/1-base-setup.sh
 ./scripts/deployment/2-drush-install.sh
