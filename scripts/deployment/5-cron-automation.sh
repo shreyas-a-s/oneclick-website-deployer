@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Variables
-DRUPAL_HOME=/var/www/html
-
 # Display task name
 echo -e '\n+---------------------------+'
 echo '|   Cron Automation Setup   |'
 echo '+---------------------------+'
+
+# Variables
+DRUPAL_HOME=/var/www/html
 
 # Get user input
 if [[ -z ${drupalsitedir} ]]; then
