@@ -5,6 +5,7 @@ echo -e '\n+---------------------+'
 echo '|   Preparing Chado   |'
 echo '+---------------------+'
 
+# Save initial network configuration into a string
 initial_network_config=$(ip -o address | grep --invert-match lo)
 
 # Actual execution
@@ -25,9 +26,10 @@ done
 drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
 
+# Save current network configuration into a string
 current_network_config=$(ip -o address | grep --invert-match lo)
 
-# Promt user if they want to change network back
+# If network change is detected, promt user if they want to change network back
 if [ "$current_network_config" != "$initial_network_config" ]; then
   whiptail --title "Just a Pause" --msgbox "\n- We've noticed that you've switched network before.\n- This would be agood time to change it back if you wish.\n- Do that and click 'Ok'." 11 61
   whiptail --title "Just checking" --msgbox --ok-button "Yes" "         Are you sure?" 8 35
