@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-# Display task name
-printf '+-------------------------+
-|   Drupal Installation   |
-+-------------------------+\n'
-
 # Variables
 DRUPAL_HOME=/var/www/html
-latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then
