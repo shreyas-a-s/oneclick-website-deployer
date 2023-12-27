@@ -8,7 +8,7 @@ echo -e '\n+---------------------------------+'
 echo '|   Tripal_JBrowse Installation   |'
 echo '+---------------------------------+'
 
-# Get user input
+# Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then
 	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
