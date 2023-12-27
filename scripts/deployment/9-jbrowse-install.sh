@@ -1,12 +1,12 @@
-#!/bin/bash
-
-# Variables
-DRUPAL_HOME=/var/www/html
+#!/usr/bin/env bash
 
 # Display task name
 echo -e '\n+---------------------------------+'
 echo '|   Tripal_JBrowse Installation   |'
 echo '+---------------------------------+'
+
+# Variables
+DRUPAL_HOME=/var/www/html
 
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then

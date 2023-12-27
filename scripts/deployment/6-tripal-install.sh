@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Display task name
+echo -e '\n+-------------------------+'
+echo '|   Tripal Installation   |'
+echo '+-------------------------+'
 
 # Variables
 DRUPAL_HOME=/var/www/html
@@ -24,11 +29,6 @@ function testRawGit {
 
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
-
-# Display task name
-echo -e '\n+-------------------------+'
-echo '|   Tripal Installation   |'
-echo '+-------------------------+'
 
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then
