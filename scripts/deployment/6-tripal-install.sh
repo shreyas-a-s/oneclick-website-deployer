@@ -5,11 +5,11 @@ DRUPAL_HOME=/var/www/html
 
 # Test site maintenance username
 function checkSMAUsername {
-    titleSMA="Site Maintenance Account"
-    while ! ( { drush user-information "$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q administrator; } &> /dev/null ); do
-        smausername=$(whiptail --title "$titleSMA" --inputbox "\nEnter the site maintenance account username that you've given to the website: " 10 48 3>&1 1>&2 2>&3)
-        titleSMA="Wrong Username"
-    done
+  titleSMA="Site Maintenance Account"
+  while ! ( { drush user-information "$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q administrator; } &> /dev/null ); do
+    smausername=$(whiptail --title "$titleSMA" --inputbox "\nEnter the site maintenance account username that you've given to the website: " 10 48 3>&1 1>&2 2>&3)
+      titleSMA="Wrong Username"
+  done
 }
 
 # Test if raw.githubusercontent.com is accessible or not
@@ -32,7 +32,7 @@ echo '+-------------------------+'
 
 # Get user input
 if [[ -z ${drupalsitedir} ]]; then
-	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
+  read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
 
 # Install dependencies
