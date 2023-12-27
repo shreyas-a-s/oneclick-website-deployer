@@ -8,45 +8,31 @@ echo '+-------------------------+'
 # Variables
 DRUPAL_HOME=/var/www/html
 
-# Test site maintenance username
-function checkSMAUsername {
-  titleSMA="Site Maintenance Account"
-  while ! ( { drush user-information "$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q administrator; } &> /dev/null ); do
-    smausername=$(whiptail --title "$titleSMA" --inputbox "\nEnter the site maintenance account username that you've given to the website: " 10 48 3>&1 1>&2 2>&3)
-      titleSMA="Wrong Username"
-  done
-}
-
-# Test if raw.githubusercontent.com is accessible or not
-function testRawGit {
-  for _ in {1..4}
-    do
-      if ! wget --timeout=3 --tries=1 --spider -q http://purl.obolibrary.org/obo/taxrank.obo; then
-	export goodtogo=false
-      fi
-  done
-}
-
-# Change directory
+# Change directory to script's directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
+
+# Source functions
+. ./functions/_test_raw_github.sh # Function to test if raw.githubusercontent.com is accessible
+. ./functions/_test_sma_username.sh # Function to test if site maintenamce username provided is valid
 
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then
   read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
 fi
 
+# Change directory to drupal directory
+cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
+
 # Install dependencies
-cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/ || exit
 drush pm-download -y entity views ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 drush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 
 # Tripal installation
 drush pm-download tripal -y
-cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 
 # Check site maintenance username before proceeding
-checkSMAUsername
+_test_sma_username
 
 # Chado installation
 echo -e '\n+----------------------+'
@@ -71,7 +57,7 @@ initial_network_config=$(ip -o address | grep --invert-match lo)
 
 while true; do
   goodtogo=true
-  testRawGit
+  _test_raw_github
   if [ "$goodtogo" = false ]; then
     # Ask the user if they want to try different network setup
     if (whiptail --title "Unable to proceed" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57) then
