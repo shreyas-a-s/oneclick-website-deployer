@@ -9,6 +9,9 @@ printf '+-------------------------+
 DRUPAL_HOME=/var/www/html
 latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
+# Store script's directory path into a avriable
+SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
+
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then
   read -r -p "Enter the name of the directory in which drupal website need to be installed: " drupalsitedir
@@ -50,6 +53,9 @@ done
 # Limit write permission to owner of 'settings.php' for security reasons
 sudo chmod 755 sites/default/settings.php
 
+# Set temp-path for drupal to prevent issues in future
+."$SCRIPT_DIR"/components/set-drupal-tmp-path.sh
+
 # Install Webform Module (for creating Google-form-like Forms)
-./components/install-webform.sh
+."$SCRIPT_DIR"/components/install-webform.sh
 
