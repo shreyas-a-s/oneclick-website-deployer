@@ -42,16 +42,18 @@ fi
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
-# Scripts
-_is_internet_available   # Check if internet is available
-_install_whiptail        # Install whiptail
-./show-about-us-page.sh  # Display info
-_is_os_supported         # Check if the Operating System is supported
+# Check environment
+_is_os_supported        # Check if the OS is on the supported list
+_is_internet_available  # Check if system is connected to internet
+_install_whiptail       # Install whiptail program that poweres the script
 
-# Get user input
-_input_db_credentials
-_input_drupal_dir
-_input_memory_limit
+# Display the "About Us" page on the screen
+./show-about-us-page.sh
+
+# Prompt the user to enter inputs
+_input_db_credentials  # PostgreSQL Database credentials
+_input_drupal_dir      # Directory to which drupal should be installed
+_input_memory_limit    # Maximum amount of memory a PHP script can consume
 
 # Deployment scripts
 ./scripts/deployment/1-base-setup.sh
