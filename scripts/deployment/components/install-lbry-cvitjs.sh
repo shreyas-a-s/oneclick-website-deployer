@@ -15,7 +15,7 @@ fi
 
 # Install cvitjs library
 wget https://github.com/awilkey/cvitjs/archive/master.zip
-unzip master.zip
+unzip -q master.zip
 mv cvitjs-master/* ./
 rm -r cvitjs-master master.zip
 
