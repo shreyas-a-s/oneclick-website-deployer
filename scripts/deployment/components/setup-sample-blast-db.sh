@@ -14,7 +14,7 @@ echo '|   Sample Blast DB Setup   |'
 echo '+---------------------------+'
 
 # Check if Sample data was downloaded
-if [ ! -f "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA/16S_ribosomal_RNA* ]; then
+if [ ! -f "$DRUPAL_HOME/$drupalsitedir/tools/blast/db/16S_ribosomal_RNA/16S_ribosomal_RNA"* ]; then
 	echo "Sample data could not be downloaded. Hence aborting Blast Database setup."
 	sleep 2
 	exit # Don't setup if Sample data was not downloaded
