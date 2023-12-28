@@ -2,7 +2,7 @@
 
 # Test if raw.githubusercontent.com is accessible or not
 function _test_raw_github {
-  for _ in {1..4}
+  for _ in {1..6}
     do
       if ! wget --timeout=3 --tries=1 --spider -q http://purl.obolibrary.org/obo/taxrank.obo; then
 	export goodtogo=false
