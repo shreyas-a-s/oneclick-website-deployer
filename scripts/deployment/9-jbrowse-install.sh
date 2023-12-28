@@ -45,5 +45,5 @@ echo '+--------------------------+'
 drush variable-set tripal_jbrowse_mgmt_settings "{\"data_dir\":\"$DRUPAL_HOME/$drupalsitedir/sites/default/files/jbrowse/data\",\"data_path\":\"$drupalsitedir/sites/default/files/jbrowse/data\",\"bin_path\":\"$DRUPAL_HOME\/$drupalsitedir/tools/jbrowse/bin\",\"link\":\"tools/jbrowse\",\"menu_template\":[]}" --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # User intervention
-whiptail --title "JBrowse Example Data (Volvox)" --msgbox --ok-button "OK" --notags "\nTo see JBrowse example data, go to http://localhost/""$drupalsitedir""/tools/jbrowse/index.html?data=sample_data/json/volvox\n\nTo exit, hit 'OK'." 11 80
+whiptail --title "JBrowse Example Data (Volvox)" --msgbox --ok-button "OK" --notags "\nTo see JBrowse example data, go to http://localhost/""$drupalsitedir""/tools/jbrowse/index.html?data=sample_data/json/volvox\n\nTo exit, hit 'OK'." 11 86
 
