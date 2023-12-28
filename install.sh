@@ -68,6 +68,6 @@ _input_memory_limit    # Maximum amount of memory a PHP script can consume
 # Unset PGPASSWORD
 unset PGPASSWORD
 
-# Post-deployment scripts
-./scripts/post-deployment/choice-to-reboot.sh  # Give user a choice of whether to automatically reboot the system or not
+# Provide users the option for an automatic system reboot
+./scripts/auto-system-reboot.sh
 
