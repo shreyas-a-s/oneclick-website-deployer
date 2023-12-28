@@ -20,7 +20,7 @@ cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 # Install dependencies
 drush pm-download libraries -y
 wget -O sites/all/libraries/PHP-Daemon.tar.gz https://github.com/shaneharter/PHP-Daemon/archive/v2.0.tar.gz
-tar -zxvf sites/all/libraries/PHP-Daemon.tar.gz -C sites/all/libraries/
+tar -zxf sites/all/libraries/PHP-Daemon.tar.gz -C sites/all/libraries/
 mv sites/all/libraries/PHP-Daemon-2.0 sites/all/libraries/PHP-Daemon
 rm sites/all/libraries/PHP-Daemon.tar.gz
 drush pm-download drushd -y
