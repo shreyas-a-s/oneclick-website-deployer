@@ -6,7 +6,7 @@ total_memory="$(command free --mega | awk 'NR==2{print $2}')"
 
 while true; do
   memorylimit=$(whiptail --title "$memory_limit_title" --inputbox "\n$memory_limit_msg""How much memory to allocate to the website (in MB)? " 11 46 "$memorylimit" 3>&1 1>&2 2>&3) 
-  if ! [ "$memorylimit" -eq "$memorylimit" ] &> /dev/null; then
+  if [ "$memorylimit" -ne "$memorylimit" ] &> /dev/null; then
     memory_limit_title="ERROR"
     memory_limit_msg="Only integer values are accepted.\n"
     continue

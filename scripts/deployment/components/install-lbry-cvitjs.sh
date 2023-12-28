@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Create cvitjs directory if does not exist
-if ! [ -d "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/cvitjs ]; then
+if [ ! -d "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/cvitjs ]; then
   mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/libraries/cvitjs
 fi
 

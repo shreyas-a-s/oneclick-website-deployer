@@ -18,7 +18,7 @@ if [[ -z ${memorylimit} ]]; then # Checking if memory limit is not already read
   while true; do # This while loop enables checking if memory limit entered valid
     printf "$memory_limit_title\n$memory_limit_msg""How much memory to allocate to the website? (in MB): "
     read -r memorylimit
-    if ! [ "$memorylimit" -eq "$memorylimit" ] &> /dev/null; then
+    if [ "$memorylimit" -ne "$memorylimit" ] &> /dev/null; then
       memory_limit_title='\nERROR!! '
       memory_limit_msg="Only integer values are accepted.\n"
       continue
