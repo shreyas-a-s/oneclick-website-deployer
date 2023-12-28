@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Store script's directory path into a variable
+SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
+
 # Fix for "Trying to access array offset on value of type null" error that gets displayed
 # when we refresh overlay menus (eg: localhost/drupal/bio_data/1#overlay-context=&overlay=admin/tripal)
 # source: https://www.drupal.org/project/field_formatter_settings/issues/3166628
