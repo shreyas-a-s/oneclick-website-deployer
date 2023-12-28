@@ -6,7 +6,7 @@ echo '|   Preparing Chado   |'
 echo '+---------------------+'
 
 # Save initial network configuration into a string
-initial_network_config=$(ip -o address | grep --invert-match lo)
+initial_network_config=$(ip addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 
 # Actual execution
 while true; do
@@ -27,7 +27,7 @@ drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsite
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Save current network configuration into a string
-current_network_config=$(ip -o address | grep --invert-match lo)
+current_network_config=$(ip addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 
 # If network change is detected, promt user if they want to change network back
 if [ "$current_network_config" != "$initial_network_config" ]; then
