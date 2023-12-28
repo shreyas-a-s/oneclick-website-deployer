@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Test site maintenance account username
+# Read and test site maintenance account username is valid
 function _get_sma_username {
   titleSMA="Site Maintenance Account"
   while ! ( { drush user-information "$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q administrator; } &> /dev/null ); do
@@ -13,5 +13,5 @@ function _get_sma_username {
 export smausername
 
 # Export the function to be used by child scripts
-export -f _test_sma_username
+export -f _get_sma_username
 
