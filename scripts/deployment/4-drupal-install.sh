@@ -28,7 +28,7 @@ sudo chown -R "$USER" "$DRUPAL_HOME"
 cd "$DRUPAL_HOME" || exit
 mv index.html index.html.orig
 wget http://ftp.drupal.org/files/projects/drupal-"$latest_drupal_seven_version".tar.gz
-tar -zxvf drupal-"$latest_drupal_seven_version".tar.gz
+tar -zxf drupal-"$latest_drupal_seven_version".tar.gz
 rm drupal-"$latest_drupal_seven_version".tar.gz
 mv drupal-"$latest_drupal_seven_version"/ "$drupalsitedir"/
 
