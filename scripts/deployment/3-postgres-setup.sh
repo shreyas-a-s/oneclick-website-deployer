@@ -15,7 +15,8 @@ fi
 
 # Read database credentials if not read already
 if [[ -z ${psqldb} ]]; then
-  . ../pre-deployment/components/get-db-creds.sh
+  . ../../functions/_input_db_credentials.sh
+  _input_db_credentials
 fi
 
 # Create database

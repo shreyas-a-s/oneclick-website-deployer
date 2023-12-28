@@ -47,7 +47,11 @@ _check_internet                                 # Check if connected to internet
 _install_whiptail                               # Install whiptail
 ./scripts/pre-deployment/show-about-us-page.sh  # Display info
 _is_os_supported                                # Check if the Operating System is supported
-. ./scripts/pre-deployment/get-user-input.sh    # Get user input
+
+# Get user input
+_input_db_credentials
+_input_drupal_dir
+_input_memory_limit
 
 # Deployment scripts
 ./scripts/deployment/1-base-setup.sh
