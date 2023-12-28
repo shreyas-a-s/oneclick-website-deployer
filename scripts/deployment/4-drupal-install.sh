@@ -19,7 +19,7 @@ fi
 
 # Read database credentials if not read already
 if [[ -z ${psqldb} ]]; then
-  . ./components/get-db-creds.sh
+  . ../pre-deployment/components/get-db-creds.sh
 fi
 
 # Install Drupal
