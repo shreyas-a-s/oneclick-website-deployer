@@ -13,8 +13,8 @@ export DRUPAL_HOME
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 # Source functions
-. "$SCRIPT_DIR"/functions/_test_raw_github.sh    # Function to test if raw.githubusercontent.com is accessible
-. "$SCRIPT_DIR"/functions/_test_sma_username.sh  # Function to test if site maintenamce username provided is valid
+. "$SCRIPT_DIR"/functions/_test_raw_github.sh   # Function to test if raw.githubusercontent.com is accessible
+. "$SCRIPT_DIR"/functions/_get_sma_username.sh  # Function to read site maintenamce username and test it
 
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then
