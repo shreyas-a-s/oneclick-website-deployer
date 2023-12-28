@@ -26,10 +26,11 @@ rm sites/all/libraries/PHP-Daemon.tar.gz
 drush pm-download drushd -y
 
 # Enable dependencies
-drush pm-enable -y libraries drushd
+drush pm-enable -y libraries # Libraries needs to be enabled first otherwise drush will error out
+drush pm-enable -y drushd    # saying 'Call to undefined function libraries_get_libraries()'
 
 # Enable tripal daemon
-drush pm-enable tripal_daemon -y
+drush pm-enable -y tripal_daemon
 
 # Fix for "Trying to access array offset on value of type null in PHP-Daemon/Core/error_handlers.php on line 118"
 sed -i "/is_array/ c\    if\ (\!is_array(\$error)\ ||\ \!isset(\$error['type']))" sites/all/libraries/PHP-Daemon/Core/error_handlers.php
