@@ -31,7 +31,6 @@
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Pre-deployment scripts
-
 . ./scripts/pre-deployment/check-internet.sh          # Check if connected to internet before proceeding
 . ./functions/whiptail-colors.sh                      # Apply custom colors to Whiptail windows
 ./scripts/pre-deployment/install-whiptail.sh          # Install whiptail
