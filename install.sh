@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #  ██████╗ ███╗   ██╗███████╗     ██████╗██╗     ██╗ ██████╗██╗  ██╗
 # ██╔═══██╗████╗  ██║██╔════╝    ██╔════╝██║     ██║██╔════╝██║ ██╔╝
@@ -32,12 +32,19 @@ if [ -f ./whiptail-colors.sh ]; then
   . ./whiptail-colors.sh
 fi
 
+# Souce functions
+if [ -d ./functions ]; then
+  for fn in ./functions/*; do
+    . "$fn"
+  done
+fi
+
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Pre-deployment scripts
 . ./scripts/pre-deployment/check-internet.sh          # Check if connected to internet before proceeding
-./scripts/pre-deployment/install-whiptail.sh          # Install whiptail
+_install_whiptail                                     # Install whiptail
 ./scripts/pre-deployment/show-about-us-page.sh        # Display info
 ./scripts/pre-deployment/check-if-os-is-supported.sh  # Check if the Operating System is supported
 if [ $? -eq 1 ]; then                                 # Stop execution if user chose to Cancel
