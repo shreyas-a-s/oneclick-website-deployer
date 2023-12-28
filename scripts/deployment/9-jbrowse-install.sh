@@ -33,7 +33,7 @@ sudo chmod -R g+w "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/jbrowse
 
 # Install tripal_jbrowse
 wget https://github.com/tripal/tripal_jbrowse/archive/refs/tags/7.x-3.0.zip
-unzip 7.x-3.0.zip
+unzip -q 7.x-3.0.zip
 rm 7.x-3.0.zip
 mv tripal_jbrowse-7.x-3.0 "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/tripal_jbrowse
 drush pm-enable -y tripal_jbrowse_mgmt tripal_jbrowse_page
