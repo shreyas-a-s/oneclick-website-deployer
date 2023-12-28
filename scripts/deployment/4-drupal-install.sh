@@ -7,6 +7,7 @@ printf '+-------------------------+
 
 # Variables
 DRUPAL_HOME=/var/www/html
+export DRUPAL_HOME
 latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
 # Store script's directory path into a avriable

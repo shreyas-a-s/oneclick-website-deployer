@@ -2,6 +2,7 @@
 
 # Variables
 DRUPAL_HOME=/var/www/html
+export DRUPAL_HOME
 
 # Read name of drupal directory if not already read
 if [[ -z ${drupalsitedir} ]]; then

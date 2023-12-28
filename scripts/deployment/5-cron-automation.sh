@@ -7,6 +7,7 @@ echo '+---------------------------+'
 
 # Variables
 DRUPAL_HOME=/var/www/html
+export DRUPAL_HOME
 
 # Get user input
 if [[ -z ${drupalsitedir} ]]; then

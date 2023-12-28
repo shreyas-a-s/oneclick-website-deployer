@@ -7,6 +7,7 @@ echo '+-------------------------+'
 
 # Variables
 DRUPAL_HOME=/var/www/html
+export DRUPAL_HOME
 
 # Store script's directory path into a avriable
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
