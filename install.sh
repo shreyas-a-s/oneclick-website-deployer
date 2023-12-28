@@ -27,12 +27,16 @@
 # Sastha Kumar N [https://github.com/Sastha-Kumar-N]
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
 
+# Source whiptail colors
+if [ -f ./whiptail-colors.sh ]; then
+  . ./whiptail-colors.sh
+fi
+
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Pre-deployment scripts
 . ./scripts/pre-deployment/check-internet.sh          # Check if connected to internet before proceeding
-. ./functions/whiptail-colors.sh                      # Apply custom colors to Whiptail windows
 ./scripts/pre-deployment/install-whiptail.sh          # Install whiptail
 ./scripts/pre-deployment/show-about-us-page.sh        # Display info
 ./scripts/pre-deployment/check-if-os-is-supported.sh  # Check if the Operating System is supported
