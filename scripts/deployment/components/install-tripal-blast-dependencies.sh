@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Store script's directory path into a avriable
+# Store script's directory path into a variable
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 # Install dependencies present in distro repository
