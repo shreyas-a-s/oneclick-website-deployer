@@ -43,7 +43,7 @@ fi
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Scripts
-_check_internet          # Check if connected to internet before proceeding
+_is_internet_available   # Check if internet is available
 _install_whiptail        # Install whiptail
 ./show-about-us-page.sh  # Display info
 _is_os_supported         # Check if the Operating System is supported
