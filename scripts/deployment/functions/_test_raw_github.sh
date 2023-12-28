@@ -2,7 +2,7 @@
 
 # Test if raw.githubusercontent.com is accessible or not
 function _test_raw_github {
-  printf "Testing if raw/githubusercontent.com is accessible.\n"
+  printf "Testing if raw.githubusercontent.com is accessible.\n"
   printf "Please wait.."
   for _ in {1..6}
     do
