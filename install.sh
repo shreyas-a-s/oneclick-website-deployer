@@ -42,11 +42,11 @@ fi
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
-# Pre-deployment scripts
-_check_internet                                 # Check if connected to internet before proceeding
-_install_whiptail                               # Install whiptail
-./scripts/pre-deployment/show-about-us-page.sh  # Display info
-_is_os_supported                                # Check if the Operating System is supported
+# Scripts
+_check_internet          # Check if connected to internet before proceeding
+_install_whiptail        # Install whiptail
+./show-about-us-page.sh  # Display info
+_is_os_supported         # Check if the Operating System is supported
 
 # Get user input
 _input_db_credentials
