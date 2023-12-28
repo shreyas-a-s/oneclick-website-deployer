@@ -2,7 +2,7 @@
 
 function _install_whiptail {
   if command -v whiptail > /dev/null; then # Do nothing if whiptail is already installed
-    printf "Whiptail is already installed\n"
+    printf "\nWhiptail is already installed\n"
   else # Install whiptail
     if command -v apt-get > /dev/null; then # Install for debian-based linux distros
       sudo apt-get install -y whiptail
