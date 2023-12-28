@@ -33,7 +33,7 @@ drush pm-download tripal -y
 drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 
 # Check site maintenance username before proceeding
-_test_sma_username
+_get_sma_username
 
 # Tripal Chado
 "$SCRIPT_DIR"/components/install-chado.sh  # Chado installation
