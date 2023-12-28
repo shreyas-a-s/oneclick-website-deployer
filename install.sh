@@ -21,8 +21,7 @@
 # ██████╔╝███████╗██║     ███████╗╚██████╔╝   ██║   ███████╗██║  ██║
 # ╚═════╝ ╚══════╝╚═╝     ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝
 
-# Developed for BharatGenomeDatabase
-# By
+# Developed for BharatGenomeDatabase.org (BGDB.org) by
 # Shreyas A S [https://github.com/shreyas-a-s/website-tripal]
 # Sastha Kumar N [https://github.com/Sastha-Kumar-N]
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
@@ -32,7 +31,7 @@ if [ -f ./whiptail-colors.sh ]; then
   . ./whiptail-colors.sh
 fi
 
-# Souce functions
+# Source functions
 if [ -d ./functions ]; then
   for fn in ./functions/*; do
     . "$fn"
