@@ -53,9 +53,20 @@ _install_whiptail       # Install whiptail program that poweres the script
 ./show-about-us-page.sh
 
 # Prompt the user to enter inputs
-_input_db_credentials  # PostgreSQL Database credentials
-_input_drupal_dir      # Directory to which drupal should be installed
-_input_memory_limit    # Maximum amount of memory a PHP script can consume
+while true; do
+  _input_db_credentials  # PostgreSQL Database credentials
+
+  _input_drupal_dir      # Directory to which drupal should be installed
+
+  _input_memory_limit    # Maximum amount of memory a PHP script can consume
+
+  # Give user option to edit choices
+  if (whiptail --defaultno --yesno "Do you want to edit the data?\n\nMemory Limit: $memorylimit""MB\nDatabase Name: $psqldb\nDatabase User: $psqluser\nDatabase Password: $HIDDEN_PGPASSWORD\nDrupal Website Directory: $drupalsitedir" 14 50) then
+    continue
+  else
+    break
+  fi
+done
 
 # Deployment scripts
 ./scripts/deployment/1-base-setup.sh
