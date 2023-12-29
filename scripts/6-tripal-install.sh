@@ -9,7 +9,7 @@ echo '+-------------------------+'
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Source functions
-if [ -d ../../functions ]; then
+if [ -d ../functions ]; then
   for fn in ./functions/*; do
     . "$fn"
   done
