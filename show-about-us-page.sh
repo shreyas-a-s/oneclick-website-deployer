@@ -7,7 +7,7 @@ input_file="./about-us.txt"
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 if command -v whiptail > /dev/null; then # Display 'About Us' using whiptail
-  whiptail --title "About The Script" --textbox --ok-button "Continue" $input_file 20 86
+  whiptail --title "ABOUT THE SCRIPT" --textbox --ok-button "Continue" $input_file 20 86
 else # Display 'About Us' using command-line
   number_of_columns=$(tput cols)
   line_char_count=$(( $(awk 'NR==1{print length}' "$input_file") - 2 ))

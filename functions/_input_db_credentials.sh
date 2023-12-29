@@ -3,11 +3,11 @@
 function _input_db_credentials {
   if command -v whiptail > /dev/null; then
     # Read database name
-    psqldb=$(whiptail --title "User Input" --inputbox "\nEnter the name for a new database for our website: " 10 47 "$psqldb" 3>&1 1>&2 2>&3)
+    psqldb=$(whiptail --title "USER INPUT" --inputbox "\nEnter the name for a new database for our website: " 10 47 "$psqldb" 3>&1 1>&2 2>&3)
     # Read database username
-    psqluser=$(whiptail --title "User Input" --inputbox "\nEnter a new username (role) for postgres: " 9 45 "$psqluser" 3>&1 1>&2 2>&3)
+    psqluser=$(whiptail --title "USER INPUT" --inputbox "\nEnter a new username (role) for postgres: " 9 45 "$psqluser" 3>&1 1>&2 2>&3)
     # Read database password
-    PGPASSWORD=$(whiptail --title "User Input" --passwordbox "\nEnter a password for the new user: " 9 38 "$PGPASSWORD" 3>&1 1>&2 2>&3)
+    PGPASSWORD=$(whiptail --title "USER INPUT" --passwordbox "\nEnter a password for the new user: " 9 38 "$PGPASSWORD" 3>&1 1>&2 2>&3)
   else
     # Read database name
     read -r -p "Enter the name for a new database for our website: " psqldb

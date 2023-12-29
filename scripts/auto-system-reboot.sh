@@ -6,7 +6,7 @@ if type _printtitle &> /dev/null; then
 fi
 
 if command -v whiptail > /dev/null; then
-  whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44
+  whiptail --title "INSTALLATION COMPLETE" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44
   exitstatus=$?
   if [ $exitstatus = 0 ]; then
     sudo reboot

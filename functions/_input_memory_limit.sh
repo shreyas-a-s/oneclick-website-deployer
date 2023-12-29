@@ -2,7 +2,7 @@
 
 function _input_memory_limit {
   if command -v whiptail > /dev/null; then
-    memory_limit_title="User Input"
+    memory_limit_title="USER INPUT"
     memory_limit_msg=""
     total_memory="$(command free --mega | awk 'NR==2{print $2}')"
 
