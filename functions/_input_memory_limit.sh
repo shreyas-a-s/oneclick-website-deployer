@@ -8,6 +8,8 @@ function _input_memory_limit {
 
     while true; do
       memorylimit=$(whiptail --title "$memory_limit_title" --inputbox "\n$memory_limit_msg""How much memory to allocate to the website (in MB)? " 11 46 "$memorylimit" 3>&1 1>&2 2>&3)
+      export OLD_NEWT_COLORS=$(echo $NEWT_COLORS) # Make a backup of whiptail colorscheme
+      NEWT_COLORS=$(echo $NEWT_COLORS | sed '/root/c root=white,red') # Change whiptail bg color to RED
       if [[ ! "$memorylimit" =~ ^[0-9]+$ ]] &> /dev/null; then
         memory_limit_title="ERROR"
         memory_limit_msg="Only integer values are accepted.\n"
@@ -17,6 +19,7 @@ function _input_memory_limit {
         memory_limit_msg="Value is Larger than Total RAM ($total_memory""MB).\n"
         continue
       else
+        export NEWT_COLORS=$(echo $OLD_NEWT_COLORS) # Restore previous colorscheme
         break
       fi
     done

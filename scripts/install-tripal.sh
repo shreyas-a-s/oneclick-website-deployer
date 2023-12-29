@@ -49,12 +49,15 @@ while true; do
   goodtogo=true
   _is_raw.githubusercontent.com_accessible
   if [ "$goodtogo" = false ]; then
+    export OLD_NEWT_COLORS=$(echo $NEWT_COLORS) # Make a backup of whiptail colorscheme
+    NEWT_COLORS=$(echo $NEWT_COLORS | sed '/root/c root=white,red') # Change whiptail bg color to RED
     # Ask the user if they want to try different network setup
     whiptail --title "UNABLE TO PROCEED" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57
     exitstatus=$?
     if [ $exitstatus = 0 ]; then
       continue
     else
+      export NEWT_COLORS=$(echo $OLD_NEWT_COLORS) # Restore previous colorscheme
       break
     fi
   else
