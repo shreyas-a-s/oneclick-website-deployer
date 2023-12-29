@@ -34,15 +34,15 @@ if [ -f ./whiptail-colors.sh ]; then
   . ./whiptail-colors.sh
 fi
 
+# Change directory
+SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
+
 # Source functions
 if [ -d ./functions ]; then
   for fn in ./functions/*; do
     . "$fn"
   done
 fi
-
-# Change directory
-SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Check environment
 _is_os_supported        # Check if the OS is on the supported list
