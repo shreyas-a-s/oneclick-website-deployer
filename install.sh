@@ -77,7 +77,8 @@ done
 ./scripts/deployment/6-tripal-install.sh
 ./scripts/deployment/7-daemon-install.sh
 ./scripts/deployment/8-blast-install.sh
-./scripts/deployment/9-jbrowse-install.sh
+./scripts/deployment/9-setup-sample-blast-db.sh
+./scripts/deployment/10-jbrowse-install.sh
 
 # Unset PGPASSWORD
 unset PGPASSWORD
