@@ -57,7 +57,7 @@ initial_network_config=$(ip addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 # Actual execution
 while true; do
   goodtogo=true
-  _test_raw_github
+  _is_raw.githubusercontent.com_accessible
   if [ "$goodtogo" = false ]; then
     # Ask the user if they want to try different network setup
     if (whiptail --title "Unable to proceed" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57) then
