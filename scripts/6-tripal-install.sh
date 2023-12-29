@@ -29,7 +29,8 @@ while [[ $(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep chad
 done
 
 # Checking if chado installation was successful
-if [ $? -eq 0 ]; then
+exitstatus=$?
+if [ $exitstatus -eq 0 ]; then
   echo "Chado Installation Successful."
 else
   echo "Chado Installation Failed."
@@ -44,7 +45,9 @@ while true; do
   _is_raw.githubusercontent.com_accessible
   if [ "$goodtogo" = false ]; then
     # Ask the user if they want to try different network setup
-    if (whiptail --title "Unable to proceed" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57) then
+    whiptail --title "Unable to proceed" --yesno --yes-button "Retry" --no-button "Continue" "\n- Unable to connect to raw.githubusercontent.com.\n- For preparing website with chado, connecting to it\n  is necessary.\n- You can 'Continue' if you want but it is advisable\n  to change network configuration and 'Retry'." 13 57
+    exitstatus=$?
+    if [ $exitstatus = 0 ]; then
       continue
     else
       break

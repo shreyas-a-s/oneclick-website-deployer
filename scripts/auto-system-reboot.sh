@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 if command -v whiptail > /dev/null; then
-  if whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44; then
+  whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44
+  exitstatus=$?
+  if [ $exitstatus = 0 ]; then
     sudo reboot
   fi
 else
