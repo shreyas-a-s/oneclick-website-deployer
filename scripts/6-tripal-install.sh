@@ -70,5 +70,5 @@ fi
 # when we refresh overlay menus (eg: localhost/drupal/bio_data/1#overlay-context=&overlay=admin/tripal)
 # source: https://www.drupal.org/project/field_formatter_settings/issues/3166628
 cd "$DRUPAL_HOME"/"$drupalsitedir"/sites/all/modules/field_formatter_settings || exit
-patch -p1 < ./field_formatter_settings.patch
+patch -p1 < "$SCRIPT_DIR"/field_formatter_settings.patch
 
