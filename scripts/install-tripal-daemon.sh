@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Display title of script
+if type _printtitle &> /dev/null; then
+  _printtitle "INSTALLING - TRIPAL DAEMON"
+fi
+
 # Change into drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Display title of script
+if type _printtitle &> /dev/null; then
+  _printtitle "INSTALLING - WEB SERVER"
+fi
+
 # Install dependencies
 if command -v apt-get > /dev/null; then # Install for debian-based distros
   sudo apt-get -y install apache2 libapache2-mod-php # Install apache

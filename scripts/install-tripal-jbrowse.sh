@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Display title of script
+if type _printtitle &> /dev/null; then
+  _printtitle "INSTALLING - TRIPAL JBROWSE"
+fi
+
 # Install dependencies
 if command -v apt-get > /dev/null; then # Install for debian-based distros
   sudo apt-get -y install build-essential curl unzip wget zlib1g-dev

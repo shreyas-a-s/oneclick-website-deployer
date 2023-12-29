@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Display title of script
+if type _printtitle &> /dev/null; then
+  _printtitle "INSTALLING - POSTGRESQL DATABASE"
+fi
+
 # Install dependencies
 if command -v apt-get > /dev/null; then
   sudo apt-get install -y postgresql

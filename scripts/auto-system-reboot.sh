@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Display title of script
+if type _printtitle &> /dev/null; then
+  _printtitle "AUTOMATIC SYSTEM REBOOT"
+fi
+
 if command -v whiptail > /dev/null; then
   whiptail --title "Installation Complete" --yesno --no-button "Later" "Reboot the system for site installation to fully take effect. Reboot now?" 8 44
   exitstatus=$?

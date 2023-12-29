@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Display title of script
+if type _printtitle &> /dev/null; then
+  _printtitle "SETTING UP - SAMPLE BLAST DATABASE"
+fi
+
 # Gathering test database
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA || exit

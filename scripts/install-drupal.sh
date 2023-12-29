@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Display title of script
+if type _printtitle &> /dev/null; then
+  _printtitle "INSTALLING - DRUPAL"
+fi
+
 # Install dependencies
 wget https://github.com/drush-ops/drush/releases/download/8.4.12/drush.phar # Install Drush (command-line shell interface for Drupal)
 chmod +x drush.phar

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Display title of script
+if type _printtitle &> /dev/null; then
+  _printtitle "SETTING UP - CRON"
+fi
+
 # Store drupal cron key into new variable
 drupal_cron_key=$(drush variable-get cron_key --root="$DRUPAL_HOME"/"$drupalsitedir" | awk '{print $2}')
 
