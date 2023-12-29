@@ -70,7 +70,6 @@ done
 
 # Deployment scripts
 ./scripts/deployment/1-base-setup.sh
-./scripts/deployment/2-drush-install.sh
 ./scripts/deployment/3-postgres-setup.sh
 ./scripts/deployment/4-drupal-install.sh
 ./scripts/deployment/5-install-webform.sh

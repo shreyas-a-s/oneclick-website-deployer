@@ -5,6 +5,14 @@ printf '+-------------------------+
 |   Drupal Installation   |
 +-------------------------+\n'
 
+# Install dependencies
+wget https://github.com/drush-ops/drush/releases/download/8.4.12/drush.phar # Install Drush (command-line shell interface for Drupal)
+chmod +x drush.phar
+sudo mv drush.phar /usr/local/bin/drush
+if command -v apt-get > /dev/null; then # Install other dependencies for debian-based distros
+  sudo apt-get install -y wget tar
+fi
+
 # Store latest drupal seven version to a variable
 latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
