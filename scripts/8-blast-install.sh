@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# Display task name
-echo -e '\n+------------------------+'
-echo '|   Blast Installation   |'
-echo '+------------------------+'
-
 # Install dependencies
 if command -v apt-get > /dev/null; then
   sudo apt-get install -y git unzip wget  # Install some necessary programs

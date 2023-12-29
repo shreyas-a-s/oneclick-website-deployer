@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# Display task name
-echo -e '\n+-------------------------+'
-echo '|   Tripal Installation   |'
-echo '+-------------------------+'
-
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
@@ -30,10 +25,6 @@ drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 _input_site_maintenance_username
 
 # Install Tripal chado
-echo -e '\n+----------------------+'
-echo '|   Installing Chado   |'
-echo '+----------------------+'
-
 while [[ $(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep chado_schema_exists | awk '{print $2}') == "true" ]]; do
   whiptail --title "Install Chado" --msgbox --ok-button "OK" --notags "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install\n2. Click the drop-down menu under Installation/Upgrade Action.\n3. Select 'New Install of Chado v1.3'.\n4. Click 'Install/Upgrade Chado'.\n-  NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND.\n5. Hit 'OK' after completing these steps." 13 65
   drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" &> /dev/null
@@ -46,15 +37,10 @@ else
   echo "Chado Installation Failed."
 fi
 
-# Prepare Tripal Chado
-echo -e '\n+---------------------+'
-echo '|   Preparing Chado   |'
-echo '+---------------------+'
-
 # Save initial network configuration into a string
 initial_network_config=$(ip addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 
-# Actual execution
+# Prepare Tripal Chado
 while true; do
   goodtogo=true
   _is_raw.githubusercontent.com_accessible

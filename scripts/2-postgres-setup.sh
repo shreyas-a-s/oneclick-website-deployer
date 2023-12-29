@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Display task name
-echo -e '\n+----------------------------------+'
-echo '|   PostgreSQL Database Creation   |'
-echo '+----------------------------------+'
-
 # Install dependencies
 if command -v apt-get > /dev/null; then
   sudo apt-get install -y postgresql

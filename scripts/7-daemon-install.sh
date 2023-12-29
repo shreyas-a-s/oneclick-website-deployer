@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# Display task name
-echo -e '\n+--------------------------------+'
-echo '|   Tripal_Daemon Installation   |'
-echo '+--------------------------------+'
-
 # Change into drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 
