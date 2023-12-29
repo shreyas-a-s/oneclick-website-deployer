@@ -65,17 +65,17 @@ while true; do
   fi
 done
 
-# Deployment scripts
-./scripts/deployment/1-base-setup.sh
-./scripts/deployment/2-postgres-setup.sh
-./scripts/deployment/3-drupal-install.sh
-./scripts/deployment/4-install-webform.sh
-./scripts/deployment/5-cron-automation.sh
-./scripts/deployment/6-tripal-install.sh
-./scripts/deployment/7-daemon-install.sh
-./scripts/deployment/8-blast-install.sh
-./scripts/deployment/9-setup-sample-blast-db.sh
-./scripts/deployment/10-jbrowse-install.sh
+# Custom scripts
+./scripts/1-base-setup.sh
+./scripts/2-postgres-setup.sh
+./scripts/3-drupal-install.sh
+./scripts/4-install-webform.sh
+./scripts/5-cron-automation.sh
+./scripts/6-tripal-install.sh
+./scripts/7-daemon-install.sh
+./scripts/8-blast-install.sh
+./scripts/9-setup-sample-blast-db.sh
+./scripts/10-jbrowse-install.sh
 
 # Unset PGPASSWORD
 unset PGPASSWORD
