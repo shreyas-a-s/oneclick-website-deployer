@@ -66,16 +66,16 @@ while true; do
 done
 
 # Custom scripts
-./scripts/1-base-setup.sh
-./scripts/2-postgres-setup.sh
-./scripts/3-drupal-install.sh
+./scripts/1-install-web-server.sh
+./scripts/2-install-psql.sh
+./scripts/3-install-drupal.sh
 ./scripts/4-install-webform.sh
-./scripts/5-cron-automation.sh
-./scripts/6-tripal-install.sh
-./scripts/7-daemon-install.sh
-./scripts/8-blast-install.sh
+./scripts/5-setup-cron.sh
+./scripts/6-install-tripal.sh
+./scripts/7-install-tripal-daemon.sh
+./scripts/8-install-tripal-blast.sh
 ./scripts/9-setup-sample-blast-db.sh
-./scripts/10-jbrowse-install.sh
+./scripts/10-install-tripal-jbrowse.sh
 
 # Unset PGPASSWORD
 unset PGPASSWORD
