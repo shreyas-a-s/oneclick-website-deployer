@@ -61,7 +61,7 @@ while true; do
   _input_memory_limit    # Maximum amount of memory a PHP script can consume
 
   # Give user option to edit choices
-  if (whiptail --defaultno --yesno "Do you want to edit the data?\n\nMemory Limit: $memorylimit""MB\nDatabase Name: $psqldb\nDatabase User: $psqluser\nDatabase Password: $HIDDEN_PGPASSWORD\nDrupal Website Directory: $drupalsitedir" 14 50) then
+  if (whiptail --defaultno --yesno "Do you want to edit the data?\n\nDatabase Name: $psqldb\nDatabase User: $psqluser\nDatabase Password: $HIDDEN_PGPASSWORD\nDrupal Website Directory: $drupalsitedir\nMemory Limit: $memorylimit""MB" 14 50) then
     continue
   else
     break
