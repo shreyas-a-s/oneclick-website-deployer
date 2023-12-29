@@ -5,9 +5,9 @@ echo -e '\n+------------------------+'
 echo '|   Drush Installation   |'
 echo '+------------------------+'
 
-# Install wget (dependency of this script)
-if ! command -v wget > /dev/null; then
-  ./components/install-wget.sh
+# Install dependencies
+if command -v apt-get > /dev/null; then # Install for debian-based distros
+  sudo apt-get install -y wget
 fi
 
 # Installation
