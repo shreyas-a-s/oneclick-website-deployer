@@ -5,15 +5,6 @@ echo -e '\n+--------------------------------+'
 echo '|   Tripal_Daemon Installation   |'
 echo '+--------------------------------+'
 
-# Variables
-DRUPAL_HOME=/var/www/html
-export DRUPAL_HOME
-
-# Read name of drupal directory if not already read
-if [[ -z ${drupalsitedir} ]]; then
-	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
-fi
-
 # Change into drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 

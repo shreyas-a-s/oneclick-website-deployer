@@ -5,21 +5,12 @@ echo -e '\n+-------------------------+'
 echo '|   Tripal Installation   |'
 echo '+-------------------------+'
 
-# Variables
-DRUPAL_HOME=/var/www/html
-export DRUPAL_HOME
-
 # Store script's directory path into a variable
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 # Source functions
 . "$SCRIPT_DIR"/functions/_test_raw_github.sh   # Function to test if raw.githubusercontent.com is accessible
 . "$SCRIPT_DIR"/functions/_get_sma_username.sh  # Function to read site maintenamce username and test it
-
-# Read name of drupal directory if not already read
-if [[ -z ${drupalsitedir} ]]; then
-  read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
-fi
 
 # Change directory to drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir" || exit

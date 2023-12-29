@@ -5,15 +5,6 @@ echo -e '\n+---------------------------------+'
 echo '|   Tripal_JBrowse Installation   |'
 echo '+---------------------------------+'
 
-# Variables
-DRUPAL_HOME=/var/www/html
-export DRUPAL_HOME
-
-# Read name of drupal directory if not already read
-if [[ -z ${drupalsitedir} ]]; then
-	read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
-fi
-
 # Install pre-requisites
 if command -v apt-get > /dev/null; then
   sudo apt-get -y install build-essential zlib1g-dev unzip wget curl

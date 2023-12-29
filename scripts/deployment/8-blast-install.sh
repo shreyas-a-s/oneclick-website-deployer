@@ -5,17 +5,8 @@ echo -e '\n+------------------------+'
 echo '|   Blast Installation   |'
 echo '+------------------------+'
 
-# Variables
-DRUPAL_HOME=/var/www/html
-export DRUPAL_HOME
-
 # Store script's directory path into a variable
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
-
-# Read name of drupal directory if not already read
-if [[ -z ${drupalsitedir} ]]; then
-  read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
-fi
 
 # Install dependencies
 "$SCRIPT_DIR"/components/install-tripal-blast-dependencies.sh

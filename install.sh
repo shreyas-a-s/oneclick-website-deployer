@@ -26,6 +26,9 @@
 # Sastha Kumar N [https://github.com/Sastha-Kumar-N]
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
 
+# Define web root folder
+export DRUPAL_HOME=/var/www/html
+
 # Source whiptail colors
 if [ -f ./whiptail-colors.sh ]; then
   . ./whiptail-colors.sh

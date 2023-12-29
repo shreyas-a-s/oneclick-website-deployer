@@ -10,12 +10,6 @@ if command -v apt-cache > /dev/null; then
   php_version=$(apt-cache show php | grep version | awk '{print $4}' | awk -F ')' '{print $1}')
 fi
 
-# Read memory limit
-if [[ -z ${memorylimit} ]]; then # Checking if memory limit is not already read
-  . ../../functions/_input_memory_limit.sh
-  _input_memory_limit
-fi
-
 # Install and setup apache and dependencies
 if command -v apt-get > /dev/null; then # Install for debian-based distros
   sudo apt-get -y install apache2 libapache2-mod-php

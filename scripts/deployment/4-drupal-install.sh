@@ -5,23 +5,11 @@ printf '+-------------------------+
 |   Drupal Installation   |
 +-------------------------+\n'
 
-# Variables
-DRUPAL_HOME=/var/www/html
-export DRUPAL_HOME
+# Store latest drupal seven version to a variable
 latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
 
 # Store script's directory path into a variable
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
-
-# Read name of drupal directory if not already read
-if [[ -z ${drupalsitedir} ]]; then
-  read -r -p "Enter the name of the directory in which drupal website need to be installed: " drupalsitedir
-fi
-
-# Read database credentials if not read already
-if [[ -z ${psqldb} ]]; then
-  . ../pre-deployment/components/get-db-creds.sh
-fi
 
 # Install Drupal
 sudo chown -R "$USER" "$DRUPAL_HOME"

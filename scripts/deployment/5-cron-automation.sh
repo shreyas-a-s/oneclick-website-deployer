@@ -1,18 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Display task name
 echo -e '\n+---------------------------+'
 echo '|   Cron Automation Setup   |'
 echo '+---------------------------+'
-
-# Variables
-DRUPAL_HOME=/var/www/html
-export DRUPAL_HOME
-
-# Get user input
-if [[ -z ${drupalsitedir} ]]; then
-  read -r -p "Enter the name of the directory in which drupal website was installed: " drupalsitedir
-fi
 
 # Store drupal cron key into new variable
 drupal_cron_key=$(drush variable-get cron_key --root="$DRUPAL_HOME"/"$drupalsitedir" | awk '{print $2}')

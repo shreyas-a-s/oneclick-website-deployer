@@ -13,12 +13,6 @@ if ! command -v psql > /dev/null; then
   ./components/install-psql.sh
 fi
 
-# Read database credentials if not read already
-if [[ -z ${psqldb} ]]; then
-  . ../../functions/_input_db_credentials.sh
-  _input_db_credentials
-fi
-
 # Create database
 sudo -u postgres createuser "$psqluser"
 sudo -u postgres createdb "$psqldb"
