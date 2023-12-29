@@ -5,14 +5,24 @@ echo -e '\n+------------------------+'
 echo '|   Blast Installation   |'
 echo '+------------------------+'
 
-# Store script's directory path into a variable
-SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
-
 # Install dependencies
-"$SCRIPT_DIR"/components/install-tripal-blast-dependencies.sh
+if command -v apt-get > /dev/null; then
+  sudo apt-get install -y git unzip wget  # Install some necessary programs
+  sudo apt-get install -y ncbi-blast+     # Install NCBI Blast
+fi
 
 # Change to drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
+
+# Install & enable libraries module (dependency of tripal_blast)
+drush pm-download -y libraries
+drush pm-enable -y libraries
+
+# Install cvitjs library (dependency of tripal_blast)
+wget https://github.com/awilkey/cvitjs/archive/master.zip
+unzip -q master.zip
+rm -r cvitjs-master master.zip
+mv cvitjs-master sites/all/libraries/cvitjs
 
 # Install tripal_blast
 mkdir -p sites/all/modules/tripal_blast
@@ -26,7 +36,4 @@ drush pm-enable blast_ui -y
 
 # Set blast+ bin folder in tripal_blast ui
 drush variable-set blast_path /usr/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
-
-# Setup a sample blast database to educate users
-"$SCRIPT_DIR"/components/setup-sample-blast-db.sh
 
