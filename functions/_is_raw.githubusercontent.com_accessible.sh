@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Test if raw.githubusercontent.com is accessible or not
-function _test_raw_github {
+function _is_raw.githubusercontent.com_accessible {
   printf "Testing if raw.githubusercontent.com is accessible.\n"
   printf "Please wait.."
   for _ in {1..6}
@@ -13,5 +13,5 @@ function _test_raw_github {
   printf "\n\n"
 }
 
-export -f _test_raw_github
+export -f _is_raw.githubusercontent.com_accessible
 
