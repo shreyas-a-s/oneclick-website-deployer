@@ -65,6 +65,15 @@ while true; do
   fi
 done
 
+# Prompt user to choose which tripal extensions to install
+tripal_extensions=$(whiptail --title "TRIPAL EXTENSIONS SELECTION" --checklist \
+  "\n         Choose which tripal extensions to install\
+  \n  (ARROW KEYS to move, SPACE to select, ENTER to confirm):" 13 64 4 \
+  "Tripal Daemon" "[To automatically execute Tripal Jobs]" OFF \
+  "Tripal Blast" "[Interface for using NCBI Blast+]" OFF \
+  "Tripal JBrowse" "[Integrate GMOD JBrowse with Tripal]" OFF \
+  3>&1 1>&2 2>&3)
+
 # Custom scripts
 ./scripts/install-web-server.sh
 ./scripts/install-psql.sh
@@ -72,10 +81,18 @@ done
 ./scripts/install-webform.sh
 ./scripts/setup-cron.sh
 ./scripts/install-tripal.sh
-./scripts/install-tripal-daemon.sh
-./scripts/install-tripal-blast.sh
-./scripts/setup-sample-blast-db.sh
-./scripts/install-tripal-jbrowse.sh
+if [[ -n $tripal_extensions ]]; then # Install tripal extensions based on user choice
+  if echo $tripal_extensions | grep -q 'Tripal Daemon'; then
+    ./scripts/install-tripal-daemon.sh
+  fi
+  if echo $tripal_extensions | grep -q 'Tripal Blast'; then
+    ./scripts/install-tripal-blast.sh
+    ./scripts/setup-sample-blast-db.sh
+  fi
+  if echo $tripal_extensions | grep -q 'Tripal JBrowse'; then
+    ./scripts/install-tripal-jbrowse.sh
+  fi
+fi
 
 # Unset PGPASSWORD
 unset PGPASSWORD
