@@ -10,17 +10,20 @@ if command -v apt-get > /dev/null; then # Install for debian-based distros
   sudo apt-get -y install build-essential curl unzip wget zlib1g-dev
 fi
 
+# Prepare environment
+cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
+mkdir tools/
+mkdir -p sites/default/files/jbrowse/data/
+sudo chgrp -R www-data sites/default/files/jbrowse/
+sudo chmod -R g+w sites/default/files/jbrowse
+
 # Install jbrowse
 curl -L -O https://github.com/GMOD/jbrowse/releases/download/1.16.11-release/JBrowse-1.16.11.zip
 unzip -q JBrowse-1.16.11.zip
 rm JBrowse-1.16.11.zip
-mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/
-mv JBrowse-1.16.11 "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse
-cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/jbrowse || exit
+mv JBrowse-1.16.11 tools/jbrowse
+cd tools/jbrowse/ || exit
 ./setup.sh
-mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/jbrowse/data/
-sudo chgrp -R www-data "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/jbrowse/
-sudo chmod -R g+w "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/jbrowse
 
 # Install tripal_jbrowse
 wget https://github.com/tripal/tripal_jbrowse/archive/refs/tags/7.x-3.0.zip
