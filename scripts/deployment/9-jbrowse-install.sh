@@ -5,9 +5,9 @@ echo -e '\n+---------------------------------+'
 echo '|   Tripal_JBrowse Installation   |'
 echo '+---------------------------------+'
 
-# Install pre-requisites
-if command -v apt-get > /dev/null; then
-  sudo apt-get -y install build-essential zlib1g-dev unzip wget curl
+# Install dependencies
+if command -v apt-get > /dev/null; then # Install for debian-based distros
+  sudo apt-get -y install build-essential curl unzip wget zlib1g-dev
 fi
 
 # Install jbrowse
