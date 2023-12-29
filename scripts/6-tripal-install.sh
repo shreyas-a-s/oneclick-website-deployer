@@ -4,11 +4,9 @@
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Source functions
-if [ -d ../functions ]; then
-  for fn in ./functions/*; do
-    . "$fn"
-  done
-fi
+for fn in ../functions/*; do
+  . "$fn"
+done
 
 # Change directory to drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
