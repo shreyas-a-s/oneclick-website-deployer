@@ -70,14 +70,14 @@ done
 
 # Deployment scripts
 ./scripts/deployment/1-base-setup.sh
-./scripts/deployment/3-postgres-setup.sh
-./scripts/deployment/4-drupal-install.sh
-./scripts/deployment/5-install-webform.sh
-./scripts/deployment/6-cron-automation.sh
-./scripts/deployment/7-tripal-install.sh
-./scripts/deployment/8-daemon-install.sh
-./scripts/deployment/9-blast-install.sh
-./scripts/deployment/10-jbrowse-install.sh
+./scripts/deployment/2-postgres-setup.sh
+./scripts/deployment/3-drupal-install.sh
+./scripts/deployment/4-install-webform.sh
+./scripts/deployment/5-cron-automation.sh
+./scripts/deployment/6-tripal-install.sh
+./scripts/deployment/7-daemon-install.sh
+./scripts/deployment/8-blast-install.sh
+./scripts/deployment/9-jbrowse-install.sh
 
 # Unset PGPASSWORD
 unset PGPASSWORD
