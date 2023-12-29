@@ -8,7 +8,7 @@ function _input_memory_limit {
 
     while true; do
       memorylimit=$(whiptail --title "$memory_limit_title" --inputbox "\n$memory_limit_msg""How much memory to allocate to the website (in MB)? " 11 46 "$memorylimit" 3>&1 1>&2 2>&3)
-      if [ "$memorylimit" -ne "$memorylimit" ] &> /dev/null; then
+      if [[ ! "$memorylimit" =~ ^[0-9]+$ ]] &> /dev/null; then
         memory_limit_title="ERROR"
         memory_limit_msg="Only integer values are accepted.\n"
         continue
