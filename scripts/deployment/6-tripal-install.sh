@@ -9,8 +9,11 @@ echo '+-------------------------+'
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Source functions
-. "$SCRIPT_DIR"/functions/_test_raw_github.sh   # Function to test if raw.githubusercontent.com is accessible
-. "$SCRIPT_DIR"/functions/_get_sma_username.sh  # Function to read site maintenamce username and test it
+if [ -d ./functions ]; then
+  for fn in ./functions/*; do
+    . "$fn"
+  done
+fi
 
 # Change directory to drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
