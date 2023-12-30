@@ -29,11 +29,6 @@
 # Define web root folder
 export DRUPAL_HOME=/var/www/html
 
-# Source whiptail colors
-if [ -f ./whiptail-colors.sh ]; then
-  . ./whiptail-colors.sh
-fi
-
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
@@ -45,7 +40,10 @@ done
 # Check environment
 _is_os_supported        # Check if the OS is on the supported list
 _is_internet_available  # Check if system is connected to internet
-_install_whiptail       # Install whiptail program that poweres the script
+
+# Prepare environment
+_install_whiptail             # Install whiptail program that poweres the script
+_set_whiptail_colors_default  # Apply default whiptail colors
 
 # Display the "About Us" page on the screen
 ./show-about-us-page.sh
