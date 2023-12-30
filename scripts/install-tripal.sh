@@ -25,15 +25,15 @@ _input_site_maintenance_username
 # Install Tripal chado
 while [[ $(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep chado_schema_exists | awk '{print $2}') == "true" ]]; do
   whiptail --title "INSTALL CHADO" --msgbox \
-  --ok-button "OK" \
-  --notags \
-  "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install\
-  \n2. Click drop-down menu under Installation/Upgrade Action.\
-  \n3. Select 'New Install of Chado v1.3'.\
-  \n4. Click 'Install/Upgrade Chado'.\
-  \n-  NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND.\
-  \n5. Press ENTER after completing these steps." \
-  13 67
+    --ok-button "OK" \
+    --notags \
+    "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install\
+    \n2. Click drop-down menu under Installation/Upgrade Action.\
+    \n3. Select 'New Install of Chado v1.3'.\
+    \n4. Click 'Install/Upgrade Chado'.\
+    \n-  NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND.\
+    \n5. Press ENTER after completing these steps." \
+    13 67
   drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" &> /dev/null
 done
 
@@ -57,13 +57,13 @@ while true; do
     NEWT_COLORS=$(echo $NEWT_COLORS | sed 's/root=white,gray/root=white,red/') # Change whiptail bg color to RED
     # Ask the user if they want to try different network setup
     whiptail --title "UNABLE TO PROCEED" --yesno \
-    --yes-button "Retry" \
-    --no-button "Continue" \
-    "* Unable to connect to raw.githubusercontent.com.\
-    \n* For preparing website with chado, this connection is necessary.\
-    \n* You can 'Continue' if you want but it is advisable to change network configuration and 'Retry'.\
-    \n         (ARROW KEYS to move, ENTER to confirm)" \
-    12 59
+      --yes-button "Retry" \
+      --no-button "Continue" \
+      "* Unable to connect to raw.githubusercontent.com.\
+      \n* For preparing website with chado, this connection is necessary.\
+      \n* You can 'Continue' if you want but it is advisable to change network configuration and 'Retry'.\
+      \n         (ARROW KEYS to move, ENTER to confirm)" \
+      12 59
     exitstatus=$?
     if [ $exitstatus = 0 ]; then
       continue
@@ -84,9 +84,9 @@ current_network_config=$(ip addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 # If network change is detected, promt user if they want to change network back
 if [ "$current_network_config" != "$initial_network_config" ]; then
   whiptail --title "JUST A PAUSE" --msgbox \
-  "* We've noticed that you've switched network before.\
-  \n* If you wish to change it back, do that and press ENTER." \
-  9 61
+    "* We've noticed that you've switched network before.\
+    \n* If you wish to change it back, do that and press ENTER." \
+    9 61
   while ! ({ ping -c 1 -w 2 example.org; } &> /dev/null); do :; done
 fi
 
