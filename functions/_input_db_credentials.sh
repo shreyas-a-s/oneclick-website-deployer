@@ -4,20 +4,21 @@ function _input_db_credentials {
   if command -v whiptail > /dev/null; then
     # Read database name
     psqldb=$(whiptail --title "USER INPUT" --inputbox \
-      "\nEnter the name for a new database for our website:" \
-      10 47 \
+      "\nEnter the name for a new database for our website:\
+      \n\n         (Press ENTER to continue)" \
+      12 47 \
       "$psqldb" \
       3>&1 1>&2 2>&3)
     # Read database username
     psqluser=$(whiptail --title "USER INPUT" --inputbox \
-      "\nEnter username for a new database user:" \ 
-      9 43 \
+      "\nEnter username for a new database user:\n\n       (Press ENTER to continue)" \
+      11 44 \
       "$psqluser" \
       3>&1 1>&2 2>&3)
     # Read database password
     PGPASSWORD=$(whiptail --title "USER INPUT" --passwordbox \
-      "\nEnter a password for the new user:" \
-      9 38 \
+      "\nEnter a password for the new user:\n\n    (Press ENTER to continue)" \
+      11 38 \
       "$PGPASSWORD" \
       3>&1 1>&2 2>&3)
   else
