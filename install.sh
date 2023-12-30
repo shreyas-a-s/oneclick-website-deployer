@@ -63,7 +63,7 @@ while true; do
     \nMemory Limit: $memorylimit""MB\
     \n\n        Do you want to edit the data?\
     \n    (ARROW KEYS to move, ENTER to confirm)" \
-    14 53
+    15 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
