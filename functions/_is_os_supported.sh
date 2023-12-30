@@ -17,8 +17,9 @@ function _is_os_supported {
         --defaultno \
         --yes-button "Continue" \
         --no-button "Cancel" \
-        "This doesn't seem to be a Debian Linux system. This system is [$os_name]. Installation might not work properly. But you can continue with the installation if you want." \
-        10 56
+        "This doesn't seem to be a Debian Linux system. This system is [$os_name]. Installation might not work properly. But you can continue with the installation if you want.\
+        \n       (ARROW KEYS to move, ENTER to confirm)" \
+        11 56
       exitstatus=$?
       if [ $exitstatus != 0 ]; then
         exit 1
@@ -28,8 +29,9 @@ function _is_os_supported {
         --defaultno \
         --yes-button "Continue" \
         --no-button "Cancel" \
-        "Drupal 7 (and thereby Tripal 3) works best in Debian 11. This system is [Debian $debian_version]. Installation might not work properly in this system. But you can continue with the installation if you want." \
-        10 56
+        "Drupal 7 (and thereby Tripal 3) works best in Debian 11. This system is [Debian $debian_version]. Installation might not work properly in this system. But you can continue with the installation if you want.\
+        \n\n       (ARROW KEYS to move, ENTER to confirm)" \
+        12 56
       exitstatus=$?
       if [ $exitstatus != 0 ]; then
         exit 1
