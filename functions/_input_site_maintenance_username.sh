@@ -4,7 +4,10 @@
 function _input_site_maintenance_username {
   titleSMA="SITE MAINTENANCE ACCOUNT CREDENTIALS"
   while ! ( { drush user-information "$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q administrator; } &> /dev/null ); do
-    smausername=$(whiptail --title "$titleSMA" --inputbox "\nEnter the site maintenance account username that you've given to the website: " 10 48 3>&1 1>&2 2>&3)
+    smausername=$(whiptail --title "$titleSMA" --inputbox \
+      "\nEnter the site maintenance account username that you've given to the website:" \
+      10 48 \
+      3>&1 1>&2 2>&3)
       titleSMA="WRONG USERNAME"
       _set_whiptail_colors_red_bg # Change whiptail bg color to RED
   done
