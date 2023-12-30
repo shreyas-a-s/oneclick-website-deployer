@@ -87,7 +87,6 @@ if [ "$current_network_config" != "$initial_network_config" ]; then
   "* We've noticed that you've switched network before.\
   \n* If you wish to change it back, do that and press ENTER." \
   9 61
-  whiptail --title "JUST CHECKING" --msgbox --ok-button "Yes" "         Are you sure?" 8 35
   while ! ({ ping -c 1 -w 2 example.org; } &> /dev/null); do :; done
 fi
 
