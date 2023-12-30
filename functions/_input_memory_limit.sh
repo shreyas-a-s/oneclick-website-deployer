@@ -8,7 +8,8 @@ function _input_memory_limit {
 
     while true; do
       memorylimit=$(whiptail --title "$memory_limit_title" --inputbox \
-        "\n$memory_limit_msg""How much memory to allocate to the website (in MB)?" \
+        "\n$memory_limit_msg""How much memory to allocate to the website (in MB)?\
+        \n         (Press ENTER to continue)" \
         11 46 \
         "$memorylimit" \
         3>&1 1>&2 2>&3)
