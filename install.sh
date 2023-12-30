@@ -54,7 +54,16 @@ while true; do
   _input_drupal_dir      # Directory to which drupal should be installed
   _input_memory_limit    # Maximum amount of memory a PHP script can consume
   # Give user option to edit choices
-  whiptail --defaultno --yesno "Do you want to edit the data?\n\nDatabase Name: $psqldb\nDatabase User: $psqluser\nDatabase Password: $HIDDEN_PGPASSWORD\nDrupal Website Directory: $drupalsitedir\nMemory Limit: $memorylimit""MB" 14 50
+  whiptail --title "USER SELECTION" --yesno \
+    --defaultno \
+    "Database Name: $psqldb\
+    \nDatabase User: $psqluser\
+    \nDatabase Password: $HIDDEN_PGPASSWORD\
+    \nDrupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
+    \nMemory Limit: $memorylimit""MB\
+    \n        Do you want to edit the data?\
+    \n    (ARROW KEYS to move, ENTER to confirm)" \
+    14 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
