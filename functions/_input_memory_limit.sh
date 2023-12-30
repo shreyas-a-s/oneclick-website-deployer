@@ -7,7 +7,11 @@ function _input_memory_limit {
     total_memory="$(command free --mega | awk 'NR==2{print $2}')"
 
     while true; do
-      memorylimit=$(whiptail --title "$memory_limit_title" --inputbox "\n$memory_limit_msg""How much memory to allocate to the website (in MB)? " 11 46 "$memorylimit" 3>&1 1>&2 2>&3)
+      memorylimit=$(whiptail --title "$memory_limit_title" --inputbox \
+        "\n$memory_limit_msg""How much memory to allocate to the website (in MB)?" \
+        11 46 \
+        "$memorylimit" \
+        3>&1 1>&2 2>&3)
       _set_whiptail_colors_red_bg # Change whiptail bg color to RED
       if [[ ! "$memorylimit" =~ ^[0-9]+$ ]] &> /dev/null; then
         memory_limit_title="ERROR"
