@@ -12,6 +12,9 @@ SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
 
 # Install dependencies
+if command -v apt-get > /dev/null; then # Install for debian-based distros
+  sudo apt-get install -y net-tools
+fi
 drush pm-download -y entity views ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 drush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 
@@ -46,7 +49,7 @@ else
 fi
 
 # Save initial network configuration into a string
-initial_network_config=$(ip addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+initial_network_config=$(sudo ifconfig)
 
 # Prepare Tripal Chado
 while true; do
@@ -79,7 +82,7 @@ drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsite
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Save current network configuration into a string
-current_network_config=$(ip addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+current_network_config=$(sudo ifconfig)
 
 # If network change is detected, promt user if they want to change network back
 if [ "$current_network_config" != "$initial_network_config" ]; then
