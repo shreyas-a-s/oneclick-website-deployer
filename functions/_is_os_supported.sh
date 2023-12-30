@@ -12,7 +12,7 @@ function _is_os_supported {
   # Give warning if OS is not supported
   if command -v whiptail > /dev/null; then # Display messages using whiptail
     export OLD_NEWT_COLORS=$(echo $NEWT_COLORS) # Make a backup of whiptail colorscheme
-    NEWT_COLORS=$(echo $NEWT_COLORS | sed '/root/c root=white,red') # Change whiptail bg color to RED
+    NEWT_COLORS=$(echo $NEWT_COLORS | sed 's/root=white,gray/root=white,red/') # Change whiptail bg color to RED
     if ! command -v apt-get > /dev/null; then # Checking is OS is not Debian-based
       whiptail --title "WARNING" --yesno --defaultno --yes-button "Continue" --no-button "Cancel" "This doesn't seem to be a Debian Linux system. This system is [$os_name]. Installation might not work properly. But you can continue with the installation if you want." 10 56
       exitstatus=$?
