@@ -5,13 +5,8 @@ if type _printtitle &> /dev/null; then
   _printtitle "INSTALLING - TRIPAL"
 fi
 
-# Change directory
-SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
-
-# Source functions
-for fn in ../functions/*; do
-  . "$fn"
-done
+# Store directory in which script is stored into a variable
+SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 # Change directory to drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
