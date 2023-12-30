@@ -7,7 +7,7 @@ function _input_site_maintenance_username {
     smausername=$(whiptail --title "$titleSMA" --inputbox \
       "\nEnter the site maintenance account username that you've given to the website:\
       \n\n         (Press ENTER to continue)" \
-      12 48 \ 
+      12 48 \
       3>&1 1>&2 2>&3)
       titleSMA="WRONG USERNAME"
       _set_whiptail_colors_red_bg # Change whiptail bg color to RED
