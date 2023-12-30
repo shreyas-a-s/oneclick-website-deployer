@@ -10,6 +10,7 @@ function _is_internet_available {
         \n\n         (Press ENTER to exit)" \
         11 44
       _set_whiptail_colors_default # Restore default colorscheme
+      print "\n"
     else
       printf "\nUnable to connect to internet. Check and make sure you are connected to internet before executing the script.\n"
     fi
