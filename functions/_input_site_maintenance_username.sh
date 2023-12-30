@@ -13,10 +13,9 @@ function _input_site_maintenance_username {
       _set_whiptail_colors_red_bg # Change whiptail bg color to RED
   done
   _set_whiptail_colors_default # Restore default colorscheme
-}
 
-# Export variables
-export smausername
+  export smausername # Export smausername to be used by child scripts
+}
 
 # Export the function to be used by child scripts
 export -f _input_site_maintenance_username
