@@ -10,7 +10,7 @@ function _input_memory_limit {
       memorylimit=$(whiptail --title "$memory_limit_title" --inputbox \
         "\n$memory_limit_msg""How much memory to allocate to the website (in MB)?\
         \n         (Press ENTER to continue)" \
-        11 46 \
+        12 46 \
         "$memorylimit" \
         3>&1 1>&2 2>&3)
       _set_whiptail_colors_red_bg # Change whiptail bg color to RED
