@@ -40,9 +40,9 @@ done
 # Checking if chado installation was successful
 exitstatus=$?
 if [ $exitstatus -eq 0 ]; then
-  echo "Chado Installation Successful."
+  printf "Chado Installation Successful.\n\n"
 else
-  echo "Chado Installation Failed."
+  printf "Chado Installation Failed.\n\n"
 fi
 
 # Save initial network configuration into a string
