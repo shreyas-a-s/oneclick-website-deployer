@@ -8,11 +8,22 @@ fi
 # Install dependencies
 if command -v apt-get > /dev/null; then
   sudo apt-get install -y git unzip wget  # Install some necessary programs
-  sudo apt-get install -y ncbi-blast+     # Install NCBI Blast
 fi
 
 # Change to drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
+
+# Install NCBI Blast+
+mkdir -p tools/blast
+wget --no-remove-listing ftp.ncbi.nlm.nih.gov/blast/executables/LATEST
+wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/"$(grep x64-linux.tar.gz LATEST | awk 'NR==1{print $2}' | awk -F '>' '{print $2}' | awk -F '<' '{print $1}')"
+tar zxvpf ncbi-blast-*+-x64-linux.tar.gz
+cp -r ncbi-blast-*+/bin tools/blast/
+rm -rf ncbi-blast-*+/ ncbi-blast-*+-x64-linux.tar.gz
+rm LATEST
+
+# Add blast+ bin directory to PATH
+PATH="$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin:$PATH
 
 # Install & enable libraries module (dependency of tripal_blast)
 drush pm-download -y libraries
@@ -35,5 +46,5 @@ sudo chgrp -R www-data sites/default/files/
 drush pm-enable blast_ui -y
 
 # Set blast+ bin folder in tripal_blast ui
-drush variable-set blast_path /usr/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush variable-set blast_path "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
 

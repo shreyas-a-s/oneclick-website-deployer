@@ -8,7 +8,7 @@ fi
 # Gathering test database
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA || exit
-update_blastdb --passive --decompress 16S_ribosomal_RNA
+update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
 
 # Check if Sample data was downloaded
 if [ ! -f "$DRUPAL_HOME/$drupalsitedir/tools/blast/db/16S_ribosomal_RNA/16S_ribosomal_RNA*" ]; then
