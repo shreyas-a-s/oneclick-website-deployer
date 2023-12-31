@@ -1,4 +1,4 @@
-# Tripal Website
+# One Click Website Deployer
 Bash script to install and setup a basic working tripal website.
 
 # Features of the script
