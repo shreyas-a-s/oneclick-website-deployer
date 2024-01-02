@@ -56,6 +56,7 @@ while true; do
   # Give user option to edit choices
   whiptail --title "USER SELECTION" --yesno \
     --defaultno \
+    --yes-button "Edit" --no-button "Continue" \
     "Database Name: $psqldb\
     \nDatabase User: $psqluser\
     \nDatabase Password: $HIDDEN_PGPASSWORD\
