@@ -1,5 +1,5 @@
   +----------------------------------------------------------------------------+
-  |                  One Click Database Deployer Using Tripal                  |
+  |                   One Click Website Deployer Using Tripal                  |
   +----------------------------------------------------------------------------+
   |                                                                            |
   |                              Special Thanks to:                            |
