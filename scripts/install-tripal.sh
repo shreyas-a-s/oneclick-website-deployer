@@ -53,8 +53,7 @@ while true; do
   goodtogo=true
   _is_raw.githubusercontent.com_accessible
   if [ "$goodtogo" = false ]; then
-    export OLD_NEWT_COLORS=$(echo $NEWT_COLORS) # Make a backup of whiptail colorscheme
-    NEWT_COLORS=$(echo $NEWT_COLORS | sed 's/root=white,gray/root=white,red/') # Change whiptail bg color to RED
+    _set_whiptail_colors_red_bg # Change whiptail bg color to RED
     # Ask the user if they want to try different network setup
     whiptail --title "UNABLE TO PROCEED" --yesno \
       --yes-button "Retry" \
@@ -68,7 +67,7 @@ while true; do
     if [ $exitstatus = 0 ]; then
       continue
     else
-      export NEWT_COLORS=$(echo $OLD_NEWT_COLORS) # Restore previous colorscheme
+      _set_whiptail_colors_default # Restore default colorscheme
       break
     fi
   else
