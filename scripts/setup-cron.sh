@@ -12,7 +12,7 @@ drupal_cron_key=$(drush variable-get cron_key --root="$DRUPAL_HOME"/"$drupalsite
 echo "0,30 * * * * /usr/bin/wget -O - -q http://localhost/""$drupalsitedir""/cron.php?cron_key=""$drupal_cron_key" | sudo tee /etc/cron.d/drupal-cron-tasks > /dev/null
 
 # Prompt user to disable drupal's built-in cron otherwise websiste might get slowed down
-whiptail --title "CRON RUN" --msgbox \
+whiptail --title "CRON SETUP" --msgbox \
   --ok-button "OK" \
   --notags \
   "1. Go to http://localhost/""$drupalsitedir""/admin/config/system/cron\
