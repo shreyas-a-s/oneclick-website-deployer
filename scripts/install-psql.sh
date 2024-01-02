@@ -14,7 +14,7 @@ fi
 sudo -u postgres createuser "$psqluser" # Create a user
 sudo -u postgres createdb "$psqldb"     # Create a database
 sudo -u postgres psql -c "alter user \"$psqluser\" with encrypted password '$PGPASSWORD';" # Set new password to the user
-sudo -u postgres psql -c "grant all privileges on database $psqldb to \"$psqluser\" ;"     # Set ownership of database to the user
+sudo -u postgres psql -c "grant all privileges on database \"$psqldb\" to \"$psqluser\" ;"     # Set ownership of database to the user
 
 # Create pg_trgm extension that is a dependency of Drupal
 psql -U "$psqluser" -d "$psqldb" -h localhost -c "CREATE EXTENSION pg_trgm;"
