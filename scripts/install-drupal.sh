@@ -10,7 +10,7 @@ wget https://github.com/drush-ops/drush/releases/download/8.4.12/drush.phar # In
 chmod +x drush.phar
 sudo mv drush.phar /usr/local/bin/drush
 if command -v apt-get > /dev/null; then # Install other dependencies for debian-based distros
-  sudo apt-get install -y wget tar
+  sudo apt-get install -y curl tar wget
 fi
 
 # Store latest drupal seven version to a variable
