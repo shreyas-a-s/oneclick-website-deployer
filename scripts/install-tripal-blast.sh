@@ -22,9 +22,6 @@ cp -r ncbi-blast-*+/bin tools/blast/
 rm -rf ncbi-blast-*+/ ncbi-blast-*+-x64-linux.tar.gz
 rm LATEST
 
-# Add blast+ bin directory to PATH
-PATH="$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin:$PATH
-
 # Install & enable libraries module (dependency of tripal_blast)
 drush pm-download -y libraries
 drush pm-enable -y libraries
