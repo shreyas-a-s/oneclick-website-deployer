@@ -88,7 +88,7 @@ website_components=$(whiptail --title "COMPONENTS SELECTION" --checklist \
 ./scripts/install-drupal.sh
 ./scripts/setup-cron.sh
 ./scripts/install-tripal.sh
-
+if [[ -n $tripal_extensions ]]; then # Install tripal extensions based on user choice
   if echo $website_components | grep -q 'Webform'; then
     ./scripts/install-webform.sh
   fi
