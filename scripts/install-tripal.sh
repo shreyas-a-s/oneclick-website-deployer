@@ -86,7 +86,7 @@ if [ "$current_network_config" != "$initial_network_config" ]; then
     "* We've noticed that you've switched network before.\
     \n* If you wish to change it back, do that and press ENTER." \
     9 61
-  while ! ({ ping -c 1 -w 2 example.org; } &> /dev/null); do :; done
+  while ! ({ curl -Is https://www.google.com | head -n 1 | grep -q '200'; } &> /dev/null); do :; done
 fi
 
 # Fix for "Trying to access array offset on value of type null" error that gets displayed
