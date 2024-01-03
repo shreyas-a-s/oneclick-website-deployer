@@ -7,6 +7,7 @@ function _is_os_supported {
   # Store debian version in a variable
   if command -v apt-get > /dev/null; then
     debian_version=$(awk -F '.' '{print $1}' < /etc/debian_version)
+    [[ "$debian_version" == *"bullseye"* ]] && debian_version=11
   fi
 
   # Give warning if OS is not supported
