@@ -17,7 +17,7 @@ function _is_os_supported {
         --defaultno \
         --yes-button "Continue" \
         --no-button "Cancel" \
-        "This doesn't seem to be a Debian Linux system. This system is [$os_name]. Installation might not work properly. But you can continue with the installation if you want.\
+        "This doesn't seem to be a Debian-based Linux system. This system is [$os_name]. Installation might not work properly. But you can continue with the installation if you want.\
         \n       (ARROW KEYS to move, ENTER to confirm)" \
         11 56
       exitstatus=$?
