@@ -62,7 +62,7 @@ while true; do
     \nDatabase Password: $HIDDEN_PGPASSWORD\
     \nDrupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
     \nMemory Limit: $memorylimit""MB\
-    \n\n          Do you want to edit the data?\
+    \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
     15 53
   exitstatus=$?
