@@ -13,6 +13,10 @@ function _input_memory_limit {
         12 46 \
         "$memorylimit" \
         3>&1 1>&2 2>&3)
+      exitstatus=$?
+      if [ $exitstatus = 1 ]; then
+        exit 1
+      fi
       _set_whiptail_colors_red_bg # Change whiptail bg color to RED
       if [[ ! "$memorylimit" =~ ^[0-9]+$ ]] &> /dev/null; then
         memory_limit_title="ERROR"

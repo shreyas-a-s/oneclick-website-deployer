@@ -8,6 +8,10 @@ function _input_drupal_dir {
       12 45 \
       "$drupalsitedir" \
       3>&1 1>&2 2>&3)
+    exitstatus=$?
+    if [ $exitstatus = 1 ]; then
+      exit 1
+    fi
   else
     printf "Enter the name of the directory to which drupal website needs to be installed: "
     read -r drupalsitedir

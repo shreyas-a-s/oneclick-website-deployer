@@ -9,18 +9,30 @@ function _input_db_credentials {
       12 47 \
       "$psqldb" \
       3>&1 1>&2 2>&3)
+    exitstatus=$?
+    if [ $exitstatus = 1 ]; then
+      exit 1
+    fi
     # Read database username
     psqluser=$(whiptail --title "USER INPUT" --inputbox \
       "\nEnter username for a new database user:\n\n       (Press ENTER to continue)" \
       11 44 \
       "$psqluser" \
       3>&1 1>&2 2>&3)
+    exitstatus=$?
+    if [ $exitstatus = 1 ]; then
+      exit 1
+    fi
     # Read database password
     PGPASSWORD=$(whiptail --title "USER INPUT" --passwordbox \
       "\nEnter a password for the new user:\n\n    (Press ENTER to continue)" \
       11 38 \
       "$PGPASSWORD" \
       3>&1 1>&2 2>&3)
+    exitstatus=$?
+    if [ $exitstatus = 1 ]; then
+      exit 1
+    fi
   else
     # Read database name
     read -r -p "Enter the name for a new database for our website: " psqldb

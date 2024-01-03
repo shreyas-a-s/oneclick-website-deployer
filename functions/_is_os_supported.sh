@@ -21,7 +21,7 @@ function _is_os_supported {
         \n       (ARROW KEYS to move, ENTER to confirm)" \
         11 56
       exitstatus=$?
-      if [ $exitstatus != 0 ]; then
+      if [ $exitstatus = 1 ]; then
         exit 1
       fi
     elif [ "$debian_version" -ne 11 ]; then # Checking if OS is debian but not version 11
@@ -33,7 +33,7 @@ function _is_os_supported {
         \n\n       (ARROW KEYS to move, ENTER to confirm)" \
         12 56
       exitstatus=$?
-      if [ $exitstatus != 0 ]; then
+      if [ $exitstatus = 1 ]; then
         exit 1
       fi
     fi

@@ -56,7 +56,8 @@ while true; do
   # Give user option to edit choices
   whiptail --title "USER SELECTION" --yesno \
     --defaultno \
-    --yes-button "Edit" --no-button "Continue" \
+    --yes-button "Edit" \
+    --no-button "Continue" \
     "Database Name: $psqldb\
     \nDatabase User: $psqluser\
     \nDatabase Password: $HIDDEN_PGPASSWORD\
@@ -84,11 +85,16 @@ while true; do
     "Tripal Blast" "[Interface for using NCBI Blast+]" OFF \
     "Tripal JBrowse" "[Integrate GMOD JBrowse with Tripal]" OFF \
     3>&1 1>&2 2>&3)
+  exitstatus=$?
+  if [ $exitstatus = 1 ]; then
+    exit 1
+  fi
 
   if [[ ! -n $website_components ]]; then # Prompt user if they chose nothing
     whiptail --title "ATTENTION PLEASE \!\!" --yesno \
       --defaultno \
-      --yes-button "Go Back" --no-button "Continue" \
+      --yes-button "Go Back" \
+      --no-button "Continue" \
       "You did not select any components to install. If this was intended, you can continue. If not, go back and choose the components by pressing SPACE.\
       \n     (ARROW KEYS to move, ENTER to confirm)" \
       11 53
