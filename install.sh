@@ -74,14 +74,34 @@ while true; do
 done
 
 # Prompt user to choose which website components to install
-website_components=$(whiptail --title "COMPONENTS SELECTION" --checklist \
-  "\n         Choose which website components to install\
-  \n  (ARROW KEYS to move, SPACE to select, ENTER to confirm):" 13 64 4 \
-  "Webform" "[Drupal module used to create Forms]" OFF \
-  "Tripal Daemon" "[To automatically execute Tripal Jobs]" OFF \
-  "Tripal Blast" "[Interface for using NCBI Blast+]" OFF \
-  "Tripal JBrowse" "[Integrate GMOD JBrowse with Tripal]" OFF \
-  3>&1 1>&2 2>&3)
+while true; do
+  website_components=$(whiptail --title "COMPONENTS SELECTION" --checklist \
+    "\n         Choose which website components to install\
+    \n           (ARROW KEYS to move, SPACE to select,\
+    \n      TAB to move between sections, ENTER to confirm):" 14 64 4 \
+    "Webform" "[Drupal module used to create Forms]" OFF \
+    "Tripal Daemon" "[To automatically execute Tripal Jobs]" OFF \
+    "Tripal Blast" "[Interface for using NCBI Blast+]" OFF \
+    "Tripal JBrowse" "[Integrate GMOD JBrowse with Tripal]" OFF \
+    3>&1 1>&2 2>&3)
+
+  if [[ ! -n $website_components ]]; then # Prompt user if they chose nothing
+    whiptail --title "ATTENTION PLEASE \!\!" --yesno \
+      --defaultno \
+      --yes-button "Go Back" --no-button "Continue" \
+      "You did not select any components to install. If this was intended, you can continue. If not, go back and choose the components by pressing SPACE.\
+      \n     (ARROW KEYS to move, ENTER to confirm)" \
+      11 53
+    exitstatus=$?
+    if [ $exitstatus = 0 ]; then
+      continue
+    else
+      break
+    fi
+  else
+    break
+  fi
+done
 
 # Custom scripts
 ./scripts/install-web-server.sh
