@@ -116,19 +116,10 @@ done
 ./scripts/setup-cron.sh
 ./scripts/install-tripal.sh
 if [[ -n $website_components ]]; then # Install tripal extensions based on user choice
-  if echo $website_components | grep -q 'Webform'; then
-    ./scripts/install-webform.sh
-  fi
-  if echo $website_components | grep -q 'Tripal Daemon'; then
-    ./scripts/install-tripal-daemon.sh
-  fi
-  if echo $website_components | grep -q 'Tripal Blast'; then
-    ./scripts/install-tripal-blast.sh
-    ./scripts/setup-sample-blast-db.sh
-  fi
-  if echo $website_components | grep -q 'Tripal JBrowse'; then
-    ./scripts/install-tripal-jbrowse.sh
-  fi
+  [[ $website_components == *"Webform"* ]]        &&  ./scripts/install-webform.sh
+  [[ $website_components == *"Tripal Daemon"* ]]  &&  ./scripts/install-tripal-daemon.sh
+  [[ $website_components == *"Tripal Blast"* ]]   &&  ./scripts/install-tripal-blast.sh && ./scripts/setup-sample-blast-db.sh
+  [[ $website_components == *"Tripal jBrowse"* ]] &&  ./scripts/install-tripal-jbrowse.sh
 fi
 
 # Unset PGPASSWORD
