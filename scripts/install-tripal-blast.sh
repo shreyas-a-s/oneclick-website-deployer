@@ -36,7 +36,7 @@ mv cvitjs-master sites/all/libraries/cvitjs
 mkdir -p sites/all/modules/tripal_blast
 git clone https://github.com/tripal/tripal_blast.git sites/all/modules/tripal_blast
 mkdir -p sites/default/files/tripal/
-mkdir -p sites/default/files/tripal_blast
+mkdir -p sites/default/files/tripal/tripal_blast
 sudo chgrp -R www-data sites/default/files/
 
 # Enable tripal_blast
