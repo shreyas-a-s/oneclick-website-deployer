@@ -19,7 +19,7 @@ drush pm-download -y entity views ctools ds field_group field_group_table field_
 drush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 
 # Tripal installation
-drush pm-download tripal -y
+drush pm-download tripal-7.x-3.10 -y
 drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 
 # Check site maintenance username before proceeding
