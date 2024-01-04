@@ -13,7 +13,7 @@ cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
 
 # Install dependencies
 if command -v apt-get > /dev/null; then
-  sudo apt-get install -y dig
+  sudo apt-get install -y bind9-dnsutils
 fi
 drush pm-download -y entity views ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
 drush pm-enable -y entity views views_ui ctools ds field_group field_group_table field_formatter_class field_formatter_settings ckeditor jquery_update
