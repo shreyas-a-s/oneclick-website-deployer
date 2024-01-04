@@ -119,7 +119,7 @@ if [[ -n $website_components ]]; then # Install tripal extensions based on user 
   [[ $website_components == *"Webform"* ]]        &&  ./scripts/install-webform.sh
   [[ $website_components == *"Tripal Daemon"* ]]  &&  ./scripts/install-tripal-daemon.sh
   [[ $website_components == *"Tripal Blast"* ]]   &&  ./scripts/install-tripal-blast.sh && ./scripts/setup-sample-blast-db.sh
-  [[ $website_components == *"Tripal jBrowse"* ]] &&  ./scripts/install-tripal-jbrowse.sh
+  [[ $website_components == *"Tripal JBrowse"* ]] &&  ./scripts/install-tripal-jbrowse.sh
 fi
 
 # Unset PGPASSWORD
