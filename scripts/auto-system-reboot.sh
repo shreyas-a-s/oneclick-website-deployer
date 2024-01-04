@@ -14,6 +14,8 @@ if command -v whiptail > /dev/null; then
   exitstatus=$?
   if [ $exitstatus = 0 ]; then
     sudo reboot
+  else
+    printf "\n\nUser chose not to reboot.\n\n"
   fi
 else
   printf "Installation Complete. Reboot the system for site installation to fully take effect. Reboot now? (yes/no): "
