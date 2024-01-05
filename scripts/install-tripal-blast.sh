@@ -38,6 +38,7 @@ git clone https://github.com/tripal/tripal_blast.git sites/all/modules/tripal_bl
 mkdir -p sites/default/files/tripal/
 mkdir -p sites/default/files/tripal/tripal_blast
 sudo chgrp -R www-data sites/default/files/
+chmod g+w sites/default/files/tripal/tripal_blast
 
 # Enable tripal_blast
 drush pm-enable blast_ui -y
