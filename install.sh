@@ -31,10 +31,10 @@ printf -- "\n-----------------------------------------\
 \nONECLICK WEBSITE DEPLOYER LOG\
 \n$(date)\
 \n-----------------------------------------\
-\n" >> ~/oneclick-website-deployer.log
+\n" >> ~/oneclick-website-deployer.log >> ~/oneclick-website-deployer-errors.log
 
-# Redirect both stdout and stderr to log file yet display all output in the terminal
-exec > >(tee -a ~/oneclick-website-deployer.log) 2>&1
+# Redirect stdout to one log file and stderr to another
+exec > >(tee -a ~/oneclick-website-deployer.log) 2>&1 2> >(tee -a  ~/error_output.txt >&2)
 
 # Define web root folder
 export DRUPAL_HOME=/var/www/html
