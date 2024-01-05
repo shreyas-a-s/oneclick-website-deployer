@@ -13,17 +13,11 @@ if command -v apt-get > /dev/null; then # Install other dependencies for debian-
   sudo apt-get install -y curl tar wget
 fi
 
-# Store latest drupal seven version to a variable
-latest_drupal_seven_version=$(curl https://www.drupal.org/project/drupal/releases -s | grep '7\.[0-9][0-9]' | awk -F 'releases/' 'NR==1{print $2}' | awk -F '"' '{print $1}')
-
 # Install Drupal
 sudo chown -R "$USER" "$DRUPAL_HOME"
 cd "$DRUPAL_HOME" || exit
 mv index.html index.html.orig
-wget http://ftp.drupal.org/files/projects/drupal-"$latest_drupal_seven_version".tar.gz
-tar -zxf drupal-"$latest_drupal_seven_version".tar.gz
-rm drupal-"$latest_drupal_seven_version".tar.gz
-mv drupal-"$latest_drupal_seven_version"/ "$drupalsitedir"/
+drush dl drupal --drupal-project-rename="$drupalsitedir"
 
 # Setup Drupal
 cd "$drupalsitedir" || exit
