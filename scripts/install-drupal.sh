@@ -24,30 +24,12 @@ cd "$drupalsitedir" || exit
 cp sites/default/default.settings.php sites/default/settings.php
 mkdir sites/default/files/
 sudo chgrp -R www-data sites/default/files/
-sudo chmod 777 sites/default/settings.php
 sudo chmod g+rw sites/default/files/
 
-# Write database credentials to Drupal settings file
-sed -i "s/\$databases\ =\ array();/\n\$databases['default']['default']\ =\ array(\n\t'driver'\ =>\ 'pgsql',\n\t'database'\ =>\ '$psqldb',\n\t'username'\ =>\ '$psqluser',\n\t'password'\ =>\ '$ESCAPED_PGPASSWORD',\n\t'host'\ =>\ 'localhost',\n\t'prefix'\ =>\ '',\n);/" sites/default/settings.php
-
-# Manual Setup of Drupal
-while ! ({ drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep -q drupal; } &> /dev/null); do
-  whiptail --title "DRUPAL SETUP" --msgbox \
-    --ok-button "OK" \
-    --notags \
-    "1. Go to http://localhost/""$drupalsitedir""/install.php\
-    \n2. Ensure 'Standard' option is selected and click 'Save and continue'\
-    \n3. When prompted to choose language, choose 'English'.\
-    \n4. You will see a progress bar as Drupal is installed.\
-    \n5. Once it completes, a configuration page will be visible.\
-    \n6. Provide details appropriate to your site and note down the Site Maintenance Account details.\
-    \n7. Click 'Save and continue.'\
-    \n8. Press ENTER after completing these steps." \
-    15 78
-done
+drush site-install standard --db-url=pgsql://"$psqluser":"$PGPASSWORD"@localhost:5432/"$psqldb" --account-mail="$drupal_mail" --account-name="$drupal_user" --account-pass="$drupal_pass" --site-mail="$drupal_mail" --site-name="$drupal_site_name" install_configure_form.site_default_country="$drupal_country" -y
 
 # Limit write permission to owner of 'settings.php' for security reasons
-sudo chmod 755 sites/default/settings.php
+# sudo chmod 755 sites/default/settings.php
 
 # Set temp-path for drupal to prevent issues in future
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/tmp/
