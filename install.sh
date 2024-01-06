@@ -63,6 +63,7 @@ while true; do
   _input_db_credentials  # PostgreSQL Database credentials
   _input_drupal_dir      # Directory to which drupal should be installed
   _input_memory_limit    # Maximum amount of memory a PHP script can consume
+  _input_drupal_username # Username to use for drupal
   # Give user option to edit choices
   whiptail --title "USER SELECTION" --yesno \
     --defaultno \
@@ -73,9 +74,10 @@ while true; do
     \nDatabase Password: $HIDDEN_PGPASSWORD\
     \nDrupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
     \nMemory Limit: $memorylimit""MB\
+    \nDrupal Username: $drupal_user\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
-    15 53
+    16 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
