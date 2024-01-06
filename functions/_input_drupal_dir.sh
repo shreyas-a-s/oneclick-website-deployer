@@ -16,6 +16,7 @@ function _input_drupal_dir {
     printf "Enter the name of the directory to which drupal website needs to be installed: "
     read -r drupalsitedir
   fi
+  drupalsitedir=$(echo "$drupalsitedir" | tr ' ' '-') # Replaces 'spaces' with 'hyphens'
   export drupalsitedir
 }
 
