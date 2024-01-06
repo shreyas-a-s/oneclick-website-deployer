@@ -22,23 +22,9 @@ drush pm-enable -y entity views views_ui ctools ds field_group field_group_table
 drush pm-download tripal-7.x-3.10 -y
 drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 
-# Check site maintenance username before proceeding
-_input_site_maintenance_username
-
 # Install Tripal chado
-while [[ $(drush variable-get --root="$DRUPAL_HOME"/"$drupalsitedir" | grep chado_schema_exists | awk '{print $2}') == "true" ]]; do
-  whiptail --title "INSTALL CHADO" --msgbox \
-    --ok-button "OK" \
-    --notags \
-    "1. Go to http://localhost/""$drupalsitedir""/admin/tripal/storage/chado/install\
-    \n2. Click drop-down menu under Installation/Upgrade Action.\
-    \n3. Select 'New Install of Chado v1.3'.\
-    \n4. Click 'Install/Upgrade Chado'.\
-    \n-  NOTE: THERE IS NO NEED TO RUN THE DRUSH COMMAND.\
-    \n5. Press ENTER after completing these steps." \
-    13 67
-  drush trp-run-jobs --username="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir" &> /dev/null
-done
+drush php-eval "module_load_include('inc', 'tripal_chado', 'includes/tripal_chado.install'); tripal_chado_load_drush_submit('Install Chado v1.3');" --username="$drupal_user" --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush trp-run-jobs --username="$drupal_user" --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Checking if chado installation was successful
 exitstatus=$?
@@ -77,7 +63,7 @@ while true; do
     break
   fi
 done
-drush trp-prepare-chado --user="$smausername" --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush trp-prepare-chado --user="$drupal_user" --root="$DRUPAL_HOME"/"$drupalsitedir"
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Save current network configuration into a string
