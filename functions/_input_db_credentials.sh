@@ -48,6 +48,10 @@ function _input_db_credentials {
   # Escape special characters in PGPASSWORD using printf.
   ESCAPED_PGPASSWORD=$(printf "%q" "$PGPASSWORD")
 
+  # Replaces 'spaces' with 'hyphens'
+  psqldb=$(echo "$psqldb" | tr ' ' '-')
+  psqluser=$(echo "$psqluser" | tr ' ' '-')
+
   # Export all variables
   export psqldb
   export psqluser
