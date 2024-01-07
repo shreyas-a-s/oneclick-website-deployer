@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
 function _input_drupal_username {
-  drupal_user=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
-    "\nEnter the username to be used for drupal:\
-    \n         (Press ENTER to continue)" \
-    12 48 \
-    3>&1 1>&2 2>&3)
+  if command -v whiptail > /dev/null; then
+    drupal_user=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
+      "\nEnter the username to be used for drupal:\
+      \n         (Press ENTER to continue)" \
+      12 48 \
+      3>&1 1>&2 2>&3)
+  else
+    printf "\nEnter the username to be used for drupal: "
+    read -r drupal_user
+  fi
   export drupal_user # Export smausername to be used by child scripts
 }
 
