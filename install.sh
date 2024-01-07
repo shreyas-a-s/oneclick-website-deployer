@@ -88,6 +88,7 @@ while true; do
   _input_drupal_site_name # Name for website
   _input_drupal_username  # Username to use for drupal
   _input_drupal_pass      # Password for drupal user
+  _input_drupal_mail      # Email to be added to drupal
   # Give user option to edit choices
   whiptail --title "DRUPAL WEBSITE DETAILS" --yesno \
     --defaultno \
@@ -96,9 +97,11 @@ while true; do
     "Drupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
     \nDrupal Site Name: $drupal_site_name\
     \nDrupal Username: $drupal_user\
+    \nDrupal Password: $drupal_pass\
+    \nDrupal Email: $drupal_mail\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
-    14 53
+    16 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
