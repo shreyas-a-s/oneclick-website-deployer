@@ -84,18 +84,20 @@ done
 
 # Prompt the user to enter inputs (drupal creds)
 while true; do
-  _input_drupal_dir      # Directory to which drupal should be installed
-  _input_drupal_username # Username to use for drupal
+  _input_drupal_dir       # Directory to which drupal should be installed
+  _input_drupal_site_name # Name for website
+  _input_drupal_username  # Username to use for drupal
   # Give user option to edit choices
   whiptail --title "DRUPAL WEBSITE DETAILS" --yesno \
     --defaultno \
     --yes-button "Edit" \
     --no-button "Continue" \
     "Drupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
+    \nDrupal Site Name: $drupal_site_name\
     \nDrupal Username: $drupal_user\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
-    12 53
+    13 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
