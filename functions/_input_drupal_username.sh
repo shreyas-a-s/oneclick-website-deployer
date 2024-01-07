@@ -11,6 +11,7 @@ function _input_drupal_username {
     printf "\nEnter the username to be used for drupal: "
     read -r drupal_user
   fi
+  drupal_user=$(echo "$drupal_user" | tr ' ' '-') # Repace 'spaces' with 'hyphens'
   export drupal_user # Export smausername to be used by child scripts
 }
 
