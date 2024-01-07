@@ -19,7 +19,7 @@ function _input_drupal_mail {
     fi
 
     # Check if email is valid
-    _is_email_valid "$drupal_email"
+    _is_email_valid "$drupal_mail"
 
     # Check the return value
     return_value=$?
