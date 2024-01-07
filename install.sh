@@ -84,11 +84,12 @@ done
 
 # Prompt the user to enter inputs (drupal creds)
 while true; do
-  _input_drupal_dir       # Directory to which drupal should be installed
+  _input_drupal_dir       # Directory to which Drupal should be installed
   _input_drupal_site_name # Name for website
-  _input_drupal_username  # Username to use for drupal
+  _input_drupal_username  # Username to use for Drupal
   _input_drupal_pass      # Password for drupal user
-  _input_drupal_mail      # Email to be added to drupal
+  _input_drupal_mail      # Email to be added to Drupal
+  _input_drupal_country   # Default country to be set in Drupal
   # Give user option to edit choices
   whiptail --title "DRUPAL WEBSITE DETAILS" --yesno \
     --defaultno \
@@ -99,9 +100,10 @@ while true; do
     \nDrupal Username: $drupal_user\
     \nDrupal Password: $hidden_drupal_pass\
     \nDrupal Email: $drupal_mail\
+    \nCountry: $drupal_country\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
-    15 53
+    16 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
