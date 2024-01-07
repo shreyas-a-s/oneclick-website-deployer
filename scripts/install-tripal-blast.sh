@@ -44,3 +44,8 @@ drush pm-enable blast_ui -y
 # Set blast+ bin folder in tripal_blast ui
 drush variable-set blast_path "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
 
+# Restart tripal_daemon to fix an error that happens
+# if we start a blast run without rebooting system
+drush daemon stop tripal_daemon
+drush daemon start tripal_daemon
+
