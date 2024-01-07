@@ -97,7 +97,7 @@ while true; do
     "Drupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
     \nDrupal Site Name: $drupal_site_name\
     \nDrupal Username: $drupal_user\
-    \nDrupal Password: $drupal_pass\
+    \nDrupal Password: $hidden_drupal_pass\
     \nDrupal Email: $drupal_mail\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
