@@ -7,6 +7,10 @@ function _input_drupal_username {
       \n         (Press ENTER to continue)" \
       12 48 \
       3>&1 1>&2 2>&3)
+    exitstatus=$?
+    if [ $exitstatus = 1 ]; then
+      exit 1
+    fi
   else
     printf "\nEnter the username to be used for drupal: "
     read -r drupal_user
