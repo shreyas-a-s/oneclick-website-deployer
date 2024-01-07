@@ -16,7 +16,7 @@ function _input_drupal_site_name {
     printf "\nEnter a Name for your Drupal website: "
     read -r drupal_site_name
   fi
-  export drupal_site_name # Export smausername to be used by child scripts
+  export drupal_site_name # Export drupal site name to be used by child scripts
 }
 
 # Export the function to be used by child scripts

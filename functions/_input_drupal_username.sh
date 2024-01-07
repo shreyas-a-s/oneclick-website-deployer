@@ -17,7 +17,7 @@ function _input_drupal_username {
     read -r drupal_user
   fi
   drupal_user=$(echo "$drupal_user" | tr ' ' '-') # Repace 'spaces' with 'hyphens'
-  export drupal_user # Export smausername to be used by child scripts
+  export drupal_user # Export drupal username to be used by child scripts
 }
 
 # Export the function to be used by child scripts

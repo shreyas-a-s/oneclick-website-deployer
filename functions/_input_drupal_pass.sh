@@ -17,7 +17,7 @@ function _input_drupal_pass {
     read -r drupal_pass
   fi
 
-  # Hide PGPASSWORD by replacing characters with *
+  # Hide drupal_pass by replacing characters with *
   hidden_drupal_pass=$(for _ in $(seq "$(printf "%s" "$drupal_pass" | wc -m)"); do printf "*"; done)
 
   export drupal_pass        # Export drupal password to be used by child scripts

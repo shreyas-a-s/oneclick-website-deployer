@@ -16,7 +16,7 @@ function _input_drupal_mail {
     printf "\nEnter a mail to be added to drupal website: "
     read -r drupal_mail
   fi
-  export drupal_mail # Export smausername to be used by child scripts
+  export drupal_mail # Export drupal email to be used by child scripts
 }
 
 # Export the function to be used by child scripts
