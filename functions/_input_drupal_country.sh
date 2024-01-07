@@ -271,6 +271,10 @@ function _input_drupal_country {
         "ZA" "South Africa" \
         "ZM" "Zambia" \
         "ZW" "Zimbabwe" 3>&1 1>&2 2>&3)
+      exitstatus=$?
+      if [ $exitstatus = 1 ]; then
+        exit 1
+      fi
     fi
   fi
   
