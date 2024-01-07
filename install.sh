@@ -87,6 +87,7 @@ while true; do
   _input_drupal_dir       # Directory to which drupal should be installed
   _input_drupal_site_name # Name for website
   _input_drupal_username  # Username to use for drupal
+  _input_drupal_pass      # Password for drupal user
   # Give user option to edit choices
   whiptail --title "DRUPAL WEBSITE DETAILS" --yesno \
     --defaultno \
@@ -97,7 +98,7 @@ while true; do
     \nDrupal Username: $drupal_user\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
-    13 53
+    14 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
