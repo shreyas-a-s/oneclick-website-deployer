@@ -9,7 +9,7 @@ fi
 echo "0,30 * * * * /usr/bin/wget -O - -q http://localhost/""$drupalsitedir""/cron.php?cron_key=""$drupal_cron_key" | sudo tee /etc/cron.d/drupal-cron-tasks > /dev/null
 
 # Disable drupal cron to prevent website slowing down when users visit
-drush vset cron_safe_threshold 0
+drush vset cron_safe_threshold 0 --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Store exit status to variable
 exitstatus=$?
