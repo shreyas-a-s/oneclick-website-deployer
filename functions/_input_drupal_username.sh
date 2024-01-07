@@ -5,7 +5,7 @@ function _input_drupal_username {
     drupal_user=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
       "\nEnter the username to be used for drupal:\
       \n         (Press ENTER to continue)" \
-      12 48 \
+      11 45 \
       "$drupal_user" \
       3>&1 1>&2 2>&3)
     exitstatus=$?

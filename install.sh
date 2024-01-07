@@ -101,7 +101,7 @@ while true; do
     \nDrupal Email: $drupal_mail\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
-    16 53
+    15 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
