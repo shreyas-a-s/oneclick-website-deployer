@@ -6,6 +6,7 @@ function _input_drupal_username {
       "\nEnter the username to be used for drupal:\
       \n         (Press ENTER to continue)" \
       12 48 \
+      "$drupal_user" \
       3>&1 1>&2 2>&3)
     exitstatus=$?
     if [ $exitstatus = 1 ]; then

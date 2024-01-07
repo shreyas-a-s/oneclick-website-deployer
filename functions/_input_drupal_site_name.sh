@@ -6,6 +6,7 @@ function _input_drupal_site_name {
       "\nEnter a Name for your Drupal website:\
       \n      (Press ENTER to continue)" \
       11 41 \
+      "$drupal_site_name" \
       3>&1 1>&2 2>&3)
     exitstatus=$?
     if [ $exitstatus = 1 ]; then
