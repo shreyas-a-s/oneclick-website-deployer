@@ -2,7 +2,7 @@
 
 function _input_drupal_dir {
   if command -v whiptail > /dev/null; then
-    drupalsitedir=$(whiptail --title "USER INPUT" --inputbox \
+    drupalsitedir=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
       "\nEnter the name of the directory to which\n  drupal website needs to be installed:\
       \n        (Press ENTER to continue)" \
       12 45 \

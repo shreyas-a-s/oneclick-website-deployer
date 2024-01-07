@@ -58,12 +58,10 @@ _set_whiptail_colors_default  # Apply default whiptail colors
 # Display the "About Us" page on the screen
 ./show-about-us-page.sh
 
-# Prompt the user to enter inputs
+# Prompt the user to enter inputs (database creds & memory limit)
 while true; do
   _input_db_credentials  # PostgreSQL Database credentials
-  _input_drupal_dir      # Directory to which drupal should be installed
   _input_memory_limit    # Maximum amount of memory a PHP script can consume
-  _input_drupal_username # Username to use for drupal
   # Give user option to edit choices
   whiptail --title "USER SELECTION" --yesno \
     --defaultno \
@@ -72,12 +70,32 @@ while true; do
     "Database Name: $psqldb\
     \nDatabase User: $psqluser\
     \nDatabase Password: $HIDDEN_PGPASSWORD\
-    \nDrupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
     \nMemory Limit: $memorylimit""MB\
+    \n\n       You can edit the data if you want.\
+    \n     (ARROW KEYS to move, ENTER to confirm)" \
+    14 53
+  exitstatus=$?
+  if [ $exitstatus  = 0 ]; then
+    continue
+  else
+    break
+  fi
+done
+
+# Prompt the user to enter inputs (drupal creds)
+while true; do
+  _input_drupal_dir      # Directory to which drupal should be installed
+  _input_drupal_username # Username to use for drupal
+  # Give user option to edit choices
+  whiptail --title "DRUPAL WEBSITE DETAILS" --yesno \
+    --defaultno \
+    --yes-button "Edit" \
+    --no-button "Continue" \
+    "Drupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
     \nDrupal Username: $drupal_user\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
-    16 53
+    12 53
   exitstatus=$?
   if [ $exitstatus  = 0 ]; then
     continue
