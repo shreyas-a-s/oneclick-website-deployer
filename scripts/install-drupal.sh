@@ -28,9 +28,6 @@ sudo chmod g+rw sites/default/files/
 
 drush site-install standard --db-url=pgsql://"$psqluser":"$PGPASSWORD"@localhost:5432/"$psqldb" --account-mail="$drupal_mail" --account-name="$drupal_user" --account-pass="$drupal_pass" --site-mail="$drupal_mail" --site-name="$drupal_site_name" install_configure_form.site_default_country="$drupal_country" -y
 
-# Limit write permission to owner of 'settings.php' for security reasons
-# sudo chmod 755 sites/default/settings.php
-
 # Set temp-path for drupal to prevent issues in future
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/tmp/
 sudo chgrp www-data "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/tmp/
