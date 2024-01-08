@@ -39,6 +39,6 @@ whiptail --title "DRUPAL SETUP" --msgbox \
   --ok-button "OK" \
   --notags \
   "Drupal is installed and setup.\
-  \n\n1. Now you can go to http://localhost/""$drupalsitedir"" and test out your site by loggin in with username and password.\
+  \n\n1. Now you can go to http://localhost/""$drupalsitedir"" and test out your site by logging in with username and password.\
   \n2. Press ENTER to continue." 12 57
 
