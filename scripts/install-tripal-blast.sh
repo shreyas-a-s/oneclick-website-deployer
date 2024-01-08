@@ -26,12 +26,6 @@ rm LATEST
 drush pm-download -y libraries
 drush pm-enable -y libraries
 
-# Install cvitjs library (dependency of tripal_blast)
-wget https://github.com/awilkey/cvitjs/archive/master.zip
-unzip -q master.zip
-rm master.zip
-mv cvitjs-master sites/all/libraries/cvitjs
-
 # Install tripal_blast
 drush dl tripal_blast
 mkdir -p sites/default/files/tripal/tripal_blast
