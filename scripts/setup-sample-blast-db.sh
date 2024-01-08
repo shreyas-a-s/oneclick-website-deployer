@@ -21,7 +21,7 @@ if [ ! -f "$DRUPAL_HOME/$drupalsitedir/tools/blast/db/16S_ribosomal_RNA/16S_ribo
 fi
 
 # Automatic blast db setup
-drush php-script "$SCRIPT_DIR"/create_blastdb.php --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush php-script "$SCRIPT_DIR"/create-blastdb.php --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # User Intervention
 whiptail --title "SAMPLE BLAST DB SETUP" --msgbox \
