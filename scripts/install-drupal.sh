@@ -34,3 +34,11 @@ sudo chgrp www-data "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/tmp/
 chmod g+w "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/tmp/
 drush variable-set file_temporary_path "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/tmp --root="$DRUPAL_HOME"/"$drupalsitedir"
 
+# Prompt user to login to Drupal
+whiptail --title "DRUPAL SETUP" --msgbox \
+  --ok-button "OK" \
+  --notags \
+  "Drupal is installed and setup.\
+  \n\n1. Now you can go to http://localhost/""$drupalsitedir"" and test out your site by loggin in with username and password.\
+  \n2. Press ENTER to continue." 12 57
+
