@@ -60,8 +60,10 @@ _set_whiptail_colors_default  # Apply default whiptail colors
 
 # Prompt the user to enter inputs (database creds & memory limit)
 while true; do
-  _input_db_credentials  # PostgreSQL Database credentials
-  _input_memory_limit    # Maximum amount of memory a PHP script can consume
+  _input_db_name       # PostgreSQL Database name
+  _input_db_username   # PostgreSQL Database username
+  _input_db_pass       # PostgreSQL Database password
+  _input_memory_limit  # Maximum amount of memory a PHP script can consume
   # Give user option to edit choices
   whiptail --title "USER SELECTION" --yesno \
     --defaultno \
