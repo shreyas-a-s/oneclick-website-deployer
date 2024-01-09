@@ -82,6 +82,9 @@ while true; do
   fi
 done
 
+# Set whiptail BG color to blue (to match drupal)
+_set_whiptail_colors_bg_blue
+
 # Prompt the user to enter inputs (drupal creds)
 while true; do
   _input_drupal_dir       # Directory to which Drupal should be installed
@@ -111,6 +114,9 @@ while true; do
     break
   fi
 done
+
+# Set whiptail BG color to yellow for selection of components
+_set_whiptail_colors_bg_yellow
 
 # Prompt user to choose which website components to install
 while true; do
@@ -146,6 +152,9 @@ while true; do
     break
   fi
 done
+
+# Set whiptail colors to default before proceeding
+_set_whiptail_colors_default
 
 # Custom scripts
 ./scripts/install-web-server.sh
