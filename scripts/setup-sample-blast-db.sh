@@ -23,12 +23,17 @@ fi
 
 # Automatic blast db setup
 drush php-script "$SCRIPT_DIR"/create-blastdb.php --root="$DRUPAL_HOME"/"$drupalsitedir"
+exitstatus=$?
 
 # User Intervention
-whiptail --title "SAMPLE BLAST DB SETUP" --msgbox \
-  --ok-button "OK" \
-  --notags \
-  "Sample Blast Database is set.\
-  \n\n1. Now you can go to http://localhost/""$drupalsitedir""/blast/nucleotide/nucleotide and test out blast by Entering a FASTA sequence (or uploading one) & Selecting the newly added database (16S_ribosomal_RNA) from dropdown under Nucleotide BLAST Databases & Clicking 'BLAST'\
-  \n2. Press ENTER to continue." 15 60
+if [ $exitstatus = 0 ]; then
+  whiptail --title "SAMPLE BLAST DB SETUP" --msgbox \
+    --ok-button "OK" \
+    --notags \
+    "Sample Blast Database is set.\
+    \n\n1. Now you can go to http://localhost/""$drupalsitedir""/blast/nucleotide/nucleotide and test out blast by Entering a FASTA sequence (or uploading one) & Selecting the newly added database (16S_ribosomal_RNA) from dropdown under Nucleotide BLAST Databases & Clicking 'BLAST'\
+    \n2. Press ENTER to continue." 15 60
+else
+  printf "\n\nSorry! Sample Blast Database setup failed for some reason.\n"
+fi
 
