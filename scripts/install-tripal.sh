@@ -42,7 +42,7 @@ while true; do
   goodtogo=true
   _is_raw.githubusercontent.com_accessible
   if [ "$goodtogo" = false ]; then
-    _set_whiptail_colors_red_bg # Change whiptail bg color to RED
+    _set_whiptail_colors_bg_red # Change whiptail bg color to RED
     # Ask the user if they want to try different network setup
     whiptail --title "UNABLE TO PROCEED" --yesno \
       --yes-button "Retry" \

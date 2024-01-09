@@ -17,7 +17,7 @@ function _input_memory_limit {
       if [ $exitstatus = 1 ]; then
         exit 1
       fi
-      _set_whiptail_colors_red_bg # Change whiptail bg color to RED
+      _set_whiptail_colors_bg_red # Change whiptail bg color to RED
       if [[ ! "$memorylimit" =~ ^[0-9]+$ ]] &> /dev/null; then
         memory_limit_title="ERROR"
         memory_limit_msg="Only integer values are accepted.\n"

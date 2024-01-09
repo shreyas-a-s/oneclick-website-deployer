@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function _set_whiptail_colors_red_bg {
+function _set_whiptail_colors_bg_red {
   export NEWT_COLORS='
   root=white,red
   window=white,lightgray
@@ -25,5 +25,5 @@ function _set_whiptail_colors_red_bg {
   '
 }
 
-export -f _set_whiptail_colors_red_bg
+export -f _set_whiptail_colors_bg_red
 

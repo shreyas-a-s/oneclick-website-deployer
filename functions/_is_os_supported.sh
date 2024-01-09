@@ -12,7 +12,7 @@ function _is_os_supported {
 
   # Give warning if OS is not supported
   if command -v whiptail > /dev/null; then # Display messages using whiptail
-    _set_whiptail_colors_red_bg # Change whiptail bg color to RED
+    _set_whiptail_colors_bg_red # Change whiptail bg color to RED
     if ! command -v apt-get > /dev/null; then # Checking is OS is not Debian-based
       whiptail --title "WARNING" --yesno \
         --defaultno \

@@ -27,7 +27,7 @@ function _input_drupal_mail {
     # Act upon return value
     if [ $return_value = 1 ]; then
       wrong_email_msg="Invalid Email Address\n"
-      _set_whiptail_colors_red_bg
+      _set_whiptail_colors_bg_red
       continue
     else
       _set_whiptail_colors_default
