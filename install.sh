@@ -82,8 +82,8 @@ while true; do
   fi
 done
 
-# Set whiptail BG color to blue (to match drupal)
-_set_whiptail_colors_bg_blue
+# Set whiptail BG color to cyan
+_set_whiptail_colors_bg_cyan
 
 # Prompt the user to enter inputs (drupal creds)
 while true; do
