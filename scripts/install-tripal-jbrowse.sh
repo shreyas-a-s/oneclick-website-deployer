@@ -12,7 +12,7 @@ fi
 
 # Prepare environment
 cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
-mkdir tools/
+[ -d ./tools ] || mkdir tools/
 mkdir -p sites/default/files/jbrowse/data/
 sudo chgrp -R www-data sites/default/files/jbrowse/
 sudo chmod -R g+w sites/default/files/jbrowse
