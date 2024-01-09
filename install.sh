@@ -134,7 +134,7 @@ while true; do
 
   if [[ ! -n $website_components ]]; then # Prompt user if they chose nothing
     _set_whiptail_colors_bg_red # Set whiptail BG color to red indicating warning
-    whiptail --title "ATTENTION PLEASE \!\!" --yesno \
+    whiptail --title 'ATTENTION PLEASE !!' --yesno \
       --defaultno \
       --yes-button "Go Back" \
       --no-button "Continue" \
