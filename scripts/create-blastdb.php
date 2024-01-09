@@ -15,7 +15,7 @@ $blastdb->status = 1; // Published
 
 // Set your custom fields
 $blastdb->db_name = '16S_ribosomal_RNA';
-$blastdb->db_path = '/var/www/html/dt/tools/blast/db/16S_ribosomal_RNA/16S_ribosomal_RNA';
+$blastdb->db_path = DRUPAL_ROOT . '/tools/blast/db/16S_ribosomal_RNA/16S_ribosomal_RNA';
 $blastdb->db_dbtype = 'nucleotide';
 
 $blastdb->uid = $admin_user->uid; // Set the author to the admin user
