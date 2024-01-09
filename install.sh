@@ -115,11 +115,9 @@ while true; do
   fi
 done
 
-# Set whiptail BG color to yellow for selection of components
-_set_whiptail_colors_bg_yellow
-
 # Prompt user to choose which website components to install
 while true; do
+  _set_whiptail_colors_bg_yellow # Set whiptail BG color to yellow for selection of components
   website_components=$(whiptail --title "COMPONENTS SELECTION" --checklist \
     "\n         Choose which website components to install\
     \n           (ARROW KEYS to move, SPACE to select,\
@@ -135,6 +133,7 @@ while true; do
   fi
 
   if [[ ! -n $website_components ]]; then # Prompt user if they chose nothing
+    _set_whiptail_colors_bg_red # Set whiptail BG color to red indicating warning
     whiptail --title "ATTENTION PLEASE \!\!" --yesno \
       --defaultno \
       --yes-button "Go Back" \
