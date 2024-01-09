@@ -11,6 +11,7 @@ SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 # Gathering test database
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA
 cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA || exit
+echo "Downloading Sample Blat database from NCBI. Please be patient..."
 "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/update_blastdb.pl --passive --decompress 16S_ribosomal_RNA
 
 # Check if Sample data was downloaded
