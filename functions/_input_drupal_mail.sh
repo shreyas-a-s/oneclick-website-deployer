@@ -30,7 +30,7 @@ function _input_drupal_mail {
       _set_whiptail_colors_bg_red
       continue
     else
-      _set_whiptail_colors_default
+      _set_whiptail_colors_bg_cyan
       break
     fi
   done
