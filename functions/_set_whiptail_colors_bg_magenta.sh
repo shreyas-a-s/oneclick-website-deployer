@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-function _set_whiptail_colors_bg_yellow {
+function _set_whiptail_colors_bg_magenta {
   export NEWT_COLORS='
-  root=white,yellow
+  root=white,magenta
   window=white,lightgray
   border=black,lightgray
   shadow=white,black
@@ -25,5 +25,5 @@ function _set_whiptail_colors_bg_yellow {
   '
 }
 
-export -f _set_whiptail_colors_bg_yellow
+export -f _set_whiptail_colors_bg_magenta
 

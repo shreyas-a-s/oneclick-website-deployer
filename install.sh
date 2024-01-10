@@ -119,7 +119,7 @@ done
 
 # Prompt user to choose which website components to install
 while true; do
-  _set_whiptail_colors_bg_yellow # Set whiptail BG color to yellow for selection of components
+  _set_whiptail_colors_bg_magenta # Set whiptail BG color to magenta for selection of components
   website_components=$(whiptail --title "COMPONENTS SELECTION" --checklist \
     "\n         Choose which website components to install\
     \n           (ARROW KEYS to move, SPACE to select,\
