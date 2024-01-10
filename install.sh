@@ -34,7 +34,7 @@ printf -- "\n-----------------------------------------\
 \n" >> ~/oneclick-website-deployer.log >> ~/oneclick-website-deployer-errors.log
 
 # Redirect stdout to one log file and stderr to another
-exec > >(tee -a ~/oneclick-website-deployer.log) 2>&1 2> >(tee -a  ~/error_output.txt >&2)
+exec > >(tee -a ~/oneclick-website-deployer.log) 2>&1 2> >(tee -a  ~/oneclick-website-deployer-errors.log >&2)
 
 # Define web root folder
 export DRUPAL_HOME=/var/www/html
