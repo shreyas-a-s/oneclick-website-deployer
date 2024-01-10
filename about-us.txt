@@ -1,0 +1,14 @@
+  +--------------------------------------------------------------------------------+
+  |                    One Click Website Deployer Using Tripal                     |
+  +--------------------------------------------------------------------------------+
+  |                                                                                |
+  |                               Special Thanks to:                               |
+  |      Dr. Sabarinath Subramaniam (Director & CEO @ Bharat Genome Database)      |
+  |                                                                                |
+  +--------------------------------------------------------------------------------+
+  |                                                                                |
+  |                                Developed by:                                   |
+  |           Shreyas A S (System Administrator @ Bharat Genome Database)          |
+  |  Sastha Kumar N (Research Administrator & Developer @ Bharat Genome Database)  |
+  |                                                                                |
+  +--------------------------------------------------------------------------------+
