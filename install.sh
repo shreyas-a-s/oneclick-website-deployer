@@ -21,7 +21,7 @@
 # ██████╔╝███████╗██║     ███████╗╚██████╔╝   ██║   ███████╗██║  ██║
 # ╚═════╝ ╚══════╝╚═╝     ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝
 
-# Developed for BharatGenomeDatabase.org (BGDB.org) by
+# Developed for https://BharatGenomeDatabase.org by
 # Shreyas A S [https://github.com/shreyas-a-s/website-tripal]
 # Sastha Kumar N [https://github.com/Sastha-Kumar-N]
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
