@@ -64,6 +64,7 @@ while true; do
   fi
 done
 drush trp-prepare-chado --user="$drupal_user" --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush trp-run-jobs --username="$drupal_user" --root="$DRUPAL_HOME"/"$drupalsitedir"
 drush cache-clear all --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Save current network configuration into a string
