@@ -125,7 +125,6 @@ while true; do
     \n           (ARROW KEYS to move, SPACE to select,\
     \n      TAB to move between sections, ENTER to confirm):" 14 64 4 \
     "Webform" "[Drupal module used to create Forms]" OFF \
-    "Tripal Daemon" "[To automatically execute Tripal Jobs]" OFF \
     "Tripal Blast" "[Interface for using NCBI Blast+]" OFF \
     "Tripal JBrowse" "[Integrate GMOD JBrowse with Tripal]" OFF \
     3>&1 1>&2 2>&3)
@@ -163,9 +162,9 @@ _set_whiptail_colors_default
 ./scripts/install-drupal.sh
 ./scripts/setup-cron.sh
 ./scripts/install-tripal.sh
+./scripts/install-tripal-daemon.sh
 if [[ -n $website_components ]]; then # Install tripal extensions based on user choice
   [[ $website_components == *"Webform"* ]]        &&  ./scripts/install-webform.sh
-  [[ $website_components == *"Tripal Daemon"* ]]  &&  ./scripts/install-tripal-daemon.sh
   [[ $website_components == *"Tripal Blast"* ]]   &&  ./scripts/install-tripal-blast.sh && ./scripts/setup-sample-blast-db.sh
   [[ $website_components == *"Tripal JBrowse"* ]] &&  ./scripts/install-tripal-jbrowse.sh
 fi
