@@ -12,6 +12,12 @@ function _install_whiptail {
       sudo yum install -y newt
     fi
   fi
+
+  # Exit if whiptail can't be installed
+  if ! command -v whiptail > /dev/null; then
+    echo "Whiptail can't be installed. Exiting..."
+    exit 1
+  fi
 }
 
 export -f _install_whiptail
