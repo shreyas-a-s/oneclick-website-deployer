@@ -156,6 +156,7 @@ _set_whiptail_colors_default
 ./scripts/install-apache.sh
 ./scripts/install-php.sh
 ./scripts/install-psql.sh
+./scripts/install-drush.sh
 ./scripts/install-drupal.sh
 ./scripts/setup-cron.sh
 ./scripts/install-tripal.sh
