@@ -153,7 +153,8 @@ done
 _set_whiptail_colors_default
 
 # Custom scripts
-./scripts/install-web-server.sh
+./scripts/install-apache.sh
+./scripts/install-php.sh
 ./scripts/install-psql.sh
 ./scripts/install-drupal.sh
 ./scripts/setup-cron.sh
