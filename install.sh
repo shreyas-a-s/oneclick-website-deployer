@@ -153,6 +153,7 @@ done
 _set_whiptail_colors_default
 
 # Custom scripts
+./scripts/install-dependencies.sh
 ./scripts/install-apache.sh
 ./scripts/install-php.sh
 ./scripts/install-psql.sh
