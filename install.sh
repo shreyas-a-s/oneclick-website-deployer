@@ -102,7 +102,7 @@ while true; do
     \nDrupal Username: $drupal_user\
     \nDrupal Password: $hidden_drupal_pass\
     \nDrupal Email: $drupal_mail\
-    \nCountry: $drupal_country\
+    \nCountry: $drupal_country_name\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
     16 53

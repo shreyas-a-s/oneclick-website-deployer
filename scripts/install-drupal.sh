@@ -18,7 +18,7 @@ mkdir sites/default/files/
 sudo chgrp -R www-data sites/default/files/
 sudo chmod g+rw sites/default/files/
 
-drush site-install standard --db-url=pgsql://"$psqluser":"$PGPASSWORD"@localhost:5432/"$psqldb" --account-mail="$drupal_mail" --account-name="$drupal_user" --account-pass="$drupal_pass" --site-mail="$drupal_mail" --site-name="$drupal_site_name" install_configure_form.site_default_country="$drupal_country" -y
+drush site-install standard --db-url=pgsql://"$psqluser":"$PGPASSWORD"@localhost:5432/"$psqldb" --account-mail="$drupal_mail" --account-name="$drupal_user" --account-pass="$drupal_pass" --site-mail="$drupal_mail" --site-name="$drupal_site_name" install_configure_form.site_default_country="$drupal_country_code" -y
 
 # Set temp-path for drupal to prevent issues in future
 mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/sites/default/files/tmp/

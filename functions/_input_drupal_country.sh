@@ -3,10 +3,10 @@
 function _input_drupal_country {
 
   # Try to automatically detect country using curl, jq commands
-  drupal_country=$(curl -s ipinfo.io | jq -r '.country')
+  drupal_country_code=$(curl -s ipinfo.io | jq -r '.country')
 
   # Use jq to check if the country code exists in the JSON
-  cc_exists=$(jq --arg key "$drupal_country" 'has($key)' ./components/countries.json)
+  cc_exists=$(jq --arg key "$drupal_country_code" 'has($key)' ./components/countries.json)
 
   if [ "$cc_exists" = "false" ]; then
     # Load JSON data into a Bash associative array
@@ -22,7 +22,7 @@ function _input_drupal_country {
     done <<< "$countries"
 
     # Whiptail menu
-    drupal_country=$(whiptail --title "SELECT COUNTRY" --menu "\n  (UP/DOWN ARROW KEYS to select, ENTER to confirm)" 18 55 9 "${country_items[@]}" 3>&1 1>&2 2>&3)
+    drupal_country_code=$(whiptail --title "SELECT COUNTRY" --menu "\n  (UP/DOWN ARROW KEYS to select, ENTER to confirm)" 18 55 9 "${country_items[@]}" 3>&1 1>&2 2>&3)
 
     exitstatus=$?
     if [ $exitstatus = 1 ]; then
@@ -31,10 +31,11 @@ function _input_drupal_country {
   fi
 
   # Change country code to country name
-  drupal_country=$(jq -r --arg key "$drupal_country" '.[$key]' ./components/countries.json)
+  drupal_country_name=$(jq -r --arg key "$drupal_country_code" '.[$key]' ./components/countries.json)
 
-  # Export drupal country variable to be used by child scripts
-  export drupal_country
+  # Export drupal country variables to be used by child scripts
+  export drupal_country_code
+  export drupal_country_name
 }
 
 # Export the function to be used by child scripts
