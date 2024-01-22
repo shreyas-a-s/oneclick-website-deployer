@@ -15,7 +15,7 @@ fi
 # Setup apache & php
 cd /etc/apache2/mods-enabled || exit
 sudo ln -s ../mods-available/rewrite.load # Enable Rewrite module for apache
-sudo sed -i '$i<Directory /var/www/html>\n   Options Indexes FollowSymLinks MultiViews\n   AllowOverride All\n   Order allow,deny\n   allow from all\n</Directory>' /etc/apache2/sites-available/000-default.conf # Set web root directory
+sudo sed -i "\$i<Directory $DRUPAL_HOME>\n   Options Indexes FollowSymLinks MultiViews\n   AllowOverride All\n   Order allow,deny\n   allow from all\n</Directory>" /etc/apache2/sites-available/000-default.conf # Set web root directory
 sudo sed -i "/memory_limit/ c\memory_limit = $memorylimit\M" /etc/php/"$php_version"/apache2/php.ini # Set max RAM a PHP script can consume
 
 # Fix for "The PHP error_log at  is not writable!"
