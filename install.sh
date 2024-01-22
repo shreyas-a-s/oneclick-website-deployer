@@ -43,7 +43,7 @@ export DRUPAL_HOME=/var/www/html
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Source functions
-for fn in ./functions/*; do
+for fn in ./functions/*.sh; do
   . "$fn"
 done
 
