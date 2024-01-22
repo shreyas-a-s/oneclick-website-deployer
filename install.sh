@@ -47,16 +47,12 @@ for fn in ./functions/*; do
   . "$fn"
 done
 
-# Check environment
-_is_os_supported        # Check if the OS is on the supported list
-_is_internet_available  # Check if system is connected to internet
-
-# Prepare environment
+# Check & prepare environment
+_is_os_supported              # Check if the OS is on the supported list
+_is_internet_available        # Check if system is connected to internet
 _install_whiptail             # Install whiptail program that poweres the script
 _set_whiptail_colors_default  # Apply default whiptail colors
-
-# Display the "About Us" page on the screen
-./show-about-us-page.sh
+./show-about-us-page.sh       # Display the "About Us" page on the screen
 
 # Prompt the user to enter inputs (database creds & memory limit)
 while true; do
