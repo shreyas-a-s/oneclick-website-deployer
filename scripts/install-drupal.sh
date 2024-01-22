@@ -5,14 +5,6 @@ if type _printtitle &> /dev/null; then
   _printtitle "INSTALLING - DRUPAL"
 fi
 
-# Install dependencies
-wget https://github.com/drush-ops/drush/releases/download/8.4.12/drush.phar # Install Drush (command-line shell interface for Drupal)
-chmod +x drush.phar
-sudo mv drush.phar /usr/local/bin/drush
-if command -v apt-get > /dev/null; then # Install other dependencies for debian-based distros
-  sudo apt-get install -y curl tar wget
-fi
-
 # Install Drupal
 sudo chown -R "$USER" "$DRUPAL_HOME"
 cd "$DRUPAL_HOME" || exit
