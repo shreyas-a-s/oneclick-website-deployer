@@ -48,11 +48,12 @@ for fn in ./functions/*.sh; do
 done
 
 # Check & prepare environment
-_is_os_supported              # Check if the OS is on the supported list
-_is_internet_available        # Check if system is connected to internet
-_install_whiptail             # Install whiptail program that poweres the script
-_set_whiptail_colors_default  # Apply default whiptail colors
-./show-about-us-page.sh       # Display the "About Us" page on the screen
+_is_os_supported                  # Check if the OS is on the supported list
+_is_internet_available            # Check if system is connected to internet
+_install_whiptail                 # Install whiptail program that poweres the script
+_set_whiptail_colors_default      # Apply default whiptail colors
+./show-about-us-page.sh           # Display the "About Us" page on the screen
+./scripts/install-dependencies.sh # Install dependency programs like wget, jq, etc.
 
 # Prompt the user to enter inputs (database creds & memory limit)
 while true; do
@@ -153,7 +154,6 @@ done
 _set_whiptail_colors_default
 
 # Custom scripts
-./scripts/install-dependencies.sh
 ./scripts/install-apache.sh
 ./scripts/install-php.sh
 ./scripts/install-psql.sh
