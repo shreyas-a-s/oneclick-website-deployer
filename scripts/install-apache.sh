@@ -7,7 +7,7 @@ fi
 
 # Install apache
 if command -v apt-get > /dev/null; then # Install for debian-based distros
-  sudo apt-get -y install apache2 libapache2-mod-php
+  sudo apt-get -y install apache2
 fi
 
 # Setup apache

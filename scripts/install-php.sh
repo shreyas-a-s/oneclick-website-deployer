@@ -8,7 +8,7 @@ fi
 # Install php
 if command -v apt-get > /dev/null; then # Install for debian-based distros
   php_version=$(apt-cache show php | grep version | awk '{print $4}' | awk -F ')' '{print $1}') # Store php version into a variable
-  sudo apt-get -y install php phppgadmin php-apcu php-cli php-curl php-dev php-gd php-pgsql php-uploadprogress php-xml php"$php_version"-mbstring php"$php_version"-zip
+  sudo apt-get -y install  libapache2-mod-php php phppgadmin php-apcu php-cli php-curl php-dev php-gd php-pgsql php-uploadprogress php-xml php"$php_version"-mbstring php"$php_version"-zip
 fi
 
 # Set max RAM a PHP script can consume
