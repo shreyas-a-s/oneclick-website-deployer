@@ -19,12 +19,6 @@ drush pm-enable -y entity views views_ui ctools ds field_group field_group_table
 drush pm-download tripal-7.x-3.10 -y
 drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 
-# Install chado to website
-./install-chado.sh
-
-# Prepare Website to work with chado
-./prepare-chado.sh
-
 # Fix for "Trying to access array offset on value of type null" error that gets displayed
 # when we refresh overlay menus (eg: localhost/drupal/bio_data/1#overlay-context=&overlay=admin/tripal)
 # source: https://www.drupal.org/project/field_formatter_settings/issues/3166628

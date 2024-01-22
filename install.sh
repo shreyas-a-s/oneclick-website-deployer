@@ -160,6 +160,8 @@ _set_whiptail_colors_default
 ./scripts/install-drupal.sh
 ./scripts/setup-cron.sh
 ./scripts/install-tripal.sh
+./scripts/install-chado.sh
+./scripts/prepare-chado.sh
 ./scripts/install-tripal-daemon.sh
 if [[ -n $website_components ]]; then # Install tripal extensions based on user choice
   [[ $website_components == *"Webform"* ]]        &&  ./scripts/install-webform.sh
