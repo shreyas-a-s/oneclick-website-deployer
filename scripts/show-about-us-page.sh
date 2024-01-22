@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Input file
-input_file="./components/about-us.txt"
+input_file="../components/about-us.txt"
 
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
