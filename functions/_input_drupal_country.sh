@@ -1,19 +1,14 @@
 #!/usr/bin/env bash
 
 function _input_drupal_country {
-  # Create an array of country codes
-  country_codes=$(jq 'keys_unsorted[]' ./components/countries.json | tr '\n' ' ')
 
-  # Validate http status code to see if ipinfo.io is reachable
-  response=$(curl -s -w "%{http_code}" ipinfo.io)
-  http_status=$(echo "$response" | tail -c 4)
+  # Try to automatically detect country using curl, jq commands
+  drupal_country=$(curl -s ipinfo.io | jq -r '.country')
 
-  if [ "$http_status" -eq 200 ]; then
-    # Try to automatically detect country using curl, jq commands
-    drupal_country=$(curl -s ipinfo.io | jq -r '.country')
-  fi
+  # Use jq to check if the country code exists in the JSON
+  cc_exists=$(jq --arg key "$drupal_country" 'has($key)' ./components/countries.json)
 
-  if [[ ! " ${country_codes[@]} " =~ " $drupal_country " ]]; then
+  if [ "$cc_exists" = "false" ]; then
     # Load JSON data into a Bash associative array
     declare -A countries
     countries=$(jq -r 'to_entries | map("\(.key) \(.value)") | .[]' ./components/countries.json)
