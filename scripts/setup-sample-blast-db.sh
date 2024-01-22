@@ -5,13 +5,15 @@ if type _printtitle &> /dev/null; then
   _printtitle "SETTING UP - SAMPLE BLAST DATABASE"
 fi
 
-# Change direcrtory
-SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
+# Store current directory into a variable
+SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
+
+# Change directory
+cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
 
 # Gathering test database
-mkdir -p "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA
-cd "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/db/16S_ribosomal_RNA || exit
-cp "$SCRIPT_DIR"/blastdb/16S_ribosomal_RNA/* ./
+mkdir -p tools/blast/db/16S_ribosomal_RNA
+cp "$SCRIPT_DIR"/../components/blastdb/16S_ribosomal_RNA/* tools/blast/db/16S_ribosomal_RNA/
 
 # Automatic blast db setup
 drush php-script "$SCRIPT_DIR"/create-blastdb.php --root="$DRUPAL_HOME"/"$drupalsitedir"
