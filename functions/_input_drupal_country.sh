@@ -2,7 +2,7 @@
 
 function _input_drupal_country {
   # Create an array of country codes
-  country_codes=$(jq 'keys_unsorted[]' countries.json | tr '\n' ' ')
+  country_codes=$(jq 'keys_unsorted[]' ./components/countries.json | tr '\n' ' ')
 
   # Validate http status code to see if ipinfo.io is reachable
   response=$(curl -s -w "%{http_code}" ipinfo.io)
@@ -16,7 +16,7 @@ function _input_drupal_country {
   if [[ ! " ${country_codes[@]} " =~ " $drupal_country " ]]; then
     # Load JSON data into a Bash associative array
     declare -A countries
-    countries=$(jq -r 'to_entries | map("\(.key) \(.value)") | .[]' countries.json)
+    countries=$(jq -r 'to_entries | map("\(.key) \(.value)") | .[]' ./components/countries.json)
 
     # Create an array with country codes and names
     country_items=()
@@ -36,7 +36,7 @@ function _input_drupal_country {
   fi
 
   # Change country code to country name
-  drupal_country=$(jq -r --arg key "$drupal_country" '.[$key]' countries.json)
+  drupal_country=$(jq -r --arg key "$drupal_country" '.[$key]' ./components/countries.json)
 
   # Export drupal country variable to be used by child scripts
   export drupal_country
