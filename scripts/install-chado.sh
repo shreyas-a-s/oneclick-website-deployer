@@ -12,9 +12,9 @@ drush trp-run-jobs --username="$drupal_user" --root="$DRUPAL_HOME"/"$drupalsited
 # Checking if chado installation was successful
 exitstatus=$?
 if [ $exitstatus -eq 0 ]; then
-  printf "\nChado Installation Successful.\n\n"
+  printf "\nChado Installation Successful.\n"
 else
-  printf "\nChado Installation Failed.\n\n"
+  printf "\nChado Installation Failed.\n"
 fi
 
 # Wait two seconds to allow user to read displayed message
