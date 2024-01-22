@@ -22,17 +22,8 @@ drush pm-enable -y entity views views_ui ctools ds field_group field_group_table
 drush pm-download tripal-7.x-3.10 -y
 drush pm-enable -y tripal tripal_chado tripal_ds tripal_ws
 
-# Install Tripal chado
-drush php-eval "module_load_include('inc', 'tripal_chado', 'includes/tripal_chado.install'); tripal_chado_load_drush_submit('Install Chado v1.3');" --username="$drupal_user" --root="$DRUPAL_HOME"/"$drupalsitedir"
-drush trp-run-jobs --username="$drupal_user" --root="$DRUPAL_HOME"/"$drupalsitedir"
-
-# Checking if chado installation was successful
-exitstatus=$?
-if [ $exitstatus -eq 0 ]; then
-  printf "\nChado Installation Successful.\n\n"
-else
-  printf "\nChado Installation Failed.\n\n"
-fi
+# Install chado to website
+./install-chado.sh
 
 # Prepare Website to work with chado
 ./prepare-chado.sh
