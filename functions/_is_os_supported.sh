@@ -14,7 +14,6 @@ function _is_os_supported {
   fi
 
   # Give warning if OS is not supported
-  if command -v whiptail > /dev/null; then # Display messages using whiptail
     _set_whiptail_colors_bg_red # Change whiptail bg color to RED
     if ! command -v apt-get > /dev/null; then # Checking is OS is not Debian-based
       whiptail --title "WARNING" --yesno \
@@ -42,23 +41,6 @@ function _is_os_supported {
       fi
     fi
     _set_whiptail_colors_default # Restore default colorscheme
-  else # Display messages using command-line
-    if ! command -v apt-get > /dev/null; then # Checking is OS is not Debian-based
-      printf "This doesn't seem to be a Debian Linux system. Installation might not work properly. But you can continue with the installation if you want. Continue (yes/no): "
-      read -r continue_or_not
-      case $continue_or_not in
-        no|n|NO)
-          exit 1 ;;
-      esac
-    elif [ "$debian_version" -ne 11 ]; then # Checking if OS is debian but not version 11
-      printf "Drupal 7 (and thereby Tripal 3) works best in Debian 11. This system is Debian %s. Installation might not work properly in this system. But you can continue with the installation if you want. Continue? (yes/no): " "$debian_version"
-      read -r continue_or_not
-      case $continue_or_not in
-        no|n|NO)
-          exit 1 ;;
-      esac
-    fi
-  fi
 }
 
 export -f _is_os_supported

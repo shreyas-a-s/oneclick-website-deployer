@@ -2,20 +2,15 @@
 
 function _input_drupal_username {
   while true; do
-    if command -v whiptail > /dev/null; then
-      drupal_user=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
-        "\nEnter the username to be used for drupal:\
-        \n         (Press ENTER to continue)" \
-        11 45 \
-        "$drupal_user" \
-        3>&1 1>&2 2>&3)
-      exitstatus=$?
-      if [ $exitstatus = 1 ]; then
-        exit 1
-      fi
-    else
-      printf "\nEnter the username to be used for drupal: "
-      read -r drupal_user
+    drupal_user=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
+      "\nEnter the username to be used for drupal:\
+      \n         (Press ENTER to continue)" \
+      11 45 \
+      "$drupal_user" \
+      3>&1 1>&2 2>&3)
+    exitstatus=$?
+    if [ $exitstatus = 1 ]; then
+      exit 1
     fi
 
     # Check if input is empty
