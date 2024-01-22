@@ -5,13 +5,15 @@ if type _printtitle &> /dev/null; then
   _printtitle "INSTALLING - TRIPAL BLAST"
 fi
 
+# Store current directory in a variable
+SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
+
 # Change to drupal directory
 cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
 
 # Install NCBI Blast+
-if command -v apt-get > /dev/null; then # Install for debian-based distros
-  sudo apt-get install -y ncbi-blast+
-fi
+mkdir -p tools
+cp -r "$SCRIPT_DIR"/../components/blast+ ./tools/
 
 # Install & enable libraries module (dependency of tripal_blast)
 drush pm-download -y libraries
@@ -27,7 +29,7 @@ chmod g+w sites/default/files/tripal/tripal_blast
 drush pm-enable blast_ui -y
 
 # Set blast+ bin folder in tripal_blast ui
-drush variable-set blast_path "$(dirname $(which blastn))" --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush variable-set blast_path "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast+/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Restart tripal_daemon to fix an error that happens
 # if we start a blast run without rebooting system
