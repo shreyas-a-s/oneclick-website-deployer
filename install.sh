@@ -167,7 +167,7 @@ _set_whiptail_colors_default
 if [[ -n $website_components ]]; then # Install tripal extensions based on user choice
   [[ $website_components == *"Webform"* ]]        &&  ./scripts/install-webform.sh
   [[ $website_components == *"Tripal Blast"* ]]   &&  ./scripts/install-tripal-blast.sh && ./scripts/setup-sample-blast-db.sh
-  [[ $website_components == *"Tripal JBrowse"* ]] &&  ./scripts/install-tripal-jbrowse.sh
+  [[ $website_components == *"Tripal JBrowse"* ]] &&  ./scripts/install-jbrowse.sh && ./scripts/install-tripal-jbrowse.sh
 fi
 
 # Unset PGPASSWORD
