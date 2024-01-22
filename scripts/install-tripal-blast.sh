@@ -27,7 +27,7 @@ chmod g+w sites/default/files/tripal/tripal_blast
 drush pm-enable blast_ui -y
 
 # Set blast+ bin folder in tripal_blast ui
-drush variable-set blast_path "$(which blastn)" --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush variable-set blast_path "$(dirname $(which blastn))" --root="$DRUPAL_HOME"/"$drupalsitedir"
 
 # Restart tripal_daemon to fix an error that happens
 # if we start a blast run without rebooting system
