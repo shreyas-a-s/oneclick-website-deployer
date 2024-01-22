@@ -5,11 +5,6 @@ if type _printtitle &> /dev/null; then
   _printtitle "PREPARING - CHADO"
 fi
 
-# Install dependencies
-if command -v apt-get > /dev/null; then
-  sudo apt-get install -y bind9-dnsutils
-fi
-
 # Save initial network configuration into a string
 initial_network_config=$(dig +short myip.opendns.com @resolver1.opendns.com)
 
