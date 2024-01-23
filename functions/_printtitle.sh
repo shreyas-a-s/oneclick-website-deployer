@@ -28,7 +28,7 @@ function _printtitle {
   # Define Variables
   number_of_columns="$(tput cols)"
   title="$*"
-  length_of_title="$(expr length "$title")"
+  length_of_title="${#title}"
   left_padding="$(((($number_of_columns - $length_of_title)) / 2))"
 
 
