@@ -29,8 +29,7 @@ function _printtitle {
   number_of_columns="$(tput cols)"
   title="$*"
   length_of_title="${#title}"
-  left_padding="$(((($number_of_columns - $length_of_title)) / 2))"
-
+  left_padding=$(( (number_of_columns - length_of_title) / 2 ))
 
   _draw_the_line
 
