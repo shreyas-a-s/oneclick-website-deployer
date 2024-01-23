@@ -3,7 +3,7 @@
 function _input_drupal_mail {
   while true; do
     drupal_mail=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
-      "\n""$wrong_email_msg""Enter a mail to be added to drupal website:\
+      "\nEnter a mail to be added to drupal website:\
       \n         (Press ENTER to continue)" \
       12 47 \
       "$drupal_mail" \
@@ -21,11 +21,9 @@ function _input_drupal_mail {
 
     # Act upon return value
     if [ $return_value = 1 ]; then
-      wrong_email_msg="Invalid Email Address\n"
-      _set_whiptail_colors_bg_red
+      whiptail --msgbox " Email address invalid" 7 28
       continue
     else
-      _set_whiptail_colors_bg_cyan
       break
     fi
   done
