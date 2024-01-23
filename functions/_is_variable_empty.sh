@@ -6,6 +6,8 @@ function _is_variable_empty {
   if [ -z "$variable_name" ]; then
     whiptail --msgbox "   Please enter a value" 7 30
     return 0
+  else
+    return 1
   fi
 }
 
