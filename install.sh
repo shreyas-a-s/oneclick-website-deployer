@@ -154,16 +154,16 @@ done
 _set_whiptail_colors_default
 
 # Custom scripts
-./scripts/install-apache.sh
-./scripts/install-php.sh
-./scripts/install-psql.sh
-./scripts/install-drush.sh
-./scripts/install-drupal.sh
-./scripts/setup-cron.sh
-./scripts/install-tripal.sh
-./scripts/install-chado.sh
-./scripts/prepare-chado.sh
-./scripts/install-tripal-daemon.sh
+./scripts/install-apache.sh           # Web server used to run website
+./scripts/install-php.sh              # Major backend program for Drupal
+./scripts/install-psql.sh             # PostgreSQL - the database backend for Drupal
+./scripts/install-drush.sh            # Drush is the utility to manage Drupal from cli
+./scripts/install-drupal.sh           # Drupal powers the whole website
+./scripts/setup-cron.sh               # Replace drupal cron tasks with system cronjob
+./scripts/install-tripal.sh           # Install Tripal
+./scripts/install-chado.sh            # Install chado database
+./scripts/prepare-chado.sh            # Prepare website to work with chado
+./scripts/install-tripal-daemon.sh    # Tripal Daemon is used to automate execution of tripal jobs
 if [[ -n $website_components ]]; then # Install tripal extensions based on user choice
   [[ $website_components == *"Webform"* ]]        &&  ./scripts/install-webform.sh
   [[ $website_components == *"Tripal Blast"* ]]   &&  ./scripts/install-tripal-blast.sh && ./scripts/setup-sample-blast-db.sh
