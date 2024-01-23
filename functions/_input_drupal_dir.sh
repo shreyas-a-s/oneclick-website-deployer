@@ -20,6 +20,13 @@ function _input_drupal_dir {
       whiptail --msgbox "   Please enter a value" 7 30
     fi
 
+    # Check if directory name is valid
+    if _is_dir_name_valid "$DRUPAL_HOME"; then
+      break
+    else
+      whiptail --msgbox "Directory name is invalid. It should only contain alphabets, numbers, hyphens and underscores & should not start with a hyphen." 9 49
+    fi
+
     # Check if directory exists
     if [ -d "$WEB_ROOT"/"$DRUPAL_HOME" ]; then
       whiptail --msgbox "   Directory exists." 7 27
