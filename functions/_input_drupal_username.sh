@@ -19,6 +19,13 @@ function _input_drupal_username {
     else
       whiptail --msgbox "   Please enter a value" 7 30
     fi
+
+    # Check if directory name is valid
+    if _is_username_valid "$drupal_user"; then
+      break
+    else
+      whiptail --msgbox "Username is invalid. It should only contain alphabets, numbers and underscores & must start with an alphabet." 9 47
+    fi
   done
 
   drupal_user=$(echo "$drupal_user" | tr ' ' '-') # Repace 'spaces' with 'hyphens'
