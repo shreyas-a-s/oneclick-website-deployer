@@ -19,6 +19,13 @@ function _input_drupal_dir {
     else
       whiptail --msgbox "   Please enter a value" 7 30
     fi
+
+    # Check if directory exists
+    if [ -d "$WEB_ROOT"/"$DRUPAL_HOME" ]; then
+      whiptail --msgbox "   Directory exists." 7 27
+    else
+      break
+    fi
   done
 
   DRUPAL_HOME=$(echo "$DRUPAL_HOME" | tr ' ' '-') # Replaces 'spaces' with 'hyphens'
