@@ -23,6 +23,8 @@ exitstatus=$?
 
 # User Intervention
 if [ $exitstatus = 0 ]; then
+  printf "\nSample Blast Database Setup successful\n"
+  sleep 2
   whiptail --title "SAMPLE BLAST DB SETUP" --msgbox \
     --ok-button "OK" \
     --notags \
