@@ -129,7 +129,7 @@ while true; do
     exit 1
   fi
 
-  if [[ ! -n $website_components ]]; then # Prompt user if they chose nothing
+  if [[ -z $website_components ]]; then # Prompt user if they chose nothing
     _set_whiptail_colors_bg_red # Set whiptail BG color to red indicating warning
     whiptail --title 'ATTENTION PLEASE !!' --yesno \
       --defaultno \
