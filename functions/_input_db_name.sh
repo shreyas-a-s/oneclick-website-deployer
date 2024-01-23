@@ -22,7 +22,11 @@ function _input_db_name {
   done
 
   # Check if database name is valid
-  _is_db_name_valid "$psqldb"
+  if _is_db_name_valid "$psqldb"; then
+    break
+  else
+    continue
+  fi
 
   # Export variable for use by child scripts
   export psqldb
