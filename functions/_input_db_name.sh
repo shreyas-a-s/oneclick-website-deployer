@@ -21,9 +21,6 @@ function _input_db_name {
     fi
   done
 
-  # Replaces 'spaces' with 'hyphens'
-  psqldb=$(echo "$psqldb" | tr ' ' '-')
-
   # Export variable for use by child scripts
   export psqldb
 }
