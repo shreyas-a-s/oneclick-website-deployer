@@ -34,8 +34,8 @@ while true; do
     break
   fi
 done
-drush trp-prepare-chado --user="$drupal_user" --root="$WEB_ROOT"/"$drupalsitedir"
-drush cache-clear all --root="$WEB_ROOT"/"$drupalsitedir"
+drush trp-prepare-chado --user="$drupal_user" --root="$WEB_ROOT"/"$DRUPAL_HOME"
+drush cache-clear all --root="$WEB_ROOT"/"$DRUPAL_HOME"
 
 # Save current network configuration into a string
 current_network_config=$(dig +short myip.opendns.com @resolver1.opendns.com)

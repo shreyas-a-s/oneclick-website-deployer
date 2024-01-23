@@ -6,7 +6,7 @@ if type _printtitle &> /dev/null; then
 fi
 
 # Change to drupal directory
-cd "$WEB_ROOT"/"$drupalsitedir"/ || exit
+cd "$WEB_ROOT"/"$DRUPAL_HOME"/ || exit
 
 # Install NCBI Blast+
 if command -v apt-get > /dev/null; then # Install for debian-based distros
@@ -27,7 +27,7 @@ chmod g+w sites/default/files/tripal/tripal_blast
 drush pm-enable blast_ui -y
 
 # Set blast+ bin folder in tripal_blast ui
-drush variable-set blast_path "$(dirname $(which blastn))/" --root="$WEB_ROOT"/"$drupalsitedir"
+drush variable-set blast_path "$(dirname $(which blastn))/" --root="$WEB_ROOT"/"$DRUPAL_HOME"
 
 # Restart tripal_daemon to fix an error that happens
 # if we start a blast run without rebooting system

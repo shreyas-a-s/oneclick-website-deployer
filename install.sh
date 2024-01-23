@@ -97,7 +97,7 @@ while true; do
     --defaultno \
     --yes-button "Edit" \
     --no-button "Continue" \
-    "Drupal Website Directory: $WEB_ROOT/$drupalsitedir\
+    "Drupal Website Directory: $WEB_ROOT/$DRUPAL_HOME\
     \nDrupal Site Name: $drupal_site_name\
     \nDrupal Username: $drupal_user\
     \nDrupal Password: $hidden_drupal_pass\

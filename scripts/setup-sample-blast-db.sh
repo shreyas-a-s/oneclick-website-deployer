@@ -9,14 +9,14 @@ fi
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 # Change directory
-cd "$WEB_ROOT"/"$drupalsitedir" || exit
+cd "$WEB_ROOT"/"$DRUPAL_HOME" || exit
 
 # Gathering test database
 mkdir -p tools/blast/db/16S_ribosomal_RNA
 cp "$SCRIPT_DIR"/../components/blastdb/16S_ribosomal_RNA/* tools/blast/db/16S_ribosomal_RNA/
 
 # Automatic blast db setup
-drush php-script "$SCRIPT_DIR"/create-blastdb.php --root="$WEB_ROOT"/"$drupalsitedir"
+drush php-script "$SCRIPT_DIR"/create-blastdb.php --root="$WEB_ROOT"/"$DRUPAL_HOME"
 
 # Store exit status in a variable
 exitstatus=$?
@@ -29,7 +29,7 @@ if [ $exitstatus = 0 ]; then
     --ok-button "OK" \
     --notags \
     "Sample Blast Database is set.\
-    \n\n1. Now you can go to http://localhost/""$drupalsitedir""/blast/nucleotide/nucleotide and test out blast by Entering a FASTA sequence (or uploading one) & Selecting the newly added database (16S_ribosomal_RNA) from dropdown under Nucleotide BLAST Databases & Clicking 'BLAST'\
+    \n\n1. Now you can go to http://localhost/""$DRUPAL_HOME""/blast/nucleotide/nucleotide and test out blast by Entering a FASTA sequence (or uploading one) & Selecting the newly added database (16S_ribosomal_RNA) from dropdown under Nucleotide BLAST Databases & Clicking 'BLAST'\
     \n2. Press ENTER to continue." 15 60
 else
   printf "\n\nSorry! Sample Blast Database setup failed for some reason.\n"

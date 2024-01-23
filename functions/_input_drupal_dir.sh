@@ -2,11 +2,11 @@
 
 function _input_drupal_dir {
   while true; do
-    drupalsitedir=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
+    DRUPAL_HOME=$(whiptail --title "DRUPAL WEBSITE DETAILS" --inputbox \
       "\nEnter the name of the directory to which\n  drupal website needs to be installed:\
       \n        (Press ENTER to continue)" \
       12 45 \
-      "$drupalsitedir" \
+      "$DRUPAL_HOME" \
       3>&1 1>&2 2>&3)
     exitstatus=$?
     if [ $exitstatus = 1 ]; then
@@ -14,15 +14,15 @@ function _input_drupal_dir {
     fi
 
     # Check if input is empty
-    if [ -n "$drupalsitedir" ]; then
+    if [ -n "$DRUPAL_HOME" ]; then
       break
     else
       whiptail --msgbox "   Please enter a value" 7 30
     fi
   done
 
-  drupalsitedir=$(echo "$drupalsitedir" | tr ' ' '-') # Replaces 'spaces' with 'hyphens'
-  export drupalsitedir
+  DRUPAL_HOME=$(echo "$DRUPAL_HOME" | tr ' ' '-') # Replaces 'spaces' with 'hyphens'
+  export DRUPAL_HOME
 }
 
 export -f _input_drupal_dir

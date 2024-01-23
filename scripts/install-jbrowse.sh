@@ -11,7 +11,7 @@ if command -v apt-get > /dev/null; then # Install for debian-based distros
 fi
 
 # Prepare environment
-cd "$WEB_ROOT"/"$drupalsitedir" || exit
+cd "$WEB_ROOT"/"$DRUPAL_HOME" || exit
 [ -d ./tools ] || mkdir tools/
 mkdir -p sites/default/files/jbrowse/data/
 sudo chgrp -R www-data sites/default/files/jbrowse/
@@ -29,7 +29,7 @@ cd tools/jbrowse/ || exit
 whiptail --title "JBROWSE EXAMPLE DATA (VOLVOX)" --msgbox \
   --ok-button "OK" \
   --notags \
-  "To see JBrowse example data, go to http://localhost/""$drupalsitedir""/tools/jbrowse/index.html?data=sample_data/json/volvox\
+  "To see JBrowse example data, go to http://localhost/""$DRUPAL_HOME""/tools/jbrowse/index.html?data=sample_data/json/volvox\
   \nPress ENTER to continue." \
   9 86
 
