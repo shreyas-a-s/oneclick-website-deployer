@@ -14,10 +14,8 @@ function _input_drupal_username {
     fi
 
     # Check if input is empty
-    if [ -n "$drupal_user" ]; then
+    if _is_variable_nonempty "$drupal_user"; then
       break
-    else
-      whiptail --msgbox "   Please enter a value" 7 30
     fi
 
     # Check if directory name is valid

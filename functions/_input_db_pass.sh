@@ -13,10 +13,8 @@ function _input_db_pass {
     fi
 
     # Check if input is empty
-    if [ -n "$PGPASSWORD" ]; then
+    if _is_variable_nonempty "$PGPASSWORD"; then
       break
-    else
-      whiptail --msgbox "   Please enter a value" 7 30
     fi
   done
   # Hide PGPASSWORD by replacing characters with *

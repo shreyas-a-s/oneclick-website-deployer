@@ -14,10 +14,8 @@ function _input_drupal_dir {
     fi
 
     # Check if input is empty
-    if [ -n "$DRUPAL_HOME" ]; then
+    if _is_variable_nonempty "$DRUPAL_HOME"; then
       break
-    else
-      whiptail --msgbox "   Please enter a value" 7 30
     fi
 
     # Check if directory name is valid

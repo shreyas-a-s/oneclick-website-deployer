@@ -14,10 +14,8 @@ function _input_drupal_site_name {
     fi
 
     # Check if input is empty
-    if [ -n "$drupal_site_name" ]; then
+    if _is_variable_nonempty "$drupal_site_name"; then
       break
-    else
-      whiptail --msgbox "   Please enter a value" 7 30
     fi
   done
 
