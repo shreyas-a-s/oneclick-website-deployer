@@ -9,8 +9,7 @@ function _input_drupal_country {
   cc_exists=$(jq --arg key "$drupal_country_code" 'has($key)' ./components/countries.json)
 
   if [ "$cc_exists" = "false" ]; then
-    # Load JSON data into a Bash associative array
-    declare -A countries
+    # Load JSON data into a string
     countries=$(jq -r 'to_entries | map("\(.key) \(.value)") | .[]' ./components/countries.json)
 
     # Create an array with country codes and names
