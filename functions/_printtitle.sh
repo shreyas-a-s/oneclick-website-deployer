@@ -5,7 +5,7 @@ function _draw_the_line {
 
   printf "\n"
 
-  for i in $(seq "$number_of_columns"); do
+  for _ in $(seq "$number_of_columns"); do
     printf '-'
   done
 
@@ -16,7 +16,7 @@ function _add_left_padding {
 
   printf "\n"
 
-  for i in $(seq "$left_padding"); do
+  for _ in $(seq "$left_padding"); do
     printf ' '
   done
 
