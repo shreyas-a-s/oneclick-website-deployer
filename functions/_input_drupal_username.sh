@@ -28,7 +28,6 @@ function _input_drupal_username {
     fi
   done
 
-  drupal_user=$(echo "$drupal_user" | tr ' ' '-') # Repace 'spaces' with 'hyphens'
   export drupal_user # Export drupal username to be used by child scripts
 }
 
