@@ -6,7 +6,7 @@ if type _printtitle &> /dev/null; then
 fi
 
 # Change directory
-cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
+cd "$WEB_ROOT"/"$drupalsitedir" || exit
 
 # Install module
 drush pm-download -y webform

@@ -37,7 +37,7 @@ printf -- "\n-----------------------------------------\
 exec > >(tee -a ~/oneclick-website-deployer.log) 2>&1 2> >(tee -a  ~/oneclick-website-deployer-errors.log >&2)
 
 # Define web root folder
-export DRUPAL_HOME=/var/www/html
+export WEB_ROOT=/var/www/html
 
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
@@ -97,7 +97,7 @@ while true; do
     --defaultno \
     --yes-button "Edit" \
     --no-button "Continue" \
-    "Drupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
+    "Drupal Website Directory: $WEB_ROOT/$drupalsitedir\
     \nDrupal Site Name: $drupal_site_name\
     \nDrupal Username: $drupal_user\
     \nDrupal Password: $hidden_drupal_pass\

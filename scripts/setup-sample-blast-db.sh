@@ -9,14 +9,14 @@ fi
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )")
 
 # Change directory
-cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
+cd "$WEB_ROOT"/"$drupalsitedir" || exit
 
 # Gathering test database
 mkdir -p tools/blast/db/16S_ribosomal_RNA
 cp "$SCRIPT_DIR"/../components/blastdb/16S_ribosomal_RNA/* tools/blast/db/16S_ribosomal_RNA/
 
 # Automatic blast db setup
-drush php-script "$SCRIPT_DIR"/create-blastdb.php --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush php-script "$SCRIPT_DIR"/create-blastdb.php --root="$WEB_ROOT"/"$drupalsitedir"
 
 # Store exit status in a variable
 exitstatus=$?

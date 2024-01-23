@@ -6,7 +6,7 @@ if type _printtitle &> /dev/null; then
 fi
 
 # Disable drupal cron to prevent website slowing down when users visit
-drush vset cron_safe_threshold 0 --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush vset cron_safe_threshold 0 --root="$WEB_ROOT"/"$drupalsitedir"
 
 # Store exit status to variable
 exitstatus=$?

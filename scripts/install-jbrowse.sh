@@ -11,7 +11,7 @@ if command -v apt-get > /dev/null; then # Install for debian-based distros
 fi
 
 # Prepare environment
-cd "$DRUPAL_HOME"/"$drupalsitedir" || exit
+cd "$WEB_ROOT"/"$drupalsitedir" || exit
 [ -d ./tools ] || mkdir tools/
 mkdir -p sites/default/files/jbrowse/data/
 sudo chgrp -R www-data sites/default/files/jbrowse/
