@@ -19,14 +19,14 @@ function _input_db_name {
     else
       whiptail --msgbox "   Please enter a value" 7 30
     fi
-  done
 
-  # Check if database name is valid
-  if _is_db_name_valid "$psqldb"; then
-    break
-  else
-    continue
-  fi
+    # Check if database name is valid
+    if _is_db_name_valid "$psqldb"; then
+      break
+    else
+      continue
+    fi
+  done
 
   # Export variable for use by child scripts
   export psqldb
