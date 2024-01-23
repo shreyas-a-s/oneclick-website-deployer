@@ -18,9 +18,14 @@ function _input_db_username {
     else
       whiptail --msgbox "   Please enter a value" 7 30
     fi
+
+    # Check if directory name is valid
+    if _is_username_valid "$psqluser"; then
+      break
+    else
+      whiptail --msgbox "Username is invalid. It should only contain alphabets, numbers and underscores & must start with an alphabet." 9 47
+    fi
   done
-  # Replaces 'spaces' with 'hyphens'
-  psqluser=$(echo "$psqluser" | tr ' ' '-')
 
   # Export the variable for use by child scripts
   export psqluser
