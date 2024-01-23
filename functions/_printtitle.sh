@@ -36,7 +36,7 @@ function _printtitle {
 
   _add_left_padding
 
-  printf "$title"
+  printf "%s" "$title"
 
   _draw_the_line
 
