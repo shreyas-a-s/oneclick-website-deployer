@@ -5,22 +5,13 @@ if type _printtitle &> /dev/null; then
   _printtitle "INSTALLING - TRIPAL BLAST"
 fi
 
-# Install dependencies
-if command -v apt-get > /dev/null; then
-  sudo apt-get install -y git unzip wget  # Install some necessary programs
-fi
-
 # Change to drupal directory
-cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
+cd "$WEB_ROOT"/"$DRUPAL_HOME"/ || exit
 
 # Install NCBI Blast+
-mkdir -p tools/blast
-wget --no-remove-listing ftp.ncbi.nlm.nih.gov/blast/executables/LATEST
-wget https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/"$(grep x64-linux.tar.gz LATEST | awk 'NR==1{print $2}' | awk -F '>' '{print $2}' | awk -F '<' '{print $1}')"
-tar zxvpf ncbi-blast-*+-x64-linux.tar.gz
-cp -r ncbi-blast-*+/bin tools/blast/
-rm -rf ncbi-blast-*+/ ncbi-blast-*+-x64-linux.tar.gz
-rm LATEST
+if command -v apt-get > /dev/null; then # Install for debian-based distros
+  sudo apt-get install -y ncbi-blast+
+fi
 
 # Install & enable libraries module (dependency of tripal_blast)
 drush pm-download -y libraries
@@ -36,7 +27,7 @@ chmod g+w sites/default/files/tripal/tripal_blast
 drush pm-enable blast_ui -y
 
 # Set blast+ bin folder in tripal_blast ui
-drush variable-set blast_path "$DRUPAL_HOME"/"$drupalsitedir"/tools/blast/bin/ --root="$DRUPAL_HOME"/"$drupalsitedir"
+drush variable-set blast_path "$(dirname $(which blastn))/" --root="$WEB_ROOT"/"$DRUPAL_HOME"
 
 # Restart tripal_daemon to fix an error that happens
 # if we start a blast run without rebooting system

@@ -2,29 +2,28 @@
 
 function _input_db_username {
   while true; do
-    if command -v whiptail > /dev/null; then
-      psqluser=$(whiptail --title "USER INPUT" --inputbox \
-        "\nEnter username for a new database user:\n\n       (Press ENTER to continue)" \
-        11 44 \
-        "$psqluser" \
-        3>&1 1>&2 2>&3)
-      exitstatus=$?
-      if [ $exitstatus = 1 ]; then
-        exit 1
-      fi
-    else
-      read -r -p "Enter a new username (role) for postgres: " psqluser
+    psqluser=$(whiptail --title "USER INPUT" --inputbox \
+      "\nEnter username for a new database user:\n\n       (Press ENTER to continue)" \
+      11 44 \
+      "$psqluser" \
+      3>&1 1>&2 2>&3)
+    exitstatus=$?
+    if [ $exitstatus = 1 ]; then
+      exit 1
     fi
 
     # Check if input is empty
-    if [ -n "$psqluser" ]; then
+    if _is_variable_nonempty "$psqluser"; then
+      break
+    fi
+
+    # Check if directory name is valid
+    if _is_username_valid "$psqluser"; then
       break
     else
-      whiptail --msgbox "   Please enter a value" 7 30
+      whiptail --msgbox "Username is invalid. It should only contain alphabets, numbers and underscores & must start with an alphabet." 9 47
     fi
   done
-  # Replaces 'spaces' with 'hyphens'
-  psqluser=$(echo "$psqluser" | tr ' ' '-')
 
   # Export the variable for use by child scripts
   export psqluser

@@ -6,7 +6,7 @@ if type _printtitle &> /dev/null; then
 fi
 
 # Change into drupal directory
-cd "$DRUPAL_HOME"/"$drupalsitedir"/ || exit
+cd "$WEB_ROOT"/"$DRUPAL_HOME"/ || exit
 
 # Install dependencies
 drush pm-download libraries -y
@@ -30,5 +30,5 @@ sed -i "/is_array/ c\    if\ (\!is_array(\$error)\ ||\ \!isset(\$error['type']))
 drush trpjob-daemon start
 
 # Set daemon to autostart during boot
-echo "@reboot $USER /usr/local/bin/drush trpjob-daemon start --root=$DRUPAL_HOME/$drupalsitedir" | sudo tee /etc/cron.d/tripal-daemon-autostart > /dev/null
+echo "@reboot $USER /usr/local/bin/drush trpjob-daemon start --root=$WEB_ROOT/$DRUPAL_HOME" | sudo tee /etc/cron.d/tripal-daemon-autostart > /dev/null
 

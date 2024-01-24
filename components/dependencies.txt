@@ -1,0 +1,4 @@
+bind9-dnsutils
+curl
+jq
+wget

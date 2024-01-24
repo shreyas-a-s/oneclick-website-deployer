@@ -2,25 +2,19 @@
 
 function _input_db_pass {
   while true; do
-    if command -v whiptail > /dev/null; then
-      PGPASSWORD=$(whiptail --title "USER INPUT" --passwordbox \
-        "\nEnter a password for the new user:\n\n    (Press ENTER to continue)" \
-        11 38 \
-        "$PGPASSWORD" \
-        3>&1 1>&2 2>&3)
-      exitstatus=$?
-      if [ $exitstatus = 1 ]; then
-        exit 1
-      fi
-    else
-      read -r -p "Enter a password for the new user: " PGPASSWORD
+    PGPASSWORD=$(whiptail --title "USER INPUT" --passwordbox \
+      "\nEnter a password for the new user:\n\n    (Press ENTER to continue)" \
+      11 38 \
+      "$PGPASSWORD" \
+      3>&1 1>&2 2>&3)
+    exitstatus=$?
+    if [ $exitstatus = 1 ]; then
+      exit 1
     fi
 
     # Check if input is empty
-    if [ -n "$PGPASSWORD" ]; then
+    if _is_variable_nonempty "$PGPASSWORD"; then
       break
-    else
-      whiptail --msgbox "   Please enter a value" 7 30
     fi
   done
   # Hide PGPASSWORD by replacing characters with *

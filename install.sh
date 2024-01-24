@@ -27,36 +27,32 @@
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
 
 # Create a log file and add time of execution to it
-printf -- "\n-----------------------------------------\
-\nONECLICK WEBSITE DEPLOYER LOG\
-\n$(date)\
-\n-----------------------------------------\
-\n" >> ~/oneclick-website-deployer.log >> ~/oneclick-website-deployer-errors.log
+printf -- "---------------------------------------\
+\n%s\
+\n---------------------------------------\
+\n" "$(date)" >> ~/oneclick-website-deployer.log >> ~/oneclick-website-deployer-errors.log
 
 # Redirect stdout to one log file and stderr to another
 exec > >(tee -a ~/oneclick-website-deployer.log) 2>&1 2> >(tee -a  ~/oneclick-website-deployer-errors.log >&2)
 
 # Define web root folder
-export DRUPAL_HOME=/var/www/html
+export WEB_ROOT=/var/www/html
 
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
 
 # Source functions
-for fn in ./functions/*; do
+for fn in ./functions/*.sh; do
   . "$fn"
 done
 
-# Check environment
-_is_os_supported        # Check if the OS is on the supported list
-_is_internet_available  # Check if system is connected to internet
-
-# Prepare environment
-_install_whiptail             # Install whiptail program that poweres the script
-_set_whiptail_colors_default  # Apply default whiptail colors
-
-# Display the "About Us" page on the screen
-./show-about-us-page.sh
+# Check & prepare environment
+_install_whiptail                 # Install whiptail program that poweres the script
+_set_whiptail_colors_default      # Apply default whiptail colors
+_is_os_supported                  # Check if the OS is on the supported list
+_is_internet_available            # Check if system is connected to internet
+./scripts/show-about-us-page.sh   # Display the "About Us" page on the screen
+./scripts/install-dependencies.sh # Install dependency programs like wget, jq, etc.
 
 # Prompt the user to enter inputs (database creds & memory limit)
 while true; do
@@ -100,12 +96,12 @@ while true; do
     --defaultno \
     --yes-button "Edit" \
     --no-button "Continue" \
-    "Drupal Website Directory: $DRUPAL_HOME/$drupalsitedir\
+    "Drupal Website Directory: $WEB_ROOT/$DRUPAL_HOME\
     \nDrupal Site Name: $drupal_site_name\
     \nDrupal Username: $drupal_user\
     \nDrupal Password: $hidden_drupal_pass\
     \nDrupal Email: $drupal_mail\
-    \nCountry: $drupal_country\
+    \nCountry: $drupal_country_name\
     \n\n       You can edit the data if you want.\
     \n     (ARROW KEYS to move, ENTER to confirm)" \
     16 53
@@ -125,7 +121,6 @@ while true; do
     \n           (ARROW KEYS to move, SPACE to select,\
     \n      TAB to move between sections, ENTER to confirm):" 14 64 4 \
     "Webform" "[Drupal module used to create Forms]" OFF \
-    "Tripal Daemon" "[To automatically execute Tripal Jobs]" OFF \
     "Tripal Blast" "[Interface for using NCBI Blast+]" OFF \
     "Tripal JBrowse" "[Integrate GMOD JBrowse with Tripal]" OFF \
     3>&1 1>&2 2>&3)
@@ -134,7 +129,7 @@ while true; do
     exit 1
   fi
 
-  if [[ ! -n $website_components ]]; then # Prompt user if they chose nothing
+  if [[ -z $website_components ]]; then # Prompt user if they chose nothing
     _set_whiptail_colors_bg_red # Set whiptail BG color to red indicating warning
     whiptail --title 'ATTENTION PLEASE !!' --yesno \
       --defaultno \
@@ -158,16 +153,20 @@ done
 _set_whiptail_colors_default
 
 # Custom scripts
-./scripts/install-web-server.sh
-./scripts/install-psql.sh
-./scripts/install-drupal.sh
-./scripts/setup-cron.sh
-./scripts/install-tripal.sh
+./scripts/install-apache.sh           # Web server used to run website
+./scripts/install-php.sh              # Major backend program for Drupal
+./scripts/install-psql.sh             # PostgreSQL - the database backend for Drupal
+./scripts/install-drush.sh            # Drush is the utility to manage Drupal from cli
+./scripts/install-drupal.sh           # Drupal powers the whole website
+./scripts/setup-cron.sh               # Replace drupal cron tasks with system cronjob
+./scripts/install-tripal.sh           # Install Tripal
+./scripts/install-chado.sh            # Install chado database
+./scripts/prepare-chado.sh            # Prepare website to work with chado
+./scripts/install-tripal-daemon.sh    # Tripal Daemon is used to automate execution of tripal jobs
 if [[ -n $website_components ]]; then # Install tripal extensions based on user choice
   [[ $website_components == *"Webform"* ]]        &&  ./scripts/install-webform.sh
-  [[ $website_components == *"Tripal Daemon"* ]]  &&  ./scripts/install-tripal-daemon.sh
   [[ $website_components == *"Tripal Blast"* ]]   &&  ./scripts/install-tripal-blast.sh && ./scripts/setup-sample-blast-db.sh
-  [[ $website_components == *"Tripal JBrowse"* ]] &&  ./scripts/install-tripal-jbrowse.sh
+  [[ $website_components == *"Tripal JBrowse"* ]] &&  ./scripts/install-jbrowse.sh && ./scripts/install-tripal-jbrowse.sh
 fi
 
 # Unset PGPASSWORD
