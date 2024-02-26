@@ -34,3 +34,5 @@ whiptail --title "DRUPAL SETUP" --msgbox \
   \n\n1. Now you can go to http://localhost/""$DRUPAL_HOME"" and test out your site by logging in with your drupal username and password.\
   \n2. Press ENTER to continue." 13 56
 
+# Unset PGPASSWORD
+unset PGPASSWORD
