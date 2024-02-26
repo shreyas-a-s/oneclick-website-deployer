@@ -169,9 +169,6 @@ if [[ -n $website_components ]]; then # Install tripal extensions based on user 
   [[ $website_components == *"Tripal JBrowse"* ]] &&  ./scripts/install-jbrowse.sh && ./scripts/install-tripal-jbrowse.sh
 fi
 
-# Unset PGPASSWORD
-unset PGPASSWORD
-
 # Provide users the option for an automatic system reboot
 ./scripts/auto-system-reboot.sh
 
