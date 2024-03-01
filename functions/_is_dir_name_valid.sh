@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function _is_dir_name_valid {
-local dir_name="$1"
+  local dir_name="$1"
   # Check if the directory name contains only valid characters
   if [[ ! "$dir_name" =~ ^[a-zA-Z0-9_-]+$ ]]; then
     return 1
@@ -18,4 +18,3 @@ local dir_name="$1"
 
 # Export the function to be used by child scripts
 export -f _is_dir_name_valid
-
