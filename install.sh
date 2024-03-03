@@ -27,9 +27,9 @@
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
 
 # Create a log file and add time of execution to it
-printf -- "---------------------------------------\
+printf -- "-------------------------------\
 \n%s\
-\n---------------------------------------\
+\n-------------------------------\
 \n" "$(date)" | tee -a ~/oneclick-website-deployer.log ~/oneclick-website-deployer-errors.log
 
 # Redirect stdout to one log file and stderr to another
