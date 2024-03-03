@@ -30,7 +30,7 @@
 printf -- "-------------------------------\
 \n%s\
 \n-------------------------------\
-\n" "$(date)" | tee -a ~/oneclick-website-deployer.log ~/oneclick-website-deployer-errors.log
+\n" "$(date)" | tee -a ~/oneclick-website-deployer.log ~/oneclick-website-deployer-errors.log > /dev/null
 
 # Redirect stdout to one log file and stderr to another
 exec > >(tee -a ~/oneclick-website-deployer.log) 2>&1 2> >(tee -a  ~/oneclick-website-deployer-errors.log >&2)
