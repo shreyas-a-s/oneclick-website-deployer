@@ -26,7 +26,15 @@
 # Sastha Kumar N [https://github.com/Sastha-Kumar-N]
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
 
-# Create a log file and add time of execution to it
+# Create log files and append OS info to them
+printf -- "--------\
+\nSYS INFO\
+\n--------\
+\n%s\
+\n--------\
+\n" "$(grep -iv 'url' /etc/os-release)" | tee -a ~/oneclick-website-deployer.log ~/oneclick-website-deployer-errors.log > /dev/null
+
+# Append time of execution to log files
 printf -- "-------------------------------\
 \n%s\
 \n-------------------------------\
