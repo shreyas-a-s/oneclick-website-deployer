@@ -27,12 +27,14 @@
 # Sabarinath Subramaniam [https://www.linkedin.com/in/sabarinath-subramaniam-a228014]
 
 # Create log files and append OS info to them
-printf -- "--------\
-\nSYS INFO\
-\n--------\
-\n%s\
-\n--------\
-\n" "$(grep -iv 'url' /etc/os-release)" | tee -a ~/oneclick-website-deployer.log ~/oneclick-website-deployer-errors.log > /dev/null
+if [ ! -f ~/oneclick-website-deployer.log ] || ! grep -qF 'SYS INFO' ~/oneclick-website-deployer.log; then
+  printf -- "--------\
+  \nSYS INFO\
+  \n--------\
+  \n%s\
+  \n--------\
+  \n" "$(grep -iv 'url' /etc/os-release)" | tee -a ~/oneclick-website-deployer.log ~/oneclick-website-deployer-errors.log > /dev/null
+fi
 
 # Append time of execution to log files
 printf -- "-------------------------------\
