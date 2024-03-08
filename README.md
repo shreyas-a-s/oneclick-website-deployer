@@ -1,6 +1,8 @@
 # One Click Website Deployer
 Bash script to install and setup a basic working tripal website.
 
+>**IMPORTANT NOTICE:** Currently the deployer only supports Debian 11 and it's derivatives like Ubuntu 18.04. We are planning to support their newer versions and other linux distributions. But currently, it's advisable to use any of the derivatives of Debian 11 as the base for running our deployer.
+
 # Features of the script
 - Installs in sub directory in /var/www/html directory. This makes it easier to develop and manage different versions of the website.
 - Installs stable version 7 of drupal.
