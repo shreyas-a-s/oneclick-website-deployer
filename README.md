@@ -31,4 +31,3 @@ Go to Releases section. Download deployer.zip from latest release. Extract it. R
 ```
 > [!NOTE]
 > In some systems, right click menu might not have this option. In that case, just double click the file and select "Run in Terminal".
-
