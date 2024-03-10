@@ -1,7 +1,8 @@
 # One Click Website Deployer
 Bash script to install and setup a basic working tripal website.
 
-> [!IMPORTANT] Currently the deployer only supports Debian 11 and it's derivatives like Ubuntu 18.04. We are planning to support their newer versions and other linux distributions. But currently, it's advisable to use any of the derivatives of Debian 11 as the base for running our deployer.
+> [!IMPORTANT]
+> Currently the deployer only supports Debian 11 and it's derivatives like Ubuntu 18.04. We are planning to support their newer versions and other linux distributions. But currently, it's advisable to use any of the derivatives of Debian 11 as the base for running our deployer.
 
 # Features of the script
 - Installs in sub directory in /var/www/html directory. This makes it easier to develop and manage different versions of the website.
@@ -28,5 +29,6 @@ OR if you want the simplest way:
 ```
 Go to Releases section. Download deployer.zip from latest release. Extract it. Right click the install.sh file and click "Run as a Program" and follow the prompts.
 ```
-> [!NOTE] In some systems, right click menu might not have this option. In that case, just double click the file and select "Run in Terminal".
+> [!NOTE]
+> In some systems, right click menu might not have this option. In that case, just double click the file and select "Run in Terminal".
 
